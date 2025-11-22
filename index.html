@@ -10,6 +10,7 @@
     <meta name="keywords" content="Driveways East Sussex, Landscaping Kent, Groundworks UK, Resin Driveways, Block Paving, Luxestone Construction">
     <meta name="author" content="Luxestone Construction">
 
+    <!-- Preconnect for performance -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
@@ -24,8 +25,9 @@
             --gold-gradient: linear-gradient(135deg, #bf953f 0%, #fcf6ba 40%, #b38728 100%);
             --gold-solid: #d4af37;
             --text-light: #f5f5f5;
-            --text-gray: #aaaaaa;
-            --glass-bg: rgba(20, 20, 20, 0.85);
+            /* Increased contrast for accessibility */
+            --text-gray: #cccccc; 
+            --glass-bg: rgba(20, 20, 20, 0.95);
             --glass-border: 1px solid rgba(255, 255, 255, 0.08);
             --font-heading: 'Playfair Display', serif;
             --font-body: 'Lato', sans-serif;
@@ -39,6 +41,12 @@
             box-sizing: border-box;
         }
 
+        /* Focus styles for accessibility */
+        :focus-visible {
+            outline: 2px solid var(--gold-solid);
+            outline-offset: 4px;
+        }
+
         html {
             scroll-behavior: smooth;
         }
@@ -49,7 +57,8 @@
             color: var(--text-light);
             line-height: 1.8;
             overflow-x: hidden;
-            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.05'/%3E%3C/svg%3E");
+            /* Reduced noise opacity slightly for better text readability */
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.03'/%3E%3C/svg%3E");
         }
 
         h1, h2, h3, h4 {
@@ -68,6 +77,7 @@
             max-width: 100%;
             display: block;
             width: 100%;
+            height: auto; /* Maintain aspect ratio */
         }
         
         ul, li {
@@ -87,6 +97,7 @@
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
+            color: var(--gold-solid); /* Fallback */
             font-weight: 700;
         }
 
@@ -122,6 +133,8 @@
             letter-spacing: 1px;
             transition: transform 0.3s ease, box-shadow 0.3s ease;
             box-shadow: 0 4px 15px rgba(191, 149, 63, 0.3);
+            /* Min touch target size */
+            min-height: 44px; 
         }
 
         .btn-gold:hover {
@@ -141,6 +154,7 @@
             font-size: 0.9rem;
             letter-spacing: 1px;
             transition: all 0.3s ease;
+            min-height: 44px;
         }
 
         .btn-outline:hover {
@@ -217,7 +231,7 @@
             color: #000;
         }
 
-        /* --- Header & Navigation Updated to match services.txt --- */
+        /* --- Header & Navigation --- */
         header {
             position: fixed;
             top: 0;
@@ -253,6 +267,7 @@
             background: var(--gold-gradient);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
+            color: var(--gold-solid);
         }
 
         .nav-links {
@@ -270,7 +285,7 @@
             letter-spacing: 2px;
             color: #ddd;
             position: relative;
-            padding-bottom: 5px;
+            padding: 10px 5px; /* Increased padding for touch targets */
         }
 
         .nav-links a:hover, .nav-links a.active {
@@ -280,7 +295,7 @@
         .nav-links a::after {
             content: '';
             position: absolute;
-            bottom: 0;
+            bottom: 5px; /* Adjusted for padding */
             left: 50%;
             transform: translateX(-50%);
             width: 0;
@@ -295,16 +310,21 @@
 
         .burger {
             display: none;
+            background: none;
+            border: none;
             color: var(--gold-solid);
             font-size: 1.5rem;
             cursor: pointer;
             z-index: 1001;
+            padding: 10px; /* Touch target size */
         }
 
         /* --- Hero Section --- */
         .hero {
             height: 100vh;
             min-height: 700px;
+            /* Used a standard linear gradient as fallback before image loads */
+            background-color: #000;
             background: linear-gradient(to bottom, rgba(0,0,0,0.5), rgba(0,0,0,0.8)), 
                         url('images/paving-contractors-brighton-hove.webp');
             background-size: cover;
@@ -353,6 +373,7 @@
             display: flex;
             gap: 20px;
             justify-content: center;
+            flex-wrap: wrap; /* Allow wrapping on small screens */
         }
 
         .hero-contact-bar {
@@ -447,6 +468,7 @@
             background: var(--gold-gradient);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
+            color: var(--gold-solid);
             margin-bottom: 10px;
         }
 
@@ -513,7 +535,7 @@
         }
 
         .service-card p {
-            color: #888;
+            color: #bbb; /* Lightened from #888 for better contrast */
             font-size: 1rem;
             font-weight: 300;
             line-height: 1.7;
@@ -539,7 +561,7 @@
             position: relative;
             height: 400px;
             overflow: hidden;
-            group: pointer;
+            cursor: pointer;
         }
 
         .portfolio-item img {
@@ -564,13 +586,16 @@
             flex-direction: column;
         }
 
-        .portfolio-item:hover img {
-            transform: scale(1.1);
-        }
+        /* Only apply hover effects on non-touch devices */
+        @media (hover: hover) {
+            .portfolio-item:hover img {
+                transform: scale(1.1);
+            }
 
-        .portfolio-item:hover .portfolio-overlay {
-            opacity: 1;
-            background: rgba(0,0,0,0.6);
+            .portfolio-item:hover .portfolio-overlay {
+                opacity: 1;
+                background: rgba(0,0,0,0.6);
+            }
         }
 
         .project-cat {
@@ -591,9 +616,11 @@
             transition: 0.4s 0.1s;
         }
 
-        .portfolio-item:hover .project-cat,
-        .portfolio-item:hover .project-title {
-            transform: translateY(0);
+        @media (hover: hover) {
+            .portfolio-item:hover .project-cat,
+            .portfolio-item:hover .project-title {
+                transform: translateY(0);
+            }
         }
 
         .contact {
@@ -623,6 +650,7 @@
             font-size: 1.1rem;
             text-decoration: none;
             transition: color 0.3s ease;
+            padding: 10px 0; /* Better touch targets */
         }
         
         .contact-info-item:hover {
@@ -657,12 +685,13 @@
             width: 100%;
             background: transparent;
             border: none;
-            border-bottom: 1px solid #444;
+            border-bottom: 1px solid #555; /* Increased contrast */
             padding: 12px 0;
             color: #fff;
             font-family: var(--font-body);
             font-size: 1rem;
             transition: 0.3s;
+            border-radius: 0; /* Reset iOS border radius */
         }
 
         input:focus, select:focus, textarea:focus {
@@ -675,19 +704,21 @@
             font-size: 0.8rem;
             text-transform: uppercase;
             letter-spacing: 1px;
-            color: #666;
+            color: #999; /* Increased contrast */
+            display: block;
+            margin-bottom: 5px;
         }
 
         footer {
             background: #050505;
             padding: 80px 0 30px;
             border-top: 1px solid #222;
-            color: #777;
+            color: #999;
         }
 
         .footer-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Wider min-width */
             gap: 40px;
             margin-bottom: 60px;
             text-align: left;
@@ -713,11 +744,12 @@
         }
 
         .footer-col ul li a {
-            color: #888;
+            color: #bbb;
             font-size: 0.95rem;
             transition: 0.3s;
             display: flex;
             align-items: center;
+            padding: 8px 0; /* Better touch targets */
         }
 
         .footer-col ul li a:hover {
@@ -738,8 +770,8 @@
         }
 
         .footer-socials a {
-            width: 40px;
-            height: 40px;
+            width: 44px; /* Better touch target */
+            height: 44px;
             background-color: #111;
             display: flex;
             justify-content: center;
@@ -748,6 +780,7 @@
             color: var(--gold-solid);
             transition: 0.3s;
             border: 1px solid #333;
+            text-decoration: none;
         }
 
         .footer-socials a:hover {
@@ -761,6 +794,8 @@
             padding-top: 30px;
             font-size: 0.85rem;
         }
+
+        /* --- Media Queries --- */
 
         @media (max-width: 1024px) {
             .services-grid, .portfolio-grid, .about-grid {
@@ -777,16 +812,34 @@
         }
 
         @media (max-width: 768px) {
+            /* Reduce padding significantly for mobile */
+            section { padding: 60px 0; }
+
             .burger { display: block; }
             
             .nav-links {
-                position: fixed; right: 0px; height: 100vh; top: 0;
-                background-color: #0f0f0f; display: flex; flex-direction: column;
-                align-items: center; justify-content: center; width: 75%;
-                transform: translateX(100%); transition: transform 0.4s cubic-bezier(0.77, 0, 0.175, 1);
-                z-index: 998; padding-top: 60px; box-shadow: -5px 0 25px rgba(0,0,0,0.8);
+                position: fixed; 
+                right: 0px; 
+                height: 100vh; 
+                top: 0;
+                background-color: #0f0f0f; 
+                display: flex; 
+                flex-direction: column;
+                align-items: center; 
+                justify-content: center; 
+                width: 85%; /* Slightly wider */
+                transform: translateX(100%); 
+                transition: transform 0.3s ease-in-out;
+                z-index: 998; 
+                padding-top: 60px; 
+                box-shadow: -5px 0 25px rgba(0,0,0,0.8);
             }
             
+            .nav-links a {
+                font-size: 1.2rem; /* Larger text for mobile menu */
+                padding: 15px;
+            }
+
             .nav-links.nav-active {
                 transform: translateX(0%);
             }
@@ -796,10 +849,11 @@
                 background-position: center center;
                 height: auto;
                 min-height: 100vh;
-                padding: 120px 0;
+                padding: 120px 0 80px;
             }
 
-            .hero h1 { font-size: 1.8rem; }
+            .hero h1 { font-size: 2.2rem; } /* Adjusted size */
+            .hero-sub { font-size: 1rem; padding: 0 10px; }
             
             .portfolio-grid { grid-template-columns: 1fr; }
 
@@ -807,14 +861,16 @@
                 height: auto;
                 display: flex;
                 flex-direction: column;
-                margin-bottom: 20px;
+                margin-bottom: 0;
                 border-bottom: 1px solid #333;
             }
 
             .portfolio-item img {
                 height: 300px;
+                width: 100%;
             }
 
+            /* Mobile Portfolio Overlay - Always Visible Style */
             .portfolio-overlay {
                 position: relative;
                 opacity: 1;
@@ -822,16 +878,19 @@
                 height: auto;
                 padding: 25px;
                 align-items: flex-start;
-                border-top: 3px solid var(--gold-solid);
+                border-top: 2px solid var(--gold-solid);
             }
 
             .project-cat, .project-title {
                 transform: translateY(0);
                 text-align: left;
+                margin-bottom: 5px;
             }
 
             .project-title {
                 font-size: 1.5rem;
+                margin-top: 0;
+                transform: none;
             }
             
             .floating-container {
@@ -844,6 +903,10 @@
                 height: 50px;
                 font-size: 1.5rem;
             }
+
+            .about-content-left h2 {
+                font-size: 2.5rem;
+            }
         }
     </style>
 </head>
@@ -853,14 +916,18 @@
         <div class="container">
             <nav>
                 <div class="logo">LUXE<span>STONE</span></div>
-                <ul class="nav-links" id="nav-links">
-                    <li><a href="index.html" class="active">Home</a></li>
-                    <li><a href="services.html">Services</a></li>
-                    <li><a href="#portfolio">Gallery</a></li>
-                    <li><a href="#about">About</a></li>
-                    <li><a href="#contact">Contact</a></li>
+                <!-- Accessibility: Role and Label for nav -->
+                <ul class="nav-links" id="nav-links" role="menubar">
+                    <li role="none"><a href="index.html" class="active" role="menuitem">Home</a></li>
+                    <li role="none"><a href="services.html" role="menuitem">Services</a></li>
+                    <li role="none"><a href="#portfolio" role="menuitem">Gallery</a></li>
+                    <li role="none"><a href="#about" role="menuitem">About</a></li>
+                    <li role="none"><a href="#contact" role="menuitem">Contact</a></li>
                 </ul>
-                <div class="burger" id="burger"><i class="fas fa-bars"></i></div>
+                <!-- Accessibility: Changed to button with aria-label -->
+                <button class="burger" id="burger" aria-label="Toggle navigation menu">
+                    <i class="fas fa-bars"></i>
+                </button>
             </nav>
         </div>
     </header>
@@ -933,8 +1000,8 @@
 
     <section id="services" class="services">
         <div class="container">
-            <div class="section-title">Our Expertise</div>
-            <div class="section-subtitle">Comprehensive Groundworks & Landscaping</div>
+            <h2 class="section-title">Our Expertise</h2>
+            <p class="section-subtitle">Comprehensive Groundworks & Landscaping</p>
 
             <div class="services-grid">
                 <div class="service-card">
@@ -967,22 +1034,23 @@
         </div>
 
         <div class="portfolio-grid">
+            <!-- Added loading="lazy" and dimensions to reduce layout shift -->
             <div class="portfolio-item">
-                <img src="images/driveway-brighton.webp" alt="Driveway Brighton">
+                <img src="images/driveway-brighton.webp" alt="Block Paving Driveway in Brighton" loading="lazy" width="600" height="400">
                 <div class="portfolio-overlay">
                     <span class="project-cat">Driveway</span>
                     <span class="project-title">Block Paving Brighton</span>
                 </div>
             </div>
             <div class="portfolio-item">
-                <img src="images/patio-kent.webp" alt="Patio Kent">
+                <img src="images/patio-kent.webp" alt="Indian Stone Patio in Kent" loading="lazy" width="600" height="400">
                 <div class="portfolio-overlay">
                     <span class="project-cat">Paving</span>
                     <span class="project-title">Indian Stone Patio Kent</span>
                 </div>
             </div>
             <div class="portfolio-item">
-                <img src="images/herringbone-driveway-sussex.webp" alt="Herringbone Sussex">
+                <img src="images/herringbone-driveway-sussex.webp" alt="Herringbone Brickwork in Sussex" loading="lazy" width="600" height="400">
                 <div class="portfolio-overlay">
                     <span class="project-cat">Brickwork</span>
                     <span class="project-title">Herringbone Sussex</span>
@@ -996,7 +1064,7 @@
             
             <div class="contact-details">
                 <h2 class="text-gold" style="font-size: 2.5rem; margin-bottom: 15px;">Get in Touch</h2>
-                <p style="color: #888; margin-bottom: 30px; font-weight: 300;">
+                <p style="color: #bbb; margin-bottom: 30px; font-weight: 300;">
                     Ready to transform your property? Contact us today for a free consultation and quote.
                 </p>
 
@@ -1015,12 +1083,13 @@
                 </div>
 
                 <div class="social-links" style="margin: 20px 0 30px 0; display: flex; gap: 20px;">
-                    <a href="https://www.instagram.com/luxestoneconstruction" target="_blank" style="color: #fff; font-size: 1.5rem;"><i class="fab fa-instagram"></i></a>
-                    <a href="https://www.facebook.com/luxestoneconstruction" target="_blank" style="color: #fff; font-size: 1.5rem;"><i class="fab fa-facebook-f"></i></a>
+                    <a href="https://www.instagram.com/luxestoneconstruction" target="_blank" aria-label="Instagram" style="color: #fff; font-size: 1.5rem;"><i class="fab fa-instagram"></i></a>
+                    <a href="https://www.facebook.com/luxestoneconstruction" target="_blank" aria-label="Facebook" style="color: #fff; font-size: 1.5rem;"><i class="fab fa-facebook-f"></i></a>
                 </div>
 
                 <div class="contact-map-small">
                     <iframe 
+                        title="Map of Kent and Sussex Service Area"
                         src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d635628.3573241667!2d0.04547859016052943!3d51.03888653190898!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47df627491c22d01%3A0x30eae2da2f84890!2sKent!5e0!3m2!1sen!2suk!4v1679324829123!5m2!1sen!2suk" 
                         width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy">
                     </iframe>
@@ -1029,22 +1098,23 @@
             
             <div class="contact-form-area">
                 <h3 style="color: #fff; margin-bottom: 30px; font-size: 1.5rem;">Send us a Message</h3>
+                <!-- Accessibility: Added id and for attributes for all form fields -->
                 <form action="#" method="POST">
                     <div class="form-group">
-                        <label>Name</label>
-                        <input type="text" required>
+                        <label for="name">Name</label>
+                        <input type="text" id="name" name="name" required>
                     </div>
                     <div class="form-group">
-                        <label>Email</label>
-                        <input type="email" required>
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" required>
                     </div>
                     <div class="form-group">
-                        <label>Phone</label>
-                        <input type="tel">
+                        <label for="phone">Phone</label>
+                        <input type="tel" id="phone" name="phone">
                     </div>
                     <div class="form-group">
-                        <label>Service</label>
-                        <select>
+                        <label for="service">Service</label>
+                        <select id="service" name="service">
                             <option>Driveway</option>
                             <option>Patio</option>
                             <option>Landscaping</option>
@@ -1053,8 +1123,8 @@
                         </select>
                     </div>
                     <div class="form-group">
-                        <label>Message</label>
-                        <textarea rows="3"></textarea>
+                        <label for="message">Message</label>
+                        <textarea id="message" name="message" rows="3"></textarea>
                     </div>
                     <button type="submit" class="btn-gold" style="width: 100%; margin-top: 20px;">Send Message</button>
                 </form>
@@ -1075,19 +1145,19 @@
                         Premium paving and landscaping specialists serving East Sussex & Kent. We pride ourselves on obsessive attention to detail and timeless finishes.
                     </p>
                     <div class="footer-socials">
-                        <a href="https://www.facebook.com/luxestoneconstruction" target="_blank"><i class="fab fa-facebook-f"></i></a>
-                        <a href="https://www.instagram.com/luxestoneconstruction" target="_blank"><i class="fab fa-instagram"></i></a>
+                        <a href="https://www.facebook.com/luxestoneconstruction" target="_blank" aria-label="Visit our Facebook page"><i class="fab fa-facebook-f"></i></a>
+                        <a href="https://www.instagram.com/luxestoneconstruction" target="_blank" aria-label="Visit our Instagram profile"><i class="fab fa-instagram"></i></a>
                     </div>
                 </div>
 
                 <div class="footer-col">
                     <h4>Quick Links</h4>
                     <ul>
-                        <li><a href="home">Home</a></li>
+                        <li><a href="index.html">Home</a></li>
                         <li><a href="services.html">Services</a></li>
-                        <li><a href="portfolio.html">Gallery</a></li>
-                        <li><a href="about.html">About Us</a></li>
-                        <li><a href="contact.html">Contact Us</a></li>
+                        <li><a href="#portfolio">Gallery</a></li>
+                        <li><a href="#about">About Us</a></li>
+                        <li><a href="#contact">Contact Us</a></li>
                     </ul>
                 </div>
 
@@ -1146,6 +1216,9 @@
         burger.addEventListener('click', () => {
             nav.classList.toggle('nav-active');
             burger.classList.toggle('toggle');
+            // Accessibility: Toggle aria-expanded if appropriate, though standard menu toggle usually relies on visibility
+            const expanded = burger.getAttribute('aria-expanded') === 'true' || false;
+            burger.setAttribute('aria-expanded', !expanded);
         });
 
         const navItems = document.querySelectorAll('.nav-links a');
@@ -1153,6 +1226,7 @@
             item.addEventListener('click', () => {
                 nav.classList.remove('nav-active');
                 burger.classList.remove('toggle');
+                burger.setAttribute('aria-expanded', 'false');
             });
         });
 
