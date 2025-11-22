@@ -10,29 +10,27 @@
     <meta name="keywords" content="Driveways East Sussex, Landscaping Kent, Groundworks UK, Resin Driveways, Block Paving, Luxestone Construction">
     <meta name="author" content="Luxestone Construction">
 
-    <!-- Fonts: Playfair Display (Luxury Serif) & Lato (Clean Sans) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
     
-    <!-- Icons: FontAwesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <style>
-        /* =========================================
-           CSS VARIABLES & RESET
-           ========================================= */
         :root {
             --bg-dark: #121212;
             --bg-card: #1e1e1e;
-            /* Metallic Gold Gradient */
+            --bg-card-hover: #252525;
             --gold-gradient: linear-gradient(135deg, #bf953f 0%, #fcf6ba 40%, #b38728 100%);
             --gold-solid: #d4af37;
             --text-light: #f5f5f5;
             --text-gray: #aaaaaa;
-            
+            --glass-bg: rgba(20, 20, 20, 0.85);
+            --glass-border: 1px solid rgba(255, 255, 255, 0.08);
             --font-heading: 'Playfair Display', serif;
             --font-body: 'Lato', sans-serif;
+            --container-width: 1300px;
+            --header-height: 80px;
         }
 
         * {
@@ -51,7 +49,6 @@
             color: var(--text-light);
             line-height: 1.8;
             overflow-x: hidden;
-            /* Subtle texture to remove "flatness" */
             background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.05'/%3E%3C/svg%3E");
         }
 
@@ -73,23 +70,18 @@
             width: 100%;
         }
         
-        /* STRICT RESET FOR LISTS */
         ul, li {
             list-style: none !important;
             padding: 0;
             margin: 0;
         }
 
-        /* =========================================
-           UTILITIES
-           ========================================= */
         .container {
             max-width: 1300px;
             margin: 0 auto;
             padding: 0 25px;
         }
 
-        /* Gold Text Gradient Class */
         .text-gold {
             background: var(--gold-gradient);
             -webkit-background-clip: text;
@@ -117,7 +109,6 @@
             font-family: var(--font-body);
         }
 
-        /* High-End Button Styling */
         .btn-gold {
             background: var(--gold-gradient);
             color: #000;
@@ -163,7 +154,6 @@
             position: relative;
         }
 
-        /* Divider Line */
         .divider {
             height: 1px;
             width: 100%;
@@ -171,9 +161,6 @@
             margin: 0 auto;
         }
 
-        /* =========================================
-           FLOATING BUTTONS
-           ========================================= */
         .floating-container {
             position: fixed;
             bottom: 30px;
@@ -204,7 +191,6 @@
             transform: translateY(-5px);
         }
 
-        /* WhatsApp */
         .whatsapp-btn {
             background-color: #25D366;
             color: white;
@@ -214,7 +200,6 @@
             color: white;
         }
 
-        /* Scroll Top */
         .scroll-top-btn {
             background: var(--gold-gradient);
             color: #000;
@@ -232,9 +217,7 @@
             color: #000;
         }
 
-        /* =========================================
-           HEADER
-           ========================================= */
+        /* --- Header & Navigation Updated to match services.txt --- */
         header {
             position: fixed;
             top: 0;
@@ -243,8 +226,8 @@
             backdrop-filter: blur(12px);
             -webkit-backdrop-filter: blur(12px);
             z-index: 1000;
-            padding: 20px 0;
-            border-bottom: 1px solid rgba(255,255,255,0.05);
+            padding: 15px 0;
+            border-bottom: var(--glass-border);
             transition: all 0.3s ease;
         }
 
@@ -252,6 +235,7 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
+            height: 50px;
         }
 
         .logo {
@@ -261,6 +245,7 @@
             color: var(--text-light);
             letter-spacing: 1px;
             font-style: italic;
+            z-index: 1002;
         }
 
         .logo span {
@@ -273,13 +258,9 @@
         .nav-links {
             display: flex;
             gap: 40px;
-            list-style: none; /* Double check */
+            list-style: none;
             margin: 0;
             padding: 0;
-        }
-
-        .nav-links li {
-            list-style: none;
         }
 
         .nav-links a {
@@ -289,16 +270,17 @@
             letter-spacing: 2px;
             color: #ddd;
             position: relative;
+            padding-bottom: 5px;
         }
 
-        .nav-links a:hover {
+        .nav-links a:hover, .nav-links a.active {
             color: var(--gold-solid);
         }
 
         .nav-links a::after {
             content: '';
             position: absolute;
-            bottom: -5px;
+            bottom: 0;
             left: 50%;
             transform: translateX(-50%);
             width: 0;
@@ -307,7 +289,7 @@
             transition: width 0.3s ease;
         }
 
-        .nav-links a:hover::after {
+        .nav-links a:hover::after, .nav-links a.active::after {
             width: 100%;
         }
 
@@ -319,17 +301,15 @@
             z-index: 1001;
         }
 
-        /* =========================================
-           HERO SECTION (IMMERSIVE)
-           ========================================= */
+        /* --- Hero Section --- */
         .hero {
             height: 100vh;
             min-height: 700px;
             background: linear-gradient(to bottom, rgba(0,0,0,0.5), rgba(0,0,0,0.8)), 
-                        url('images/hero-background.webp');
+                        url('images/paving-contractors-brighton-hove.webp');
             background-size: cover;
             background-position: center;
-            background-attachment: fixed; /* Keeps it fixed on desktop */
+            background-attachment: fixed;
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -340,19 +320,19 @@
         }
 
         .hero-content {
-            max-width: 1100px; /* Increased width to fit longer text */
+            max-width: 1100px;
             padding: 0 20px;
             z-index: 2;
             transform: translateY(-40px);
         }
 
         .hero h1 {
-            font-size: 3.8rem; /* Adjusted slightly for longer text */
+            font-size: 3.8rem;
             line-height: 1.2;
             margin-bottom: 25px;
             font-weight: 700;
             text-shadow: 0 10px 30px rgba(0,0,0,0.6);
-            text-transform: uppercase; /* Ensure uppercase like the image */
+            text-transform: uppercase;
         }
 
         .hero-sub {
@@ -375,7 +355,6 @@
             justify-content: center;
         }
 
-        /* Glassmorphism Contact Bar at bottom of Hero */
         .hero-contact-bar {
             position: absolute;
             bottom: 0;
@@ -390,7 +369,6 @@
             z-index: 3;
         }
 
-        /* Updated to allow <a> tags to behave like bar-items */
         .bar-item {
             display: flex;
             align-items: center;
@@ -399,7 +377,7 @@
             font-size: 0.9rem;
             text-transform: uppercase;
             letter-spacing: 1px;
-            text-decoration: none; /* Ensure links don't have underlines */
+            text-decoration: none;
             transition: color 0.3s ease;
         }
 
@@ -412,9 +390,6 @@
             font-size: 1.2rem;
         }
 
-        /* =========================================
-           ABOUT
-           ========================================= */
         .about-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -445,7 +420,6 @@
             font-weight: 300;
         }
 
-        /* Stats Grid to Fill Space */
         .stats-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -483,16 +457,12 @@
             color: #ccc;
         }
 
-        /* =========================================
-           SERVICES SECTION (CARDS WITH DEPTH)
-           ========================================= */
         .services {
             background: #0f0f0f;
         }
 
         .services-grid {
             display: grid;
-            /* Forced 3 columns on desktop to prevent wrapping */
             grid-template-columns: repeat(3, 1fr);
             gap: 30px;
         }
@@ -507,7 +477,6 @@
             z-index: 1;
         }
 
-        /* Subtle glow effect on hover */
         .service-card::after {
             content: '';
             position: absolute;
@@ -550,11 +519,8 @@
             line-height: 1.7;
         }
 
-        /* =========================================
-           GALLERY (MASONRY WALL STYLE)
-           ========================================= */
         .portfolio {
-            padding: 0; /* Full width impact */
+            padding: 0;
         }
 
         .portfolio-header {
@@ -565,9 +531,8 @@
 
         .portfolio-grid {
             display: grid;
-            /* Forced 3 columns on desktop to prevent wrapping */
             grid-template-columns: repeat(3, 1fr);
-            gap: 0; /* Seamless wall */
+            gap: 0;
         }
 
         .portfolio-item {
@@ -631,9 +596,6 @@
             transform: translateY(0);
         }
 
-        /* =========================================
-           CONTACT SECTION
-           ========================================= */
         .contact {
             background: #0f0f0f;
             padding-bottom: 0;
@@ -645,7 +607,6 @@
             border-top: 1px solid #222;
         }
 
-        /* New Left Column Styles */
         .contact-details {
             padding: 60px;
             background: #121212;
@@ -654,7 +615,6 @@
             justify-content: center;
         }
 
-        /* Updated to handle <a> tag correctly */
         .contact-info-item {
             display: flex;
             align-items: center;
@@ -675,16 +635,14 @@
             font-size: 1.2rem;
         }
 
-        /* New Map Container - Fixed Small Height */
         .contact-map-small {
             width: 100%;
-            height: 280px; /* Fixed, reasonable height */
+            height: 280px;
             margin-top: 30px;
             border: 1px solid #333;
             filter: grayscale(100%) invert(92%) contrast(83%);
         }
 
-        /* Form Area (Right Column) */
         .contact-form-area {
             padding: 60px;
             background: #161616;
@@ -720,9 +678,6 @@
             color: #666;
         }
 
-        /* =========================================
-           FOOTER
-           ========================================= */
         footer {
             background: #050505;
             padding: 80px 0 30px;
@@ -730,7 +685,6 @@
             color: #777;
         }
 
-        /* Reverted to the cleaner 4-column grid layout */
         .footer-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
@@ -808,11 +762,7 @@
             font-size: 0.85rem;
         }
 
-        /* =========================================
-           RESPONSIVE
-           ========================================= */
         @media (max-width: 1024px) {
-            /* On tablets/mobile, switch back to 1 column */
             .services-grid, .portfolio-grid, .about-grid {
                 grid-template-columns: 1fr;
                 gap: 30px;
@@ -829,79 +779,61 @@
         @media (max-width: 768px) {
             .burger { display: block; }
             
-            /* FIXED: CSS-based mobile menu */
             .nav-links {
-                position: fixed;
-                right: 0px;
-                height: 100vh;
-                top: 0;
-                background-color: #0f0f0f;
-                display: flex;
-                flex-direction: column;
-                align-items: center;
-                justify-content: center;
-                width: 70%;
-                transform: translateX(100%);
-                transition: transform 0.4s ease-in-out;
-                z-index: 998;
-                padding-top: 60px;
-                box-shadow: -5px 0 15px rgba(0,0,0,0.5);
+                position: fixed; right: 0px; height: 100vh; top: 0;
+                background-color: #0f0f0f; display: flex; flex-direction: column;
+                align-items: center; justify-content: center; width: 75%;
+                transform: translateX(100%); transition: transform 0.4s cubic-bezier(0.77, 0, 0.175, 1);
+                z-index: 998; padding-top: 60px; box-shadow: -5px 0 25px rgba(0,0,0,0.8);
             }
             
             .nav-links.nav-active {
                 transform: translateX(0%);
             }
             
-            /* FIX FOR MOBILE HERO IMAGE */
             .hero {
-                background-attachment: scroll; /* Disables parallax on mobile to fix zoom/display issues */
+                background-attachment: scroll;
                 background-position: center center;
                 height: auto;
                 min-height: 100vh;
                 padding: 120px 0;
             }
 
-            /* Reduced font size for mobile hero text to fix sizing issue */
             .hero h1 { font-size: 1.8rem; }
             
             .portfolio-grid { grid-template-columns: 1fr; }
 
-            /* =========================================
-               MOBILE PORTFOLIO FIX: Text Below Image
-               ========================================= */
             .portfolio-item {
-                height: auto; /* Let item grow to fit text below */
+                height: auto;
                 display: flex;
                 flex-direction: column;
-                margin-bottom: 20px; /* Spacing between mobile items */
+                margin-bottom: 20px;
                 border-bottom: 1px solid #333;
             }
 
             .portfolio-item img {
-                height: 300px; /* Fixed height for the image part */
+                height: 300px;
             }
 
             .portfolio-overlay {
-                position: relative; /* Move out of overlay position */
-                opacity: 1; /* Always visible */
-                background: #161616; /* Dark background matching form */
+                position: relative;
+                opacity: 1;
+                background: #161616;
                 height: auto;
                 padding: 25px;
-                align-items: flex-start; /* Align text left */
-                border-top: 3px solid var(--gold-solid); /* Accent line */
+                align-items: flex-start;
+                border-top: 3px solid var(--gold-solid);
             }
 
-            /* Reset transform animations for mobile so text is static */
             .project-cat, .project-title {
                 transform: translateY(0);
                 text-align: left;
             }
 
             .project-title {
-                font-size: 1.5rem; /* Slightly smaller size for mobile */
+                font-size: 1.5rem;
             }
             
-            /* Adjust floating buttons for mobile */
             .floating-container {
                 bottom: 20px;
                 right: 20px;
@@ -917,14 +849,13 @@
 </head>
 <body>
 
-    <!-- Header -->
     <header>
         <div class="container">
             <nav>
                 <div class="logo">LUXE<span>STONE</span></div>
                 <ul class="nav-links" id="nav-links">
-                    <li><a href="#home">Home</a></li>
-                    <li><a href="#services">Services</a></li>
+                    <li><a href="index.html" class="active">Home</a></li>
+                    <li><a href="services.html">Services</a></li>
                     <li><a href="#portfolio">Gallery</a></li>
                     <li><a href="#about">About</a></li>
                     <li><a href="#contact">Contact</a></li>
@@ -934,34 +865,27 @@
         </div>
     </header>
 
-    <!-- Hero Section -->
     <section id="home" class="hero">
         <div class="hero-content">
-            <!-- Top Gold Text REMOVED -->
             
-            <!-- Main Headline -->
             <h1>Premium Driveway & Patio Installation<br>East Sussex & Kent</h1>
             
-            <!-- Description Paragraph -->
             <span class="hero-sub">
                 Crafting bespoke driveways, luxury patios, and stunning landscapes.<br>
                 We turn your vision into a stunning reality.
             </span>
             
-            <!-- Buttons -->
             <div class="hero-buttons">
                 <a href="#contact" class="btn-gold">Get Your Free Quote</a>
                 <a href="#portfolio" class="btn-outline">View Our Gallery</a>
             </div>
         </div>
 
-        <!-- Glass Bar -->
         <div class="hero-contact-bar">
             <div class="bar-item">
                 <i class="fas fa-map-marker-alt"></i>
                 <span>Serving Kent & Sussex</span>
             </div>
-            <!-- UPDATED: Made phone number clickable -->
             <a href="tel:07060789789" class="bar-item">
                 <i class="fas fa-phone-alt"></i>
                 <span>07060 789789</span>
@@ -973,7 +897,6 @@
         </div>
     </section>
 
-    <!-- About Section -->
     <section id="about" class="about">
         <div class="container">
             <div class="about-grid">
@@ -986,14 +909,12 @@
                     <a href="#contact" class="btn-outline" style="margin-top: 20px;">About Our Process</a>
                 </div>
                 
-                <!-- Dense Stats Grid to fill space -->
                 <div class="stats-grid">
                     <div class="stat-card">
                         <span class="stat-number">15+</span>
                         <span class="stat-label">Years Experience</span>
                     </div>
                     <div class="stat-card">
-                        <!-- Updated Project Count -->
                         <span class="stat-number">50+</span>
                         <span class="stat-label">Projects Completed</span>
                     </div>
@@ -1010,7 +931,6 @@
         </div>
     </section>
 
-    <!-- Services Section -->
     <section id="services" class="services">
         <div class="container">
             <div class="section-title">Our Expertise</div>
@@ -1040,7 +960,6 @@
         </div>
     </section>
 
-    <!-- Portfolio Section (Wall Style) -->
     <section id="portfolio" class="portfolio">
         <div class="portfolio-header">
             <h2 class="section-title">Recent Projects</h2>
@@ -1048,7 +967,6 @@
         </div>
 
         <div class="portfolio-grid">
-            <!-- Item 1 -->
             <div class="portfolio-item">
                 <img src="images/driveway-brighton.webp" alt="Driveway Brighton">
                 <div class="portfolio-overlay">
@@ -1056,7 +974,6 @@
                     <span class="project-title">Block Paving Brighton</span>
                 </div>
             </div>
-            <!-- Item 2 -->
             <div class="portfolio-item">
                 <img src="images/patio-kent.webp" alt="Patio Kent">
                 <div class="portfolio-overlay">
@@ -1064,9 +981,7 @@
                     <span class="project-title">Indian Stone Patio Kent</span>
                 </div>
             </div>
-            <!-- Item 3 -->
             <div class="portfolio-item">
-                <!-- Updated filename here -->
                 <img src="images/herringbone-driveway-sussex.webp" alt="Herringbone Sussex">
                 <div class="portfolio-overlay">
                     <span class="project-cat">Brickwork</span>
@@ -1076,18 +991,15 @@
         </div>
     </section>
 
-    <!-- Contact Section (Split Layout) -->
     <section id="contact" class="contact">
         <div class="contact-wrapper">
             
-            <!-- Left Column: Details, Socials & Map -->
             <div class="contact-details">
                 <h2 class="text-gold" style="font-size: 2.5rem; margin-bottom: 15px;">Get in Touch</h2>
                 <p style="color: #888; margin-bottom: 30px; font-weight: 300;">
                     Ready to transform your property? Contact us today for a free consultation and quote.
                 </p>
 
-                <!-- UPDATED: Made phone number clickable -->
                 <a href="tel:07060789789" class="contact-info-item">
                     <i class="fas fa-phone-alt"></i>
                     <span>07060 789789</span>
@@ -1107,7 +1019,6 @@
                     <a href="https://www.facebook.com/luxestoneconstruction" target="_blank" style="color: #fff; font-size: 1.5rem;"><i class="fab fa-facebook-f"></i></a>
                 </div>
 
-                <!-- Map nested here, small and tidy -->
                 <div class="contact-map-small">
                     <iframe 
                         src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d635628.3573241667!2d0.04547859016052943!3d51.03888653190898!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47df627491c22d01%3A0x30eae2da2f84890!2sKent!5e0!3m2!1sen!2suk!4v1679324829123!5m2!1sen!2suk" 
@@ -1116,7 +1027,6 @@
                 </div>
             </div>
             
-            <!-- Right Column: Form Only -->
             <div class="contact-form-area">
                 <h3 style="color: #fff; margin-bottom: 30px; font-size: 1.5rem;">Send us a Message</h3>
                 <form action="#" method="POST">
@@ -1153,12 +1063,10 @@
         </div>
     </section>
 
-    <!-- Footer -->
     <footer>
         <div class="container">
             <div class="footer-grid">
                 
-                <!-- Column 1: Brand/About -->
                 <div class="footer-col">
                     <div class="logo" style="margin-bottom: 20px; font-size: 1.5rem;">
                         LUXE<span>STONE</span>
@@ -1172,33 +1080,29 @@
                     </div>
                 </div>
 
-                <!-- Column 2: Quick Links -->
                 <div class="footer-col">
                     <h4>Quick Links</h4>
                     <ul>
-                        <li><a href="#home">Home</a></li>
-                        <li><a href="#services">Services</a></li>
-                        <li><a href="#portfolio">Gallery</a></li>
-                        <li><a href="#about">About Us</a></li>
-                        <li><a href="#contact">Contact Us</a></li>
+                        <li><a href="home">Home</a></li>
+                        <li><a href="services.html">Services</a></li>
+                        <li><a href="portfolio.html">Gallery</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="contact.html">Contact Us</a></li>
                     </ul>
                 </div>
 
-                <!-- Column 3: Services -->
                 <div class="footer-col">
                     <h4>Our Services</h4>
-                    <!-- Inline styles removed, relying on global CSS reset -->
                     <ul>
-                        <li><a href="#services">Block Paving</a></li>
-                        <li><a href="#services">Resin Bound Driveways</a></li>
-                        <li><a href="#services">Indian Stone Patios</a></li>
-                        <li><a href="#services">Porcelain Paving</a></li>
-                        <li><a href="#services">Landscaping</a></li>
-                        <li><a href="#services">Groundworks</a></li>
+                        <li><a href="services.html">Block Paving</a></li>
+                        <li><a href="services.html">Resin Bound Driveways</a></li>
+                        <li><a href="services.html">Indian Stone Patios</a></li>
+                        <li><a href="services.html">Porcelain Paving</a></li>
+                        <li><a href="services.html">Landscaping</a></li>
+                        <li><a href="services.html">Groundworks</a></li>
                     </ul>
                 </div>
 
-                <!-- Column 4: Contact -->
                 <div class="footer-col">
                     <h4>Contact Us</h4>
                     <ul>
@@ -1226,29 +1130,24 @@
         </div>
     </footer>
 
-    <!-- Floating Action Buttons -->
     <div class="floating-container">
-        <!-- Scroll Top Button -->
         <button id="scrollTopBtn" class="float-btn scroll-top-btn" aria-label="Scroll to top">
             <i class="fas fa-arrow-up"></i>
         </button>
-        <!-- WhatsApp Button -->
         <a href="https://wa.me/447060789789" class="float-btn whatsapp-btn" target="_blank" aria-label="Chat on WhatsApp">
             <i class="fab fa-whatsapp"></i>
         </a>
     </div>
 
     <script>
-        // Mobile Navigation Toggle
         const burger = document.getElementById('burger');
-        const nav = document.getElementById('nav-links'); // Get the Nav UL, not the LI list
+        const nav = document.getElementById('nav-links');
 
         burger.addEventListener('click', () => {
             nav.classList.toggle('nav-active');
-            burger.classList.toggle('toggle'); // Optional animation class for burger icon
+            burger.classList.toggle('toggle');
         });
 
-        // Close mobile menu when link is clicked
         const navItems = document.querySelectorAll('.nav-links a');
         navItems.forEach(item => {
             item.addEventListener('click', () => {
@@ -1257,7 +1156,6 @@
             });
         });
 
-        // Scroll Top Button Logic
         const scrollTopBtn = document.getElementById('scrollTopBtn');
 
         window.addEventListener('scroll', () => {
