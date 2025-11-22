@@ -816,34 +816,36 @@
         }
         .scroll-top-btn.visible { opacity: 1; pointer-events: all; transform: translateY(0); }
         .scroll-top-btn:hover { color: #000; transform: translateY(-5px); }
+        
+        /* --- Updated Footer CSS to match index.html --- */
         footer {
-            background: #080808;
-            padding: 90px 0 30px;
+            background: #050505; /* Updated background color */
+            padding: 80px 0 30px; /* Updated padding */
             border-top: 1px solid #222;
             color: #777;
         }
         .footer-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 50px;
-            margin-bottom: 70px;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); /* Updated layout */
+            gap: 40px; /* Updated gap */
+            margin-bottom: 60px; /* Updated margin */
             text-align: left;
         }
         .footer-col h4 {
             color: var(--text-light);
             font-family: var(--font-heading);
-            font-size: 1.3rem;
-            margin-bottom: 30px;
+            font-size: 1.2rem; /* Updated font size */
+            margin-bottom: 25px; /* Updated margin */
             text-transform: uppercase;
             letter-spacing: 1px;
         }
-        .footer-col p { 
-            margin-bottom: 20px; 
-            line-height: 1.7; 
-            font-size: 0.95rem; 
+        .footer-col p {
+            margin-bottom: 20px;
+            line-height: 1.6; /* Updated line height */
+            font-size: 0.95rem;
         }
         .footer-col ul { list-style: none; padding: 0; margin: 0; }
-        .footer-col ul li { margin-bottom: 15px; }
+        .footer-col ul li { margin-bottom: 12px; /* Updated margin */ }
         .footer-col ul li a {
             color: #888;
             font-size: 0.95rem;
@@ -852,10 +854,12 @@
             align-items: center;
         }
         .footer-col ul li a:hover { color: var(--gold-solid); padding-left: 5px; }
-        .footer-col ul li i { margin-right: 12px; color: var(--gold-solid); font-size: 0.8rem; width: 15px; }
-        .footer-socials { display: flex; gap: 15px; margin-top: 25px; }
+        .footer-col ul li i { margin-right: 10px; color: var(--gold-solid); font-size: 0.8rem; width: 15px; }
+        .footer-socials { display: flex; gap: 15px; margin-top: 20px; /* Updated margin */ }
         .footer-socials a {
-            width: 45px; height: 45px; background-color: #121212;
+            width: 40px; /* Updated size */
+            height: 40px; /* Updated size */
+            background-color: #111; /* Updated bg color */
             display: flex; justify-content: center; align-items: center;
             border-radius: 50%; color: var(--gold-solid);
             transition: 0.3s; border: 1px solid #333;
@@ -939,6 +943,12 @@
                 box-shadow: 0 2px 10px rgba(0,0,0,0.5); 
                 z-index: 10;
             }
+
+            /* Service Detail Modal Specifics for Mobile */
+            #serviceModal .modal-content {
+                max-height: 80vh;
+                overflow-y: auto;
+            }
         }
     </style>
 </head>
@@ -975,7 +985,7 @@
             <div class="service-grid">
                 
                 <!-- 1. Fencing -->
-                <div class="service-card reveal" onclick="window.location.href='index.html#contact'">
+                <div class="service-card reveal" data-service="fencing" onclick="openServiceModal('fencing')">
                     <div class="card-bg">
                         <img src="images/service-fencing.webp" alt="Fencing" loading="lazy">
                     </div>
@@ -985,12 +995,12 @@
                         <h2 class="card-title">Fencing</h2>
                         <p class="card-short-desc">Premium closeboard, panel, and picket fencing solutions for security and style.</p>
                         <div class="card-line"></div>
-                        <span class="card-link">View Styles <i class="fas fa-arrow-right"></i></span>
+                        <span class="card-link">Read More <i class="fas fa-arrow-right"></i></span>
                     </div>
                 </div>
 
                 <!-- 2. Driveways -->
-                <div class="service-card reveal delay-100" onclick="window.location.href='index.html#contact'">
+                <div class="service-card reveal delay-100" data-service="driveways" onclick="openServiceModal('driveways')">
                     <div class="card-bg">
                         <img src="images/service-driveway.webp" alt="Luxury Resin Driveway" loading="lazy">
                     </div>
@@ -1000,12 +1010,12 @@
                         <h2 class="card-title">Driveways</h2>
                         <p class="card-short-desc">Bespoke Resin Bound, Block Paving, and Tarmac driveways with solid foundations.</p>
                         <div class="card-line"></div>
-                        <span class="card-link">Get Quote <i class="fas fa-arrow-right"></i></span>
+                        <span class="card-link">Read More <i class="fas fa-arrow-right"></i></span>
                     </div>
                 </div>
 
                 <!-- 3. Patios -->
-                <div class="service-card reveal delay-200" onclick="window.location.href='index.html#contact'">
+                <div class="service-card reveal delay-200" data-service="patios" onclick="openServiceModal('patios')">
                     <div class="card-bg">
                         <img src="images/service-patio.webp" alt="Indian Stone Patio" loading="lazy">
                     </div>
@@ -1015,12 +1025,12 @@
                         <h2 class="card-title">Patios</h2>
                         <p class="card-short-desc">Elegant Indian Sandstone and Porcelain patios designed for outdoor living.</p>
                         <div class="card-line"></div>
-                        <span class="card-link">View Options <i class="fas fa-arrow-right"></i></span>
+                        <span class="card-link">Read More <i class="fas fa-arrow-right"></i></span>
                     </div>
                 </div>
 
                 <!-- 4. Landscaping -->
-                <div class="service-card reveal delay-300" onclick="window.location.href='index.html#contact'">
+                <div class="service-card reveal delay-300" data-service="landscaping" onclick="openServiceModal('landscaping')">
                     <div class="card-bg">
                         <img src="images/service-landscaping.webp" alt="Garden Landscaping" loading="lazy">
                     </div>
@@ -1030,12 +1040,12 @@
                         <h2 class="card-title">Landscaping</h2>
                         <p class="card-short-desc">Full garden transformation including soft landscaping, planting, and design.</p>
                         <div class="card-line"></div>
-                        <span class="card-link">Start Project <i class="fas fa-arrow-right"></i></span>
+                        <span class="card-link">Read More <i class="fas fa-arrow-right"></i></span>
                     </div>
                 </div>
 
                 <!-- 5. Lawn Laying -->
-                <div class="service-card reveal" onclick="window.location.href='index.html#contact'">
+                <div class="service-card reveal" data-service="lawn" onclick="openServiceModal('lawn')">
                     <div class="card-bg">
                         <img src="images/service-lawn.webp" alt="Lawn Laying" loading="lazy" onerror="this.style.display='none'">
                     </div>
@@ -1045,12 +1055,12 @@
                         <h2 class="card-title">Lawn Laying</h2>
                         <p class="card-short-desc">Professional turfing and high-quality artificial grass installation.</p>
                         <div class="card-line"></div>
-                        <span class="card-link">See Turf <i class="fas fa-arrow-right"></i></span>
+                        <span class="card-link">Read More <i class="fas fa-arrow-right"></i></span>
                     </div>
                 </div>
 
                 <!-- 6. Slab Laying -->
-                <div class="service-card reveal delay-100" onclick="window.location.href='index.html#contact'">
+                <div class="service-card reveal delay-100" data-service="slab" onclick="openServiceModal('slab')">
                     <div class="card-bg">
                         <img src="images/service-slabs.webp" alt="Slab Laying" loading="lazy" onerror="this.style.display='none'">
                     </div>
@@ -1060,12 +1070,12 @@
                         <h2 class="card-title">Slab Laying</h2>
                         <p class="card-short-desc">Expert slab laying for pathways, utility areas, and garden features.</p>
                         <div class="card-line"></div>
-                        <span class="card-link">Learn More <i class="fas fa-arrow-right"></i></span>
+                        <span class="card-link">Read More <i class="fas fa-arrow-right"></i></span>
                     </div>
                 </div>
 
                 <!-- 7. Renovations -->
-                <div class="service-card reveal delay-200" onclick="window.location.href='index.html#contact'">
+                <div class="service-card reveal delay-200" data-service="renovations" onclick="openServiceModal('renovations')">
                     <div class="card-bg">
                         <img src="images/service-renovations.webp" alt="Renovations" loading="lazy" onerror="this.style.display='none'">
                     </div>
@@ -1075,12 +1085,12 @@
                         <h2 class="card-title">Renovations</h2>
                         <p class="card-short-desc">Structural updates, property improvements, and general building work.</p>
                         <div class="card-line"></div>
-                        <span class="card-link">Get Advice <i class="fas fa-arrow-right"></i></span>
+                        <span class="card-link">Read More <i class="fas fa-arrow-right"></i></span>
                     </div>
                 </div>
 
                 <!-- 8. Retaining Walls -->
-                <div class="service-card reveal delay-300" onclick="window.location.href='index.html#contact'">
+                <div class="service-card reveal delay-300" data-service="walls" onclick="openServiceModal('walls')">
                     <div class="card-bg">
                         <img src="images/service-walls.webp" alt="Retaining Walls" loading="lazy" onerror="this.style.display='none'">
                     </div>
@@ -1090,7 +1100,7 @@
                         <h2 class="card-title">Retaining Walls</h2>
                         <p class="card-short-desc">Functional and decorative brick and stone walls for garden structure.</p>
                         <div class="card-line"></div>
-                        <span class="card-link">View Work <i class="fas fa-arrow-right"></i></span>
+                        <span class="card-link">Read More <i class="fas fa-arrow-right"></i></span>
                     </div>
                 </div>
 
@@ -1180,39 +1190,61 @@
             <a href="index.html#contact" class="btn-gold">Get a Free Quote</a>
         </div>
     </section>
+
+    <!-- UPDATED FOOTER TO MATCH INDEX.HTML -->
     <footer>
         <div class="container">
-            <div class="footer-grid" style="grid-template-columns: 1.5fr 1fr 1fr;">
+            <div class="footer-grid">
                 <div class="footer-col">
                     <div class="logo" style="margin-bottom: 20px; font-size: 1.5rem;">
                         LUXE<span>STONE</span>
                     </div>
                     <p>
-                        Transforming properties across East Sussex and Kent with premium craftsmanship. We build driveways and landscapes that stand the test of time.
+                        Premium paving and landscaping specialists serving East Sussex & Kent. We pride ourselves on obsessive attention to detail and timeless finishes.
                     </p>
                     <div class="footer-socials">
-                        <a href="https://www.facebook.com/luxestoneconstruction" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
-                        <a href="https://www.instagram.com/luxestoneconstruction" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="https://www.facebook.com/luxestoneconstruction" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                        <a href="https://www.instagram.com/luxestoneconstruction" target="_blank"><i class="fab fa-instagram"></i></a>
                     </div>
                 </div>
                 <div class="footer-col">
-                    <h4>Our Expertise</h4>
+                    <h4>Quick Links</h4>
                     <ul>
-                        <li><a href="#services">Resin Bound Driveways</a></li>
-                        <li><a href="#services">Block Paving</a></li>
-                        <li><a href="#services">Natural Stone Patios</a></li>
-                        <li><a href="#services">Porcelain Paving</a></li>
-                        <li><a href="#services">Soft Landscaping</a></li>
-                        <li><a href="#services">Fencing & Groundworks</a></li>
+                        <li><a href="home">Home</a></li>
+                        <li><a href="services.html">Services</a></li>
+                        <li><a href="portfolio.html">Gallery</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="contact.html">Contact Us</a></li>
                     </ul>
                 </div>
                 <div class="footer-col">
-                    <h4>Get In Touch</h4>
-                    <ul class="contact-list">
-                        <li><a href="tel:07060789789"><i class="fas fa-phone-alt"></i> 07060 789789</a></li>
-                        <li><a href="mailto:info@luxestoneconstruction.co.uk"><i class="fas fa-envelope"></i> info@luxestoneconstruction.co.uk</a></li>
-                        <li style="align-items: flex-start;"><i class="fas fa-map-marker-alt" style="margin-top: 5px;"></i><span>East Sussex & Kent, UK</span></li>
-                        <li style="margin-top: 20px; color: #777; font-size: 0.9rem;"><i class="far fa-clock"></i> Mon - Fri: 08:00 - 18:00</li>
+                    <h4>Our Services</h4>
+                    <ul>
+                        <li><a href="services.html">Block Paving</a></li>
+                        <li><a href="services.html">Resin Bound Driveways</a></li>
+                        <li><a href="services.html">Indian Stone Patios</a></li>
+                        <li><a href="services.html">Porcelain Paving</a></li>
+                        <li><a href="services.html">Landscaping</a></li>
+                        <li><a href="services.html">Groundworks</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Contact Us</h4>
+                    <ul>
+                        <li>
+                            <a href="tel:07060789789">
+                                <i class="fas fa-phone-alt"></i> 07060 789789
+                            </a>
+                        </li>
+                        <li>
+                            <a href="mailto:info@luxestoneconstruction.co.uk">
+                                <i class="fas fa-envelope"></i> info@luxestoneconstruction.co.uk
+                            </a>
+                        </li>
+                        <li style="align-items: flex-start;">
+                            <i class="fas fa-map-marker-alt" style="margin-top: 5px;"></i>
+                            <span>East Sussex & Kent, UK</span>
+                        </li>
                     </ul>
                 </div>
             </div>
@@ -1221,6 +1253,7 @@
             </div>
         </div>
     </footer>
+
     <div class="floating-container">
         <button id="scrollTopBtn" class="float-btn scroll-top-btn" aria-label="Scroll to top">
             <i class="fas fa-arrow-up"></i>
@@ -1229,6 +1262,8 @@
             <i class="fab fa-whatsapp"></i>
         </a>
     </div>
+
+    <!-- CONTACT MODAL -->
     <div class="modal-overlay" id="contactModal">
         <div class="modal-content">
             <span class="modal-close" id="closeModal">&times;</span>
@@ -1254,6 +1289,22 @@
             </form>
         </div>
     </div>
+
+    <!-- SERVICE DETAILS MODAL -->
+    <div class="modal-overlay" id="serviceModal">
+        <div class="modal-content">
+            <span class="modal-close" id="closeServiceModal">&times;</span>
+            <div class="modal-header">
+                <h3 id="serviceTitle">Service Title</h3>
+                <div class="divider" style="width: 60px; margin: 15px auto 0; background: var(--gold-gradient);"></div>
+            </div>
+            <div style="margin-bottom: 30px;">
+                <p id="serviceDesc" style="color: #ccc; line-height: 1.7; font-size: 1rem;">Service Description goes here.</p>
+            </div>
+            <a href="index.html#contact" class="btn-gold" style="width: 100%; text-align: center;">Get a Quote for This Service</a>
+        </div>
+    </div>
+
     <script>
         const burger = document.getElementById('burger');
         const nav = document.getElementById('nav-links');
@@ -1323,24 +1374,91 @@
             observer.observe(el);
         });
 
-        const modal = document.getElementById('contactModal');
-        const openBtn = document.getElementById('openContactModal');
-        const closeBtn = document.getElementById('closeModal');
+        // CONTACT MODAL LOGIC
+        const contactModal = document.getElementById('contactModal');
+        const openContactBtn = document.getElementById('openContactModal');
+        const closeContactBtn = document.getElementById('closeModal');
 
-        if(openBtn && modal && closeBtn) {
-            openBtn.addEventListener('click', () => {
-                modal.classList.add('active');
+        if(openContactBtn && contactModal && closeContactBtn) {
+            openContactBtn.addEventListener('click', () => {
+                contactModal.classList.add('active');
                 document.body.style.overflow = 'hidden'; 
             });
 
-            closeBtn.addEventListener('click', () => {
-                modal.classList.remove('active');
+            closeContactBtn.addEventListener('click', () => {
+                contactModal.classList.remove('active');
                 document.body.style.overflow = 'auto'; 
             });
 
-            modal.addEventListener('click', (e) => {
-                if (e.target === modal) {
-                    modal.classList.remove('active');
+            contactModal.addEventListener('click', (e) => {
+                if (e.target === contactModal) {
+                    contactModal.classList.remove('active');
+                    document.body.style.overflow = 'auto';
+                }
+            });
+        }
+
+        // SERVICE DETAILS DATA
+        const serviceDetails = {
+            fencing: {
+                title: "Fencing & Gates",
+                desc: "Our fencing services provide security and style. We install Closeboard, Panel, Picket, and Trellis fencing using high-quality treated timber. We also supply and fit secure garden gates and commercial security fencing."
+            },
+            driveways: {
+                title: "Luxury Driveways",
+                desc: "Transform your home's entrance. We specialise in Resin Bound, Block Paving, and Tarmac driveways. All installations include professional excavation, sub-base preparation, and drainage to ensure a long-lasting, sink-free finish."
+            },
+            patios: {
+                title: "Patios & Paving",
+                desc: "Create the perfect outdoor living space. We are experts in laying Indian Sandstone, Porcelain, and Natural Slate. Our patios are laid on a full mortar bed with precision pointing for a durable and beautiful finish."
+            },
+            landscaping: {
+                title: "Landscaping",
+                desc: "Complete garden makeovers. From design to execution, we handle soft landscaping (planting, turfing) and hard landscaping (paths, sleepers, features) to create a cohesive and relaxing garden environment."
+            },
+            lawn: {
+                title: "Lawn Laying",
+                desc: "Get a lush, green lawn instantly. We provide professional turf laying using high-grade, weed-free turf. We also install realistic artificial grass for low-maintenance, year-round greenery."
+            },
+            slab: {
+                title: "Slab Laying",
+                desc: "Functional and decorative paving. Whether it's utility pathways, shed bases, or decorative garden paths, we lay slabs with precision and proper foundations to prevent movement."
+            },
+            renovations: {
+                title: "Renovations",
+                desc: "Enhance your property. We undertake structural updates, garden room bases, and general external property improvements to add value and functionality to your home."
+            },
+            walls: {
+                title: "Retaining Walls",
+                desc: "Structural integrity meets design. We build strong retaining walls for tiered gardens, as well as decorative brick and stone garden walls to define spaces and add character."
+            }
+        };
+
+        // SERVICE MODAL LOGIC
+        const serviceModal = document.getElementById('serviceModal');
+        const closeServiceBtn = document.getElementById('closeServiceModal');
+        const serviceTitleEl = document.getElementById('serviceTitle');
+        const serviceDescEl = document.getElementById('serviceDesc');
+
+        function openServiceModal(serviceKey) {
+            const data = serviceDetails[serviceKey];
+            if(data) {
+                serviceTitleEl.textContent = data.title;
+                serviceDescEl.textContent = data.desc;
+                serviceModal.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            }
+        }
+
+        if(serviceModal && closeServiceBtn) {
+            closeServiceBtn.addEventListener('click', () => {
+                serviceModal.classList.remove('active');
+                document.body.style.overflow = 'auto';
+            });
+
+            serviceModal.addEventListener('click', (e) => {
+                if (e.target === serviceModal) {
+                    serviceModal.classList.remove('active');
                     document.body.style.overflow = 'auto';
                 }
             });
