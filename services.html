@@ -917,6 +917,28 @@
             .floating-container { bottom: 20px; right: 20px; }
             .float-btn { width: 50px; height: 50px; font-size: 1.5rem; }
             .cta-section h2 { font-size: 2.5rem; }
+            
+            /* Fix modal specific for mobile */
+            .modal-content { 
+                padding: 30px 20px; 
+                width: 95%; 
+                max-height: 85vh; /* Prevent it being taller than screen */
+                overflow-y: auto; /* Allow scrolling inside if needed */
+            }
+            .modal-close {
+                top: 15px; 
+                right: 15px;
+                font-size: 2rem; 
+                background: #161616; 
+                border-radius: 50%;
+                width: 40px;
+                height: 40px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                box-shadow: 0 2px 10px rgba(0,0,0,0.5); 
+                z-index: 10;
+            }
         }
     </style>
 </head>
@@ -1326,4 +1348,3 @@
     </script>
 </body>
 </html>
-
