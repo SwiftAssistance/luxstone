@@ -172,13 +172,74 @@
         }
 
         /* =========================================
+           FLOATING BUTTONS
+           ========================================= */
+        .floating-container {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            z-index: 2000;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            align-items: flex-end;
+        }
+
+        .float-btn {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 1.8rem;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.5);
+            cursor: pointer;
+            transition: transform 0.3s ease, opacity 0.3s ease;
+            text-decoration: none;
+            border: none;
+        }
+
+        .float-btn:hover {
+            transform: translateY(-5px);
+        }
+
+        /* WhatsApp */
+        .whatsapp-btn {
+            background-color: #25D366;
+            color: white;
+        }
+        .whatsapp-btn:hover {
+            background-color: #20b858;
+            color: white;
+        }
+
+        /* Scroll Top */
+        .scroll-top-btn {
+            background: var(--gold-gradient);
+            color: #000;
+            opacity: 0;
+            pointer-events: none;
+            transform: translateY(20px);
+        }
+        .scroll-top-btn.visible {
+            opacity: 1;
+            pointer-events: all;
+            transform: translateY(0);
+        }
+        .scroll-top-btn:hover {
+            transform: translateY(-5px);
+            color: #000;
+        }
+
+        /* =========================================
            HEADER
            ========================================= */
         header {
             position: fixed;
             top: 0;
             width: 100%;
-            background-color: rgba(10, 10, 10, 0.85);
+            background-color: rgba(10, 10, 10, 0.95);
             backdrop-filter: blur(12px);
             -webkit-backdrop-filter: blur(12px);
             z-index: 1000;
@@ -255,6 +316,7 @@
             color: var(--gold-solid);
             font-size: 1.5rem;
             cursor: pointer;
+            z-index: 1001;
         }
 
         /* =========================================
@@ -267,7 +329,7 @@
                         url('images/hero-background.webp');
             background-size: cover;
             background-position: center;
-            background-attachment: fixed;
+            background-attachment: fixed; /* Keeps it fixed on desktop */
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -283,8 +345,6 @@
             z-index: 2;
             transform: translateY(-40px);
         }
-
-        /* Removed .hero-top-text styles as element is deleted */
 
         .hero h1 {
             font-size: 3.8rem; /* Adjusted slightly for longer text */
@@ -330,6 +390,7 @@
             z-index: 3;
         }
 
+        /* Updated to allow <a> tags to behave like bar-items */
         .bar-item {
             display: flex;
             align-items: center;
@@ -338,6 +399,12 @@
             font-size: 0.9rem;
             text-transform: uppercase;
             letter-spacing: 1px;
+            text-decoration: none; /* Ensure links don't have underlines */
+            transition: color 0.3s ease;
+        }
+
+        .bar-item:hover {
+            color: var(--gold-solid);
         }
 
         .bar-item i {
@@ -346,13 +413,8 @@
         }
 
         /* =========================================
-           HERO SECTION (IMMERSIVE)
+           ABOUT
            ========================================= */
-        .hero {
-            height: 100vh;
-            overflow: hidden;
-        }
-
         .about-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -592,12 +654,19 @@
             justify-content: center;
         }
 
+        /* Updated to handle <a> tag correctly */
         .contact-info-item {
             display: flex;
             align-items: center;
             margin-bottom: 20px;
             color: #ccc;
             font-size: 1.1rem;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        .contact-info-item:hover {
+            color: var(--gold-solid);
         }
 
         .contact-info-item i {
@@ -758,11 +827,54 @@
         }
 
         @media (max-width: 768px) {
-            .nav-links { display: none; } /* Use burger logic from prev script */
             .burger { display: block; }
             
-            .hero h1 { font-size: 2.8rem; }
+            /* FIXED: CSS-based mobile menu */
+            .nav-links {
+                position: fixed;
+                right: 0px;
+                height: 100vh;
+                top: 0;
+                background-color: #0f0f0f;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                width: 70%;
+                transform: translateX(100%);
+                transition: transform 0.4s ease-in-out;
+                z-index: 998;
+                padding-top: 60px;
+                box-shadow: -5px 0 15px rgba(0,0,0,0.5);
+            }
+            
+            .nav-links.nav-active {
+                transform: translateX(0%);
+            }
+            
+            /* FIX FOR MOBILE HERO IMAGE */
+            .hero {
+                background-attachment: scroll; /* Disables parallax on mobile to fix zoom/display issues */
+                background-position: center center;
+                height: auto;
+                min-height: 100vh;
+                padding: 120px 0;
+            }
+
+            .hero h1 { font-size: 2.5rem; }
             .portfolio-grid { grid-template-columns: 1fr; }
+            
+            /* Adjust floating buttons for mobile */
+            .floating-container {
+                bottom: 20px;
+                right: 20px;
+            }
+            
+            .float-btn {
+                width: 50px;
+                height: 50px;
+                font-size: 1.5rem;
+            }
         }
     </style>
 </head>
@@ -773,14 +885,14 @@
         <div class="container">
             <nav>
                 <div class="logo">LUXE<span>STONE</span></div>
-                <ul class="nav-links">
+                <ul class="nav-links" id="nav-links">
                     <li><a href="#home">Home</a></li>
                     <li><a href="#services">Services</a></li>
                     <li><a href="#portfolio">Gallery</a></li>
                     <li><a href="#about">About</a></li>
                     <li><a href="#contact">Contact</a></li>
                 </ul>
-                <div class="burger"><i class="fas fa-bars"></i></div>
+                <div class="burger" id="burger"><i class="fas fa-bars"></i></div>
             </nav>
         </div>
     </header>
@@ -812,10 +924,11 @@
                 <i class="fas fa-map-marker-alt"></i>
                 <span>Serving Kent & Sussex</span>
             </div>
-            <div class="bar-item">
+            <!-- UPDATED: Made phone number clickable -->
+            <a href="tel:07060789789" class="bar-item">
                 <i class="fas fa-phone-alt"></i>
                 <span>07060 789789</span>
-            </div>
+            </a>
             <div class="bar-item">
                 <i class="fas fa-star"></i>
                 <span>25+ 5 Star Reviews</span>
@@ -936,10 +1049,12 @@
                     Ready to transform your property? Contact us today for a free consultation and quote.
                 </p>
 
-                <div class="contact-info-item">
+                <!-- UPDATED: Made phone number clickable -->
+                <a href="tel:07060789789" class="contact-info-item">
                     <i class="fas fa-phone-alt"></i>
                     <span>07060 789789</span>
-                </div>
+                </a>
+                
                 <div class="contact-info-item">
                     <i class="fas fa-envelope"></i>
                     <span>info@luxestoneconstruction.co.uk</span>
@@ -1072,6 +1187,56 @@
             </div>
         </div>
     </footer>
+
+    <!-- Floating Action Buttons -->
+    <div class="floating-container">
+        <!-- Scroll Top Button -->
+        <button id="scrollTopBtn" class="float-btn scroll-top-btn" aria-label="Scroll to top">
+            <i class="fas fa-arrow-up"></i>
+        </button>
+        <!-- WhatsApp Button -->
+        <a href="https://wa.me/447060789789" class="float-btn whatsapp-btn" target="_blank" aria-label="Chat on WhatsApp">
+            <i class="fab fa-whatsapp"></i>
+        </a>
+    </div>
+
+    <script>
+        // Mobile Navigation Toggle
+        const burger = document.getElementById('burger');
+        const nav = document.getElementById('nav-links'); // Get the Nav UL, not the LI list
+
+        burger.addEventListener('click', () => {
+            nav.classList.toggle('nav-active');
+            burger.classList.toggle('toggle'); // Optional animation class for burger icon
+        });
+
+        // Close mobile menu when link is clicked
+        const navItems = document.querySelectorAll('.nav-links a');
+        navItems.forEach(item => {
+            item.addEventListener('click', () => {
+                nav.classList.remove('nav-active');
+                burger.classList.remove('toggle');
+            });
+        });
+
+        // Scroll Top Button Logic
+        const scrollTopBtn = document.getElementById('scrollTopBtn');
+
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 300) {
+                scrollTopBtn.classList.add('visible');
+            } else {
+                scrollTopBtn.classList.remove('visible');
+            }
+        });
+
+        scrollTopBtn.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+    </script>
 
 </body>
 </html>
