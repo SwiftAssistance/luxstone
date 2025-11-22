@@ -865,6 +865,41 @@
             .hero h1 { font-size: 1.8rem; }
             
             .portfolio-grid { grid-template-columns: 1fr; }
+
+            /* =========================================
+               MOBILE PORTFOLIO FIX: Text Below Image
+               ========================================= */
+            .portfolio-item {
+                height: auto; /* Let item grow to fit text below */
+                display: flex;
+                flex-direction: column;
+                margin-bottom: 20px; /* Spacing between mobile items */
+                border-bottom: 1px solid #333;
+            }
+
+            .portfolio-item img {
+                height: 300px; /* Fixed height for the image part */
+            }
+
+            .portfolio-overlay {
+                position: relative; /* Move out of overlay position */
+                opacity: 1; /* Always visible */
+                background: #161616; /* Dark background matching form */
+                height: auto;
+                padding: 25px;
+                align-items: flex-start; /* Align text left */
+                border-top: 3px solid var(--gold-solid); /* Accent line */
+            }
+
+            /* Reset transform animations for mobile so text is static */
+            .project-cat, .project-title {
+                transform: translateY(0);
+                text-align: left;
+            }
+
+            .project-title {
+                font-size: 1.5rem; /* Slightly smaller size for mobile */
+            }
             
             /* Adjust floating buttons for mobile */
             .floating-container {
@@ -1031,6 +1066,7 @@
             </div>
             <!-- Item 3 -->
             <div class="portfolio-item">
+                <!-- Updated filename here -->
                 <img src="images/herringbone-driveway-sussex.webp" alt="Herringbone Sussex">
                 <div class="portfolio-overlay">
                     <span class="project-cat">Brickwork</span>
