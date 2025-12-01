@@ -1,0 +1,682 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    
+    <title>About Us | Luxestone Construction</title>
+    <meta name="description" content="Learn about Luxestone Construction, the leading specialists in premium driveways and landscaping in East Sussex and Kent. Reliability meets elegance.">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        /* --- CORE STYLES --- */
+        :root {
+            --bg-dark: #121212;
+            --bg-card: #1e1e1e;
+            --bg-card-hover: #252525;
+            --gold-gradient: linear-gradient(135deg, #bf953f 0%, #fcf6ba 40%, #b38728 100%);
+            --gold-solid: #d4af37;
+            --text-light: #f5f5f5;
+            --text-gray: #aaaaaa;
+            --glass-bg: rgba(20, 20, 20, 0.9);
+            --glass-border: 1px solid rgba(255, 255, 255, 0.08);
+            --font-heading: 'Playfair Display', serif;
+            --font-body: 'Lato', sans-serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font-body);
+            background-color: var(--bg-dark);
+            color: var(--text-light);
+            line-height: 1.8;
+            overflow-x: hidden;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.05'/%3E%3C/svg%3E");
+        }
+
+        h1, h2, h3, h4 {
+            font-family: var(--font-heading);
+            color: var(--text-light);
+        }
+
+        a { text-decoration: none; color: inherit; transition: 0.3s ease; }
+        ul { list-style: none; padding: 0; margin: 0; }
+        img { max-width: 100%; display: block; width: 100%; }
+
+        .container {
+            max-width: 1300px;
+            margin: 0 auto;
+            padding: 0 25px;
+        }
+
+        .text-gold {
+            background: var(--gold-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-weight: 700;
+        }
+
+        .btn-gold {
+            background: var(--gold-gradient);
+            color: #000;
+            padding: 16px 40px;
+            font-weight: 700;
+            text-transform: uppercase;
+            border: none;
+            cursor: pointer;
+            display: inline-block;
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 4px 15px rgba(191, 149, 63, 0.3);
+        }
+
+        .btn-gold:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(191, 149, 63, 0.5);
+        }
+
+        /* --- ANIMATION UTILS --- */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease-out;
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* --- HEADER --- */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background-color: rgba(10, 10, 10, 0.95);
+            backdrop-filter: blur(12px);
+            z-index: 1000;
+            padding: 15px 0;
+            border-bottom: var(--glass-border);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 50px;
+        }
+
+        .logo {
+            font-family: var(--font-heading);
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--text-light);
+            letter-spacing: 1px;
+            font-style: italic;
+        }
+
+        .logo span {
+            font-style: normal;
+            background: var(--gold-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 40px;
+        }
+
+        .nav-links a {
+            font-size: 0.85rem;
+            font-weight: 400;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: #ddd;
+            position: relative;
+            padding-bottom: 5px;
+        }
+
+        .nav-links a:hover, .nav-links a.active {
+            color: var(--gold-solid);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
+            height: 1px;
+            background: var(--gold-gradient);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after, .nav-links a.active::after { width: 100%; }
+
+        .burger {
+            display: none;
+            color: var(--gold-solid);
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* --- PAGE HERO (Updated to match Services Page) --- */
+        .page-header {
+            height: 60vh;
+            min-height: 450px;
+            /* Exact source from Services page */
+            background: linear-gradient(to bottom, rgba(0,0,0,0.7), rgba(18,18,18,1)), 
+                        url('images/paving-contractors-brighton-hove.webp'); 
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding-top: 80px;
+            position: relative;
+        }
+
+        .header-content {
+            max-width: 800px;
+            padding: 0 20px;
+            animation: fadeIn 1s ease-out;
+        }
+
+        .page-header h1 {
+            font-size: 4rem;
+            margin-bottom: 20px;
+            line-height: 1.1;
+        }
+
+        .page-header p {
+            font-size: 1.2rem;
+            color: #ccc;
+            margin-bottom: 30px;
+            font-weight: 300;
+            line-height: 1.6;
+        }
+
+        .breadcrumb {
+            color: var(--text-gray);
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 20px;
+            display: block;
+        }
+
+        .breadcrumb span {
+            color: var(--gold-solid);
+            margin: 0 10px;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* --- WHO WE ARE (EDITORIAL STYLE) --- */
+        .intro-section {
+            padding: 120px 0;
+            overflow: hidden;
+        }
+
+        .intro-container {
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr;
+            gap: 80px;
+            align-items: center;
+            position: relative;
+        }
+
+        .intro-text h4 {
+            color: var(--gold-solid);
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            margin-bottom: 20px;
+            font-size: 0.9rem;
+        }
+
+        .intro-text h2 {
+            font-size: 3.5rem;
+            line-height: 1.1;
+            margin-bottom: 30px;
+        }
+
+        .intro-text p {
+            color: #bbb;
+            font-size: 1.1rem;
+            margin-bottom: 20px;
+            line-height: 1.8;
+            max-width: 600px;
+        }
+
+        .intro-image-wrapper {
+            position: relative;
+        }
+
+        .intro-img-main {
+            width: 100%;
+            border-radius: 4px;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+            position: relative;
+            z-index: 2;
+        }
+
+        .intro-img-bg-deco {
+            position: absolute;
+            top: -30px;
+            right: -30px;
+            width: 100%;
+            height: 100%;
+            border: 2px solid var(--gold-solid);
+            z-index: 1;
+            opacity: 0.3;
+        }
+
+        /* --- STATS COUNTER --- */
+        .stats-section {
+            padding: 80px 0;
+            border-top: 1px solid rgba(255,255,255,0.05);
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+            background: rgba(255,255,255,0.01);
+        }
+
+        .stats-grid {
+            display: grid;
+            /* Changed from 4 to 3 columns since we removed one item */
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            text-align: center;
+        }
+
+        .stat-item h3 {
+            font-size: 3.5rem;
+            background: var(--gold-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 5px;
+            font-family: var(--font-heading);
+        }
+
+        .stat-item p {
+            color: #888;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-size: 0.8rem;
+        }
+
+        /* --- VALUES GRID (ENHANCED) --- */
+        .values-section {
+            padding: 120px 0;
+            text-align: center;
+        }
+
+        .values-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 40px;
+            margin-top: 60px;
+        }
+
+        .value-card {
+            background: rgba(20,20,20,0.5);
+            padding: 50px 30px;
+            border: 1px solid rgba(255,255,255,0.05);
+            transition: 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .value-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 3px;
+            background: var(--gold-gradient);
+            transform: scaleX(0);
+            transition: 0.4s ease;
+        }
+
+        .value-card:hover {
+            transform: translateY(-10px);
+            background: #1a1a1a;
+        }
+
+        .value-card:hover::before { transform: scaleX(1); }
+
+        .value-icon {
+            font-size: 3rem;
+            background: var(--gold-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 25px;
+        }
+
+        .value-card h3 { font-size: 1.5rem; margin-bottom: 15px; color: #fff; }
+        .value-card p { color: #999; font-size: 1rem; line-height: 1.7; }
+
+        /* --- CTA BANNER --- */
+        .cta-banner {
+            padding: 100px 0;
+            background: linear-gradient(rgba(0,0,0,0.85), rgba(0,0,0,0.85)), 
+                        url('images/cta-background-paving.webp');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            text-align: center;
+            border-top: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .cta-content h2 { font-size: 3rem; margin-bottom: 20px; }
+        .cta-content p { color: #ddd; margin-bottom: 40px; font-size: 1.2rem; }
+
+        /* --- FOOTER --- */
+        footer {
+            background: #050505;
+            padding: 80px 0 30px;
+            border-top: 1px solid #222;
+            color: #777;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 40px;
+            margin-bottom: 60px;
+        }
+
+        .footer-col h4 {
+            color: var(--text-light);
+            font-family: var(--font-heading);
+            font-size: 1.2rem;
+            margin-bottom: 25px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .footer-col ul li { margin-bottom: 12px; }
+        
+        .footer-col ul li a {
+            color: #888; font-size: 0.95rem; transition: 0.3s;
+        }
+        .footer-col ul li a:hover { color: var(--gold-solid); padding-left: 5px; }
+
+        .footer-socials { display: flex; gap: 15px; margin-top: 20px; }
+        .footer-socials a {
+            width: 40px; height: 40px; background: #111; border: 1px solid #333;
+            display: flex; justify-content: center; align-items: center;
+            border-radius: 50%; color: var(--gold-solid); transition: 0.3s;
+        }
+        .footer-socials a:hover { background: var(--gold-solid); color: #000; }
+
+        .footer-bottom {
+            text-align: center; border-top: 1px solid #1a1a1a; padding-top: 30px; font-size: 0.85rem;
+        }
+
+        @media (max-width: 1024px) {
+            .intro-container { grid-template-columns: 1fr; gap: 60px; }
+            .intro-img-main { order: -1; }
+            .timeline::after { left: 31px; }
+            .timeline-item { width: 100%; padding-left: 70px; padding-right: 25px; }
+            .timeline-item::after { left: 21px; }
+            .timeline-item.left { text-align: left; }
+            /* Adjusted grid for tablets/mobile */
+            .stats-grid { grid-template-columns: repeat(3, 1fr); }
+            /* Disable parallax on tablets/mobiles for better performance */
+            .page-header { background-attachment: scroll; }
+            .cta-banner { background-attachment: scroll; }
+            .page-header h1 { font-size: 3rem; }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                position: fixed; right: 0; height: 100vh; top: 0;
+                background-color: #0f0f0f; display: flex; flex-direction: column;
+                align-items: center; justify-content: center; width: 75%;
+                transform: translateX(100%); transition: transform 0.4s; z-index: 998;
+            }
+            .nav-links.nav-active { transform: translateX(0%); }
+            .burger { display: block; z-index: 999; }
+            
+            .page-header { height: auto; padding: 120px 0 60px; }
+            .page-header h1 { font-size: 2.2rem; }
+            .values-grid { grid-template-columns: 1fr; }
+            .stats-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo">LUXE<span>STONE</span></div>
+                <ul class="nav-links" id="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="services.html">Services</a></li>
+                    <li><a href="portfolio.html">Gallery</a></li>
+                    <li><a href="about.html" class="active">About</a></li>
+                    <li><a href="services.html#contact">Contact</a></li>
+                </ul>
+                <div class="burger" id="burger"><i class="fas fa-bars"></i></div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Page Hero (New Style) -->
+    <div class="page-header">
+        <div class="header-content">
+            <div class="breadcrumb">
+                <a href="index.html">Home</a> <span>/</span> About Us
+            </div>
+            <h1>Crafting Legacies in Stone</h1>
+        </div>
+    </div>
+
+    <!-- INTRO SECTION -->
+    <section class="intro-section">
+        <div class="container">
+            <div class="intro-container">
+                <div class="intro-text reveal">
+                    <h4>The Luxestone Difference</h4>
+                    <h2>Where Engineering <br>Meets Artistry.</h2>
+                    <div style="height: 2px; width: 80px; background: var(--gold-gradient); margin: 30px 0;"></div>
+                    <p>
+                        Luxestone Construction wasn't founded to just "lay driveways." It was established to redefine the concept of kerb appeal in the South East. We saw a construction industry often plagued by shortcuts and compromises, and we chose a different path.
+                    </p>
+                    <p>
+                        Our philosophy is simple: <strong>The unseen work is just as important as the finish.</strong> We invest heavily in groundworks, sub-base preparation, and drainage engineering because we know that true luxury is longevity. When we leave a project, we leave a legacy that stands the test of time.
+                    </p>
+                </div>
+                <div class="intro-image-wrapper reveal">
+                    <div class="intro-img-bg-deco"></div>
+                    <img src="images/about-intro-planning.webp" alt="Planning and Design" class="intro-img-main">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- LIVE STATS SECTION -->
+    <section class="stats-section" id="statsSection">
+        <div class="container">
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <h3 data-target="15">0</h3>
+                    <p>Years of Excellence</p>
+                </div>
+                <div class="stat-item">
+                    <h3 data-target="350">0</h3>
+                    <p>Projects Completed</p>
+                </div>
+                <div class="stat-item">
+                    <h3 data-target="100">0</h3>
+                    <p>% Client Satisfaction</p>
+                </div>
+                <!-- Removed Hardworking Experts Item -->
+            </div>
+        </div>
+    </section>
+
+    <!-- CORE VALUES -->
+    <section class="values-section">
+        <div class="container">
+            <h2 class="reveal" style="font-size: 3rem; margin-bottom: 10px;">Uncompromising Standards</h2>
+            <p class="reveal" style="color: #aaa; max-width: 600px; margin: 0 auto;">The principles that guide every project we undertake.</p>
+            
+            <div class="values-grid">
+                <div class="value-card reveal">
+                    <i class="fas fa-hammer value-icon"></i>
+                    <h3>Master Craftsmanship</h3>
+                    <p>We do not cut corners. We dig deeper foundations, use higher-grade materials, and employ finer finishing techniques than the industry standard.</p>
+                </div>
+                <div class="value-card reveal">
+                    <i class="fas fa-search-plus value-icon"></i>
+                    <h3>Obsessive Detail</h3>
+                    <p>From the precise cuts of Indian Sandstone to the seamless blend of resin aggregates, we obsess over the details that others overlook.</p>
+                </div>
+                <div class="value-card reveal">
+                    <i class="fas fa-handshake value-icon"></i>
+                    <h3>Total Transparency</h3>
+                    <p>No hidden costs. We provide detailed, itemized quotes and keep you informed at every stage of the build process. Honesty is our policy.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA BANNER -->
+    <section class="cta-banner">
+        <div class="container">
+            <div class="cta-content reveal">
+                <h2>Your Vision, Our Expertise</h2>
+                <p>Let's discuss how we can transform your outdoor space today.</p>
+                <a href="services.html#contact" class="btn-gold">Get Your Free Quote</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <div class="logo" style="margin-bottom: 20px;">LUXE<span>STONE</span></div>
+                    <p>Premium paving and landscaping specialists serving East Sussex & Kent.</p>
+                    <div class="footer-socials">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="services.html">Services</a></li>
+                        <li><a href="gallery.html">Gallery</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="services.html#contact">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Our Services</h4>
+                    <ul>
+                        <li><a href="services.html">Block Paving</a></li>
+                        <li><a href="services.html">Resin Bound Driveways</a></li>
+                        <li><a href="services.html">Indian Stone Patios</a></li>
+                        <li><a href="services.html">Porcelain Paving</a></li>
+                        <li><a href="services.html">Landscaping</a></li>
+                        <li><a href="services.html">Groundworks</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Contact</h4>
+                    <ul>
+                        <li><a href="tel:07060789789">07060 789789</a></li>
+                        <li><a href="mailto:info@luxestoneconstruction.co.uk">info@luxestoneconstruction.co.uk</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Luxestone Construction. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // --- BURGER MENU ---
+        const burger = document.getElementById('burger');
+        const nav = document.getElementById('nav-links');
+        burger.addEventListener('click', () => {
+            nav.classList.toggle('nav-active');
+        });
+
+        // --- SCROLL REVEAL ANIMATION ---
+        const reveals = document.querySelectorAll('.reveal');
+
+        function revealOnScroll() {
+            const windowHeight = window.innerHeight;
+            const elementVisible = 150;
+
+            reveals.forEach((reveal) => {
+                const elementTop = reveal.getBoundingClientRect().top;
+                if (elementTop < windowHeight - elementVisible) {
+                    reveal.classList.add('active');
+                }
+            });
+        }
+
+        window.addEventListener('scroll', revealOnScroll);
+        // Trigger once on load
+        revealOnScroll();
+
+        // --- STATS COUNTER ANIMATION ---
+        const statsSection = document.getElementById('statsSection');
+        const stats = document.querySelectorAll('.stat-item h3');
+        let started = false;
+
+        function startCount(el) {
+            const target = +el.getAttribute('data-target');
+            const duration = 2000; // 2 seconds
+            const increment = target / (duration / 16); // 60fps
+
+            let current = 0;
+            const timer = setInterval(() => {
+                current += increment;
+                if (current >= target) {
+                    el.innerText = target + (el.getAttribute('data-target') === '100' ? '%' : '+');
+                    clearInterval(timer);
+                } else {
+                    el.innerText = Math.ceil(current) + (el.getAttribute('data-target') === '100' ? '%' : '+');
+                }
+            }, 16);
+        }
+
+        window.addEventListener('scroll', () => {
+            if (started) return;
+            const sectionTop = statsSection.getBoundingClientRect().top;
+            const windowHeight = window.innerHeight;
+
+            if (sectionTop < windowHeight - 100) {
+                stats.forEach(stat => startCount(stat));
+                started = true;
+            }
+        });
+    </script>
+</body>
+</html>

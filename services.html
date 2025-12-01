@@ -89,25 +89,6 @@
             background-clip: text;
             font-weight: 700;
         }
-        
-        .section-title {
-            font-size: 3rem;
-            text-align: center;
-            margin-bottom: 1rem;
-            position: relative;
-            z-index: 2;
-        }
-
-        .section-subtitle {
-            text-align: center;
-            color: var(--gold-solid);
-            margin-bottom: 4rem;
-            font-size: 1.1rem;
-            text-transform: uppercase;
-            letter-spacing: 3px;
-            font-weight: 400;
-            font-family: var(--font-body);
-        }
 
         .btn-gold {
             background: var(--gold-gradient);
@@ -222,8 +203,9 @@
         .page-header {
             height: 60vh;
             min-height: 450px;
+            /* Added fixed attachment for parallax feel */
             background: linear-gradient(to bottom, rgba(0,0,0,0.7), rgba(18,18,18,1)), 
-                        url('images/hero-luxury-home-twilight.webp'); 
+                        url('images/paving-contractors-brighton-hove.webp'); 
             background-size: cover;
             background-position: center;
             background-attachment: fixed; 
@@ -277,7 +259,7 @@
 
         /* --- TABS NAVIGATION SYSTEM --- */
         .tabs-container {
-            margin-top: -60px;
+            margin-top: -60px; /* Pull up into the hero slightly */
             position: relative;
             z-index: 10;
         }
@@ -442,218 +424,80 @@
             font-size: 0.7rem;
         }
 
-        /* --- OUR PROCESS SECTION (REDESIGNED) --- */
-        .process {
-            background-color: #1a1a1a;
-            padding-bottom: 120px;
-            overflow: hidden; /* For pseudo elements */
-        }
-
-        .process-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 30px;
-            margin-top: 80px; /* More space for the numbers */
-            position: relative;
-        }
-
-        /* Connector Line (Desktop) */
-        .process-grid::before {
-            content: '';
-            position: absolute;
-            top: 50px;
-            left: 50px;
-            right: 50px;
-            height: 1px;
-            background: linear-gradient(90deg, 
-                rgba(212, 175, 55, 0.1), 
-                rgba(212, 175, 55, 0.5), 
-                rgba(212, 175, 55, 0.1)
-            );
-            z-index: 0;
-            display: block;
-        }
-
-        .process-step {
-            background: rgba(30, 30, 30, 0.6);
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            padding: 40px 30px;
-            text-align: center;
-            position: relative;
-            transition: all 0.4s ease;
-            z-index: 1; /* Above the connector line */
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            backdrop-filter: blur(5px);
-        }
-
-        .process-step:hover {
-            border-color: var(--gold-solid);
-            transform: translateY(-10px);
-            background: rgba(35, 35, 35, 0.9);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-        }
-
-        /* Redesigned Number (Solid & Visible) */
-        .step-number {
-            font-family: var(--font-body); /* Changed font to Lato for clarity */
-            font-size: 3rem;
-            font-weight: 700;
-            line-height: 1;
-            margin-bottom: 25px;
-            color: var(--gold-solid); /* Solid gold color */
-            position: relative;
-            z-index: 2;
-            text-shadow: 0 2px 5px rgba(0,0,0,0.5); /* Added shadow for contrast */
-            display: inline-block;
-        }
-        
-        /* Circle behind number */
-        .step-number::after {
-            content: '';
-            position: absolute;
-            width: 70px;
-            height: 70px;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            border: 2px solid rgba(212, 175, 55, 0.3); /* Stronger border */
-            border-radius: 50%;
-            z-index: -1;
-            background: #121212; /* Dark background to block line */
-        }
-        
-        .process-step:hover .step-number::after {
-            border-color: var(--gold-solid);
-            box-shadow: 0 0 15px rgba(212, 175, 55, 0.2);
-        }
-
-        .process-step h3 {
-            font-size: 1.3rem;
-            margin-bottom: 15px;
-            color: #fff;
-            position: relative;
-        }
-
-        .process-step p {
-            font-size: 0.95rem;
-            color: #aaa;
-            line-height: 1.6;
-            margin: 0;
-        }
-
-        /* --- FAQ SECTION --- */
-        .faq {
-            background: var(--bg-dark);
-        }
-
-        .faq-container {
-            max-width: 900px;
-            margin: 0 auto;
-        }
-
-        .faq-item {
-            margin-bottom: 15px;
-            border-bottom: 1px solid #333;
-        }
-
-        .faq-question {
-            width: 100%;
-            text-align: left;
-            background: none;
-            border: none;
-            padding: 20px 0;
-            font-size: 1.1rem;
-            font-family: var(--font-body);
-            color: #f5f5f5;
-            cursor: pointer;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            transition: 0.3s;
-        }
-
-        .faq-question:hover {
-            color: var(--gold-solid);
-        }
-
-        .faq-question i {
-            transition: 0.3s;
-            color: var(--gold-solid);
-        }
-
-        .faq-question.active i {
-            transform: rotate(45deg);
-        }
-
-        .faq-answer {
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.3s ease-out;
-        }
-
-        .faq-answer p {
-            color: #999;
-            padding-bottom: 25px;
-            line-height: 1.6;
-            font-weight: 300;
-        }
-
-        /* --- CONTACT SECTION (Simplified) --- */
+        /* --- CONTACT SECTION --- */
         .contact {
             background: #0f0f0f;
-            padding: 100px 0;
-            text-align: center;
+            padding-top: 80px;
+        }
+
+        .contact-wrapper {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
             border-top: 1px solid #222;
         }
 
-        .contact-content {
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        .contact-info-block {
+        .contact-details {
+            padding: 60px;
+            background: #121212;
             display: flex;
+            flex-direction: column;
             justify-content: center;
-            gap: 40px;
-            margin: 40px 0;
-            flex-wrap: wrap;
         }
 
-        .info-card {
-            background: rgba(255,255,255,0.03);
-            border: 1px solid rgba(255,255,255,0.05);
-            padding: 30px;
-            min-width: 250px;
-            transition: 0.3s;
-        }
-
-        .info-card:hover {
-            border-color: var(--gold-solid);
-        }
-
-        .info-card i {
-            font-size: 2rem;
-            color: var(--gold-solid);
-            margin-bottom: 15px;
-        }
-
-        .info-card h4 {
+        .contact-info-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+            color: #ccc;
             font-size: 1.1rem;
-            margin-bottom: 10px;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        .contact-info-item:hover {
+            color: var(--gold-solid);
         }
 
-        .info-card a {
-            color: #aaa;
-            font-size: 0.95rem;
+        .contact-info-item i {
+            color: var(--gold-solid);
+            width: 30px;
+            font-size: 1.2rem;
+        }
+
+        .contact-form-area {
+            padding: 60px;
+            background: #161616;
+            border-left: 1px solid #222;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        input, select, textarea {
+            width: 100%;
+            background: transparent;
+            border: none;
+            border-bottom: 1px solid #444;
+            padding: 12px 0;
+            color: #fff;
+            font-family: var(--font-body);
+            font-size: 1rem;
             transition: 0.3s;
         }
 
-        .info-card a:hover {
-            color: #fff;
+        input:focus, select:focus, textarea:focus {
+            outline: none;
+            border-color: var(--gold-solid);
+            background: rgba(255,255,255,0.02);
         }
 
+        label {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: #666;
+        }
 
         /* --- FOOTER --- */
         footer {
@@ -798,12 +642,12 @@
 
         @media (max-width: 1024px) {
             .service-items-grid { grid-template-columns: 1fr 1fr; }
-            .process-grid { grid-template-columns: 1fr 1fr; }
+            .contact-wrapper { grid-template-columns: 1fr; }
+            .contact-details, .contact-form-area { padding: 40px 20px; }
             .page-header h1 { font-size: 3rem; }
-            .page-header { background-attachment: scroll; }
             
-            /* Hide process connector line on smaller screens */
-            .process-grid::before { display: none; }
+            /* Disable parallax on tablets/mobiles for better performance */
+            .page-header { background-attachment: scroll; }
         }
 
         @media (max-width: 768px) {
@@ -817,33 +661,42 @@
             }
             .nav-links.nav-active { transform: translateX(0%); }
 
-            .service-items-grid, .process-grid, .contact-info-block { flex-direction: column; }
-            .process-grid { grid-template-columns: 1fr; }
+            .service-items-grid { grid-template-columns: 1fr; }
             .page-header { height: auto; padding: 120px 0 60px; }
             .page-header h1 { font-size: 2.2rem; }
             
-            /* -- MOBILE TABS IMPROVEMENT: STACKED FULL WIDTH -- */
+            /* -- MOBILE TABS IMPROVEMENT: HORIZONTAL SCROLL -- */
             .tabs-container { 
                 margin-top: 0; 
+                width: 100vw;
+                margin-left: -25px; /* Counteract container padding */
+                padding: 0 25px;
+                overflow-x: auto;
+                -webkit-overflow-scrolling: touch;
             }
             
             .tabs-header { 
-                flex-direction: column; /* Stack vertically */
+                flex-direction: row; 
+                flex-wrap: nowrap;
+                justify-content: flex-start;
                 gap: 15px;
-                padding-bottom: 0;
+                padding-bottom: 10px;
             }
             
             .tab-btn { 
-                width: 100%; /* Full width */
+                width: auto; 
+                white-space: nowrap;
                 margin-bottom: 0;
-                padding: 15px;
-                text-align: center;
-                display: flex;
-                justify-content: center;
-                align-items: center;
+                flex-shrink: 0;
+                min-width: auto;
+                padding: 15px 25px;
+                font-size: 0.9rem;
             }
             
-            .tabs-container::-webkit-scrollbar { display: none; }
+            /* Hide scrollbar for cleaner look */
+            .tabs-container::-webkit-scrollbar {
+                display: none;
+            }
         }
     </style>
 </head>
@@ -856,9 +709,9 @@
                 <ul class="nav-links" id="nav-links">
                     <li><a href="index.html">Home</a></li>
                     <li><a href="services.html" class="active">Services</a></li>
-                    <li><a href="index.html#portfolio">Gallery</a></li>
-                    <li><a href="index.html#about">About</a></li>
-                    <li><a href="#contact">Contact</a></li>
+                    <li><a href="portfolio.html">Gallery</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="contact.html">Contact</a></li>
                 </ul>
                 <div class="burger" id="burger"><i class="fas fa-bars"></i></div>
             </nav>
@@ -1051,100 +904,72 @@
         </div>
     </section>
 
-    <!-- Our Process Section -->
-    <section class="process">
-        <div class="container">
-            <div class="section-title">Our Process</div>
-            <div class="section-subtitle">Seamless From Start to Finish</div>
-            
-            <div class="process-grid">
-                <div class="process-step">
-                    <div class="step-number">1</div>
-                    <h3>Consultation</h3>
-                    <p>We meet to discuss your vision, assess the site, and understand your budget requirements.</p>
-                </div>
-                <div class="process-step">
-                    <div class="step-number">2</div>
-                    <h3>Site Survey</h3>
-                    <p>Our team conducts a full survey to ensure accurate measurements and identify ground conditions.</p>
-                </div>
-                <div class="process-step">
-                    <div class="step-number">3</div>
-                    <h3>Installation</h3>
-                    <p>Our skilled tradesmen carry out the work with precision, adhering to all British Standards.</p>
-                </div>
-                <div class="process-step">
-                    <div class="step-number">4</div>
-                    <h3>Completion</h3>
-                    <p>We ensure you are 100% satisfied with the finish and leave your property spotless.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- FAQ Section -->
-    <section class="faq">
-        <div class="container">
-            <div class="section-title">Common Questions</div>
-            <div class="section-subtitle">Everything You Need To Know</div>
-            
-            <div class="faq-container">
-                <div class="faq-item">
-                    <button class="faq-question">Do you offer free quotes? <i class="fas fa-plus"></i></button>
-                    <div class="faq-answer">
-                        <p>Yes, we offer completely free, no-obligation quotes. We will visit your property to measure up and discuss your options before providing a detailed written estimate.</p>
-                    </div>
-                </div>
-                <div class="faq-item">
-                    <button class="faq-question">Are your resin driveways SUDS compliant? <i class="fas fa-plus"></i></button>
-                    <div class="faq-answer">
-                        <p>Absolutely. When installed on a porous base, our resin bound driveways are fully SUDS (Sustainable Urban Drainage Systems) compliant, meaning you don't need planning permission for drainage.</p>
-                    </div>
-                </div>
-                <div class="faq-item">
-                    <button class="faq-question">How long does a typical installation take? <i class="fas fa-plus"></i></button>
-                    <div class="faq-answer">
-                        <p>This depends on the size and complexity of the project. A standard driveway typically takes 3-5 days, while larger landscaping projects may take 1-2 weeks. We will give you a clear timeline with your quote.</p>
-                    </div>
-                </div>
-                <div class="faq-item">
-                    <button class="faq-question">Do you provide a guarantee? <i class="fas fa-plus"></i></button>
-                    <div class="faq-answer">
-                        <p>Yes, all our workmanship is guaranteed. We stand by the quality of our installations and materials, giving you peace of mind for years to come.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Contact / CTA Section (Simplified) -->
+    <!-- Contact / CTA Section -->
     <section id="contact" class="contact">
         <div class="container">
-            <div class="contact-content">
-                <div class="section-title">Ready to Start?</div>
-                <p style="color: #999; margin-bottom: 40px; font-size: 1.1rem;">
-                    Contact us today to discuss your project. We cover all of East Sussex and Kent.
-                </p>
+            <div class="contact-wrapper">
+                
+                <div class="contact-details">
+                    <h2 class="text-gold" style="font-size: 2.5rem; margin-bottom: 15px;">Book a Consultation</h2>
+                    <p style="color: #888; margin-bottom: 30px; font-weight: 300;">
+                        Discuss your project with our specialists. We offer free site surveys and detailed quotations for all services.
+                    </p>
 
-                <div class="contact-info-block">
-                    <div class="info-card">
+                    <a href="tel:07060789789" class="contact-info-item">
                         <i class="fas fa-phone-alt"></i>
-                        <h4>Call Us</h4>
-                        <a href="tel:07060789789">07060 789789</a>
-                    </div>
-                    <div class="info-card">
+                        <span>07060 789789</span>
+                    </a>
+                    
+                    <div class="contact-info-item">
                         <i class="fas fa-envelope"></i>
-                        <h4>Email Us</h4>
-                        <a href="mailto:info@luxestoneconstruction.co.uk">info@luxestoneconstruction.co.uk</a>
+                        <span>info@luxestoneconstruction.co.uk</span>
                     </div>
-                    <div class="info-card">
-                        <i class="fas fa-clock"></i>
-                        <h4>Working Hours</h4>
-                        <span style="color: #aaa; font-size: 0.95rem;">Mon - Sat: 8am - 6pm</span>
+                    <div class="contact-info-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>East Sussex & Kent, UK</span>
+                    </div>
+
+                    <div class="social-links" style="margin: 20px 0 30px 0; display: flex; gap: 20px;">
+                        <a href="https://www.instagram.com/luxestoneconstruction" target="_blank" style="color: #fff; font-size: 1.5rem;"><i class="fab fa-instagram"></i></a>
+                        <a href="https://www.facebook.com/luxestoneconstruction" target="_blank" style="color: #fff; font-size: 1.5rem;"><i class="fab fa-facebook-f"></i></a>
                     </div>
                 </div>
+                
+                <div class="contact-form-area">
+                    <h3 style="color: #fff; margin-bottom: 30px; font-size: 1.5rem;">Request a Quote</h3>
+                    <form action="#" method="POST">
+                        <div class="form-group">
+                            <label>Name</label>
+                            <input type="text" required placeholder="Your full name">
+                        </div>
+                        <div class="form-group">
+                            <label>Email</label>
+                            <input type="email" required placeholder="Your email address">
+                        </div>
+                        <div class="form-group">
+                            <label>Phone</label>
+                            <input type="tel" placeholder="Your contact number">
+                        </div>
+                        <div class="form-group">
+                            <label>Service Required</label>
+                            <select>
+                                <option value="" disabled selected>Select a service</option>
+                                <option>Resin Driveway</option>
+                                <option>Block Paving</option>
+                                <option>Patio / Paving</option>
+                                <option>Landscaping</option>
+                                <option>Fencing</option>
+                                <option>Groundworks</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Project Details</label>
+                            <textarea rows="3" placeholder="Tell us about your project..."></textarea>
+                        </div>
+                        <button type="submit" class="btn-gold" style="width: 100%; margin-top: 20px;">Send Request</button>
+                    </form>
+                </div>
 
-                <a href="tel:07060789789" class="btn-gold">Call for a Free Quote</a>
             </div>
         </div>
     </section>
@@ -1172,9 +997,9 @@
                     <ul>
                         <li><a href="index.html">Home</a></li>
                         <li><a href="services.html">Services</a></li>
-                        <li><a href="index.html#portfolio">Gallery</a></li>
-                        <li><a href="index.html#about">About Us</a></li>
-                        <li><a href="#contact">Contact Us</a></li>
+                        <li><a href="portfolio.html">Gallery</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="contact.html">Contact Us</a></li>
                     </ul>
                 </div>
 
@@ -1266,26 +1091,6 @@
             document.getElementById(tabName).classList.add('active');
             evt.currentTarget.classList.add('active');
         }
-
-        // Accordion Logic for FAQ
-        const faqQuestions = document.querySelectorAll('.faq-question');
-
-        faqQuestions.forEach(question => {
-            question.addEventListener('click', () => {
-                question.classList.toggle('active');
-                const answer = question.nextElementSibling;
-                if (question.classList.contains('active')) {
-                    answer.style.maxHeight = answer.scrollHeight + 'px';
-                    question.querySelector('i').classList.remove('fa-plus');
-                    question.querySelector('i').classList.add('fa-minus');
-                } else {
-                    answer.style.maxHeight = 0;
-                    question.querySelector('i').classList.remove('fa-minus');
-                    question.querySelector('i').classList.add('fa-plus');
-                }
-            });
-        });
-
 
         // Scroll Top Button
         const scrollTopBtn = document.getElementById('scrollTopBtn');

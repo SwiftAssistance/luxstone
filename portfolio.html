@@ -1,0 +1,786 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    
+    <title>Portfolio Gallery | Luxestone Construction</title>
+    <meta name="description" content="View our portfolio of premium resin driveways, block paving, and landscaping projects across East Sussex and Kent.">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        /* --- CORE STYLES --- */
+        :root {
+            --bg-dark: #121212;
+            --bg-card: #1e1e1e;
+            --bg-card-hover: #252525;
+            --gold-gradient: linear-gradient(135deg, #bf953f 0%, #fcf6ba 40%, #b38728 100%);
+            --gold-solid: #d4af37;
+            --text-light: #f5f5f5;
+            --text-gray: #aaaaaa;
+            --glass-bg: rgba(20, 20, 20, 0.9);
+            --glass-border: 1px solid rgba(255, 255, 255, 0.08);
+            --font-heading: 'Playfair Display', serif;
+            --font-body: 'Lato', sans-serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font-body);
+            background-color: var(--bg-dark);
+            color: var(--text-light);
+            line-height: 1.8;
+            overflow-x: hidden;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.05'/%3E%3C/svg%3E");
+        }
+
+        h1, h2, h3, h4 {
+            font-family: var(--font-heading);
+            color: var(--text-light);
+        }
+
+        a { text-decoration: none; color: inherit; transition: 0.3s ease; }
+        ul { list-style: none; padding: 0; margin: 0; }
+        img { max-width: 100%; display: block; width: 100%; }
+
+        .container {
+            max-width: 1300px;
+            margin: 0 auto;
+            padding: 0 25px;
+        }
+
+        .text-gold {
+            background: var(--gold-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-weight: 700;
+        }
+
+        .btn-gold {
+            background: var(--gold-gradient);
+            color: #000;
+            padding: 16px 40px;
+            font-weight: 700;
+            text-transform: uppercase;
+            border: none;
+            cursor: pointer;
+            display: inline-block;
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 4px 15px rgba(191, 149, 63, 0.3);
+        }
+
+        .btn-gold:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(191, 149, 63, 0.5);
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: var(--gold-solid);
+            padding: 14px 38px;
+            font-weight: 700;
+            text-transform: uppercase;
+            border: 2px solid var(--gold-solid);
+            cursor: pointer;
+            display: inline-block;
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+        }
+
+        .btn-outline:hover {
+            background: var(--gold-gradient);
+            border-color: transparent;
+            color: #000;
+        }
+
+        /* --- HEADER --- */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background-color: rgba(10, 10, 10, 0.95);
+            backdrop-filter: blur(12px);
+            z-index: 1000;
+            padding: 15px 0;
+            border-bottom: var(--glass-border);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 50px;
+        }
+
+        .logo {
+            font-family: var(--font-heading);
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--text-light);
+            letter-spacing: 1px;
+            font-style: italic;
+        }
+
+        .logo span {
+            font-style: normal;
+            background: var(--gold-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 40px;
+        }
+
+        .nav-links a {
+            font-size: 0.85rem;
+            font-weight: 400;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: #ddd;
+            position: relative;
+            padding-bottom: 5px;
+        }
+
+        .nav-links a:hover, .nav-links a.active {
+            color: var(--gold-solid);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
+            height: 1px;
+            background: var(--gold-gradient);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after, .nav-links a.active::after { width: 100%; }
+
+        .burger {
+            display: none;
+            color: var(--gold-solid);
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* --- PAGE HERO (Updated to match Services Page) --- */
+        .page-header {
+            height: 60vh;
+            min-height: 450px;
+            /* Using the exact image src from Services as requested */
+            background: linear-gradient(to bottom, rgba(0,0,0,0.7), rgba(18,18,18,1)), 
+                        url('images/paving-contractors-brighton-hove.webp'); 
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed; 
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding-top: 80px;
+            position: relative;
+        }
+
+        .header-content {
+            max-width: 800px;
+            padding: 0 20px;
+            animation: fadeIn 1s ease-out;
+        }
+
+        .page-header h1 {
+            font-size: 4rem;
+            margin-bottom: 20px;
+            line-height: 1.1;
+        }
+
+        .page-header p {
+            font-size: 1.2rem;
+            color: #ccc;
+            margin-bottom: 30px;
+            font-weight: 300;
+            line-height: 1.6;
+        }
+
+        .breadcrumb {
+            color: var(--text-gray);
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 20px;
+            display: block;
+        }
+
+        .breadcrumb span {
+            color: var(--gold-solid);
+            margin: 0 10px;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* --- GALLERY GRID --- */
+        .gallery-section {
+            padding: 80px 0 100px;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            grid-auto-rows: 350px;
+            gap: 20px;
+            grid-auto-flow: dense;
+        }
+
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 4px;
+            cursor: pointer;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeUp 0.6s forwards;
+        }
+
+        .gallery-item.wide {
+            grid-column: span 2;
+        }
+
+        .gallery-item.tall {
+            grid-row: span 2;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s cubic-bezier(0.2, 1, 0.3, 1);
+        }
+
+        .gallery-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding: 30px;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.05);
+        }
+
+        .gallery-item:hover .gallery-overlay {
+            opacity: 1;
+        }
+
+        .overlay-cat {
+            color: var(--gold-solid);
+            text-transform: uppercase;
+            font-size: 0.75rem;
+            letter-spacing: 2px;
+            margin-bottom: 5px;
+            transform: translateY(20px);
+            transition: transform 0.4s ease;
+        }
+
+        .overlay-title {
+            color: #fff;
+            font-family: var(--font-heading);
+            font-size: 1.5rem;
+            transform: translateY(20px);
+            transition: transform 0.4s ease 0.1s;
+        }
+
+        .gallery-item:hover .overlay-cat,
+        .gallery-item:hover .overlay-title {
+            transform: translateY(0);
+        }
+
+        /* --- INSTAGRAM CTA --- */
+        .instagram-cta {
+            text-align: center;
+            margin-top: 80px;
+            padding: 40px 20px;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 8px;
+        }
+
+        .instagram-cta p {
+            color: #ccc;
+            font-size: 1.2rem;
+            margin-bottom: 25px;
+            font-weight: 300;
+        }
+
+        @keyframes fadeUp {
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* --- STANDARDS SECTION --- */
+        .standards {
+            padding: 100px 0;
+            background: #151515;
+            text-align: center;
+        }
+
+        .standards h2 {
+            font-size: 3rem;
+            margin-bottom: 10px;
+        }
+
+        .standards-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .standard-card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            padding: 50px 30px;
+            text-align: center;
+            position: relative;
+            border-radius: 8px;
+            transition: 0.3s;
+        }
+
+        .standard-card:hover {
+            border-color: var(--gold-solid);
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .standard-icon {
+            font-size: 3rem;
+            color: var(--gold-solid);
+            margin-bottom: 25px;
+            display: inline-block;
+        }
+
+        .standard-card h3 {
+            color: #fff;
+            font-family: var(--font-heading);
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+        }
+
+        .standard-card p {
+            color: #bbb;
+            font-size: 1rem;
+            line-height: 1.7;
+            font-weight: 300;
+        }
+
+        /* --- LIGHTBOX --- */
+        .lightbox {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.95);
+            z-index: 2000;
+            display: none;
+            justify-content: center;
+            align-items: center;
+            padding: 40px;
+        }
+
+        .lightbox.active { display: flex; }
+
+        .lightbox-img {
+            max-width: 90%;
+            max-height: 90vh;
+            box-shadow: 0 0 50px rgba(0,0,0,0.5);
+            border: 2px solid #333;
+        }
+
+        .close-lightbox {
+            position: absolute;
+            top: 30px;
+            right: 40px;
+            color: #fff;
+            font-size: 3rem;
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+
+        .close-lightbox:hover { color: var(--gold-solid); }
+
+        /* --- FOOTER --- */
+        footer {
+            background: #050505;
+            padding: 80px 0 30px;
+            border-top: 1px solid #222;
+            color: #777;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 40px;
+            margin-bottom: 60px;
+            text-align: left;
+        }
+
+        .footer-col h4 {
+            color: var(--text-light);
+            font-family: var(--font-heading);
+            font-size: 1.2rem;
+            margin-bottom: 25px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .footer-col p {
+            margin-bottom: 20px;
+            line-height: 1.6;
+            font-size: 0.95rem;
+        }
+
+        .footer-col ul li {
+            margin-bottom: 12px;
+        }
+
+        .footer-col ul li a {
+            color: #888;
+            font-size: 0.95rem;
+            transition: 0.3s;
+            display: flex;
+            align-items: center;
+        }
+
+        .footer-col ul li a:hover {
+            color: var(--gold-solid);
+            padding-left: 5px;
+        }
+
+        .footer-col ul li i {
+            margin-right: 10px;
+            color: var(--gold-solid);
+            font-size: 0.8rem;
+        }
+
+        .footer-socials {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .footer-socials a {
+            width: 40px;
+            height: 40px;
+            background-color: #111;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 50%;
+            color: var(--gold-solid);
+            transition: 0.3s;
+            border: 1px solid #333;
+        }
+
+        .footer-socials a:hover {
+            background-color: var(--gold-solid);
+            color: #000;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            border-top: 1px solid #1a1a1a;
+            padding-top: 30px;
+            font-size: 0.85rem;
+        }
+
+        @media (max-width: 1024px) {
+            .page-header h1 { font-size: 3rem; }
+            .page-header { background-attachment: scroll; }
+            .standards-grid { grid-template-columns: 1fr; }
+        }
+
+        @media (max-width: 768px) {
+            .gallery-grid { grid-template-columns: 1fr; }
+            .gallery-item.wide, .gallery-item.tall { grid-column: span 1; grid-row: span 1; }
+            
+            .nav-links {
+                position: fixed; right: 0; height: 100vh; top: 0;
+                background-color: #0f0f0f; display: flex; flex-direction: column;
+                align-items: center; justify-content: center; width: 75%;
+                transform: translateX(100%); transition: transform 0.4s; z-index: 998;
+            }
+            .nav-links.nav-active { transform: translateX(0%); }
+            .burger { display: block; z-index: 999; }
+
+            .page-header { height: auto; padding: 120px 0 60px; }
+            .page-header h1 { font-size: 2.2rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo">LUXE<span>STONE</span></div>
+                <ul class="nav-links" id="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="services.html">Services</a></li>
+                    <li><a href="gallery.html" class="active">Gallery</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+                <div class="burger" id="burger"><i class="fas fa-bars"></i></div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Page Hero (New Style) -->
+    <div class="page-header">
+        <div class="header-content">
+            <div class="breadcrumb">
+                <a href="index.html">Home</a> <span>/</span> Gallery
+            </div>
+            <h1>Our Portfolio</h1>
+            <p>
+                Explore our curated portfolio of bespoke driveways, patios, and landscapes.
+                We turn your vision into a stunning reality.
+            </p>
+        </div>
+    </div>
+
+    <section class="gallery-section">
+        <div class="container">
+            <div class="gallery-grid" id="galleryGrid">
+                
+                <!-- Item 1: Wide Feature -->
+                <div class="gallery-item wide">
+                    <img src="images/gallery-resin-large-1.webp" alt="Gold Resin Driveway">
+                    <div class="gallery-overlay">
+                        <span class="overlay-cat">Driveway</span>
+                        <span class="overlay-title">Resin Bound, Sussex</span>
+                    </div>
+                </div>
+
+                <!-- Item 2: Standard -->
+                <div class="gallery-item">
+                    <img src="images/gallery-patio-porcelain.webp" alt="Grey Porcelain Patio">
+                    <div class="gallery-overlay">
+                        <span class="overlay-cat">Patio</span>
+                        <span class="overlay-title">Modern Porcelain</span>
+                    </div>
+                </div>
+
+                <!-- Item 3: Tall -->
+                <div class="gallery-item tall">
+                    <img src="images/gallery-landscape-garden.webp" alt="Full Garden Landscape">
+                    <div class="gallery-overlay">
+                        <span class="overlay-cat">Landscaping</span>
+                        <span class="overlay-title">Garden Transformation</span>
+                    </div>
+                </div>
+
+                <!-- Item 4: Standard -->
+                <div class="gallery-item">
+                    <img src="images/gallery-block-paving.webp" alt="Block Paved Driveway">
+                    <div class="gallery-overlay">
+                        <span class="overlay-cat">Driveway</span>
+                        <span class="overlay-title">Charcoal Block Paving</span>
+                    </div>
+                </div>
+
+                <!-- Item 5: Standard -->
+                <div class="gallery-item">
+                    <img src="images/gallery-commercial-path.webp" alt="Commercial Pathway">
+                    <div class="gallery-overlay">
+                        <span class="overlay-cat">Commercial</span>
+                        <span class="overlay-title">Public Pathway</span>
+                    </div>
+                </div>
+
+                <!-- Item 6: Wide -->
+                <div class="gallery-item wide">
+                    <img src="images/gallery-sandstone-large.webp" alt="Indian Sandstone Patio">
+                    <div class="gallery-overlay">
+                        <span class="overlay-cat">Patio</span>
+                        <span class="overlay-title">Indian Sandstone</span>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- INSTAGRAM CALL TO ACTION -->
+            <div class="instagram-cta">
+                <p>Want to see more of our daily work? Make sure to follow us on Instagram to see our recent projects and many more jobs!</p>
+                <a href="https://www.instagram.com/luxestoneconstruction" target="_blank" class="btn-gold">
+                    <i class="fab fa-instagram"></i> Follow @luxestoneconstruction
+                </a>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- STANDARDS SECTION -->
+    <section class="standards">
+        <div class="container">
+            <h2 class="text-gold">The Luxestone Standard</h2>
+            <p style="color:#aaa; text-transform:uppercase; letter-spacing:2px; max-width:600px; margin:0 auto;">Uncompromising Quality in Every Detail</p>
+            
+            <div class="standards-grid">
+                <div class="standard-card">
+                    <i class="fas fa-gem standard-icon"></i>
+                    <h3>Premium Materials</h3>
+                    <p>We strictly use the highest grade resin aggregates, ethically sourced natural stone, and Italian porcelain to ensure a flawless, long-lasting finish.</p>
+                </div>
+                <div class="standard-card">
+                    <i class="fas fa-drafting-compass standard-icon"></i>
+                    <h3>Precision Installation</h3>
+                    <p>Every project is installed to strict British Standards. We focus heavily on sub-base preparation and drainage to prevent sinking or cracking.</p>
+                </div>
+                <div class="standard-card">
+                    <i class="fas fa-shield-alt standard-icon"></i>
+                    <h3>10-Year Guarantee</h3>
+                    <p>Peace of mind comes standard. We are so confident in our craftsmanship that all our driveway and patio installations are fully guaranteed.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Lightbox Modal -->
+    <div class="lightbox" id="lightbox">
+        <span class="close-lightbox" id="closeLightbox">&times;</span>
+        <img src="" alt="Gallery Preview" class="lightbox-img" id="lightboxImg">
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                
+                <div class="footer-col">
+                    <div class="logo" style="margin-bottom: 20px; font-size: 1.5rem;">
+                        LUXE<span>STONE</span>
+                    </div>
+                    <p>
+                        Premium paving and landscaping specialists serving East Sussex & Kent. We pride ourselves on obsessive attention to detail and timeless finishes.
+                    </p>
+                    <div class="footer-socials">
+                        <a href="https://www.facebook.com/luxestoneconstruction" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                        <a href="https://www.instagram.com/luxestoneconstruction" target="_blank"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+
+                <div class="footer-col">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="services.html">Services</a></li>
+                        <li><a href="gallery.html">Gallery</a></li>
+                        <li><a href="index.html#about">About Us</a></li>
+                        <li><a href="services.html#contact">Contact Us</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-col">
+                    <h4>Our Services</h4>
+                    <ul>
+                        <li><a href="services.html">Block Paving</a></li>
+                        <li><a href="services.html">Resin Bound Driveways</a></li>
+                        <li><a href="services.html">Indian Stone Patios</a></li>
+                        <li><a href="services.html">Porcelain Paving</a></li>
+                        <li><a href="services.html">Landscaping</a></li>
+                        <li><a href="services.html">Groundworks</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-col">
+                    <h4>Contact Us</h4>
+                    <ul>
+                        <li>
+                            <a href="tel:07060789789">
+                                <i class="fas fa-phone-alt"></i> 07060 789789
+                            </a>
+                        </li>
+                        <li>
+                            <a href="mailto:info@luxestoneconstruction.co.uk">
+                                <i class="fas fa-envelope"></i> info@luxestoneconstruction.co.uk
+                            </a>
+                        </li>
+                        <li style="align-items: flex-start;">
+                            <i class="fas fa-map-marker-alt" style="margin-top: 5px;"></i>
+                            <span>East Sussex & Kent, UK</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2025 Luxestone Construction. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // --- BURGER MENU ---
+        const burger = document.getElementById('burger');
+        const nav = document.getElementById('nav-links');
+        burger.addEventListener('click', () => {
+            nav.classList.toggle('nav-active');
+        });
+
+        // --- LIGHTBOX LOGIC ---
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImg = document.getElementById('lightboxImg');
+        const closeBtn = document.getElementById('closeLightbox');
+        const items = document.querySelectorAll('.gallery-item');
+
+        items.forEach(item => {
+            item.addEventListener('click', () => {
+                const img = item.querySelector('img');
+                lightboxImg.src = img.src;
+                lightbox.classList.add('active');
+            });
+        });
+
+        closeBtn.addEventListener('click', () => {
+            lightbox.classList.remove('active');
+        });
+
+        lightbox.addEventListener('click', (e) => {
+            if (e.target === lightbox) {
+                lightbox.classList.remove('active');
+            }
+        });
+    </script>
+</body>
+</html>
