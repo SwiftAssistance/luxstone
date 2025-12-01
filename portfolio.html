@@ -54,6 +54,8 @@
         ul { list-style: none; padding: 0; margin: 0; }
         img { max-width: 100%; display: block; width: 100%; }
 
+        html { scroll-behavior: smooth; }
+
         .container {
             max-width: 1300px;
             margin: 0 auto;
@@ -523,6 +525,60 @@
             font-size: 0.85rem;
         }
 
+        /* --- FLOATING BUTTONS (Matched to Index) --- */
+        .floating-container {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            z-index: 2000;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            align-items: flex-end;
+        }
+
+        .float-btn {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 1.8rem;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.5);
+            cursor: pointer;
+            transition: transform 0.3s ease, opacity 0.3s ease;
+            text-decoration: none;
+            border: none;
+        }
+
+        .float-btn:hover {
+            transform: translateY(-5px);
+        }
+
+        .whatsapp-btn {
+            background-color: #25D366;
+            color: white;
+        }
+
+        .whatsapp-btn:hover {
+            background-color: #20b858;
+            color: white;
+        }
+
+        .scroll-top-btn {
+            background: var(--gold-gradient);
+            color: #000;
+            opacity: 0;
+            pointer-events: none;
+            transform: translateY(20px);
+        }
+        .scroll-top-btn.visible {
+            opacity: 1;
+            pointer-events: all;
+            transform: translateY(0);
+        }
+
         @media (max-width: 1024px) {
             .page-header h1 { font-size: 3rem; }
             .page-header { background-attachment: scroll; }
@@ -544,6 +600,18 @@
 
             .page-header { height: auto; padding: 120px 0 60px; }
             .page-header h1 { font-size: 2.2rem; }
+
+            /* --- FLOATING BUTTONS MOBILE ADJUSTMENT --- */
+            .floating-container {
+                bottom: 20px;
+                right: 20px;
+            }
+            
+            .float-btn {
+                width: 50px;
+                height: 50px;
+                font-size: 1.5rem;
+            }
         }
     </style>
 </head>
@@ -556,7 +624,7 @@
                 <ul class="nav-links" id="nav-links">
                     <li><a href="index.html">Home</a></li>
                     <li><a href="services.html">Services</a></li>
-                    <li><a href="gallery.html" class="active">Gallery</a></li>
+                    <li><a href="portfolio.html" class="active">Gallery</a></li>
                     <li><a href="about.html">About</a></li>
                     <li><a href="contact.html">Contact</a></li>
                 </ul>
@@ -705,9 +773,9 @@
                     <ul>
                         <li><a href="index.html">Home</a></li>
                         <li><a href="services.html">Services</a></li>
-                        <li><a href="gallery.html">Gallery</a></li>
-                        <li><a href="index.html#about">About Us</a></li>
-                        <li><a href="services.html#contact">Contact Us</a></li>
+                        <li><a href="portfolio.html">Gallery</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="contact.html">Contact Us</a></li>
                     </ul>
                 </div>
 
@@ -750,6 +818,16 @@
         </div>
     </footer>
 
+    <!-- Floating Buttons -->
+    <div class="floating-container">
+        <button id="scrollTopBtn" class="float-btn scroll-top-btn" aria-label="Scroll to top">
+            <i class="fas fa-arrow-up"></i>
+        </button>
+        <a href="https://wa.me/447060789789" class="float-btn whatsapp-btn" target="_blank" aria-label="Chat on WhatsApp">
+            <i class="fab fa-whatsapp"></i>
+        </a>
+    </div>
+
     <script>
         // --- BURGER MENU ---
         const burger = document.getElementById('burger');
@@ -780,6 +858,24 @@
             if (e.target === lightbox) {
                 lightbox.classList.remove('active');
             }
+        });
+
+        // --- SCROLL TO TOP & FLOATING BUTTONS LOGIC ---
+        const scrollTopBtn = document.getElementById('scrollTopBtn');
+
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 300) {
+                scrollTopBtn.classList.add('visible');
+            } else {
+                scrollTopBtn.classList.remove('visible');
+            }
+        });
+
+        scrollTopBtn.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
         });
     </script>
 </body>
