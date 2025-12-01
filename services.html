@@ -670,37 +670,33 @@
             .page-header { height: auto; padding: 120px 0 60px; }
             .page-header h1 { font-size: 2.2rem; }
             
-            /* -- MOBILE TABS IMPROVEMENT: HORIZONTAL SCROLL -- */
+            /* -- MOBILE TABS IMPROVEMENT: STACKED & ACCESSIBLE -- */
             .tabs-container { 
                 margin-top: 0; 
-                width: 100vw;
-                margin-left: -25px; /* Counteract container padding */
-                padding: 0 25px;
-                overflow-x: auto;
-                -webkit-overflow-scrolling: touch;
+                width: 100%;
+                margin-left: 0;
+                padding: 0;
+                overflow-x: visible; /* Removed scroll, now stacks */
             }
             
             .tabs-header { 
                 flex-direction: row; 
-                flex-wrap: nowrap;
-                justify-content: flex-start;
-                gap: 15px;
+                flex-wrap: wrap; /* Wraps items to next line */
+                justify-content: center;
+                gap: 10px;
                 padding-bottom: 10px;
             }
             
             .tab-btn { 
-                width: auto; 
-                white-space: nowrap;
-                margin-bottom: 0;
+                width: 100%; /* Full width for easy tapping */
+                margin-bottom: 5px;
                 flex-shrink: 0;
                 min-width: auto;
                 padding: 15px 25px;
-                font-size: 0.9rem;
-            }
-            
-            /* Hide scrollbar for cleaner look */
-            .tabs-container::-webkit-scrollbar {
-                display: none;
+                font-size: 1rem;
+                display: flex;
+                align-items: center;
+                justify-content: center;
             }
 
             /* --- FLOATING BUTTONS MOBILE ADJUSTMENT (From Index) --- */
@@ -771,7 +767,7 @@
                 <div class="service-items-grid">
                     <div class="service-detail-card">
                         <div class="card-img-container">
-                            <img src="images/service-resin-bound-driveway.webp" alt="Resin Bound Driveway">
+                            <img src="images/service-resin-bound-driveway.webp" alt="Resin Bound Driveway" onerror="this.style.display='none'; this.parentNode.style.backgroundColor='#333';">
                         </div>
                         <div class="card-content">
                             <h3>Resin Bound</h3>
@@ -785,7 +781,7 @@
                     </div>
                     <div class="service-detail-card">
                         <div class="card-img-container">
-                            <img src="images/service-block-paving-herringbone.webp" alt="Block Paving">
+                            <img src="images/service-block-paving-herringbone.webp" alt="Block Paving" onerror="this.style.display='none'; this.parentNode.style.backgroundColor='#333';">
                         </div>
                         <div class="card-content">
                             <h3>Block Paving</h3>
@@ -799,7 +795,7 @@
                     </div>
                     <div class="service-detail-card">
                         <div class="card-img-container">
-                            <img src="images/service-gravel-driveway-grid.webp" alt="Gravel Driveway">
+                            <img src="images/service-gravel-driveway-grid.webp" alt="Gravel Driveway" onerror="this.style.display='none'; this.parentNode.style.backgroundColor='#333';">
                         </div>
                         <div class="card-content">
                             <h3>Gravel & Shingle</h3>
@@ -823,7 +819,7 @@
                 <div class="service-items-grid">
                     <div class="service-detail-card">
                         <div class="card-img-container">
-                            <img src="images/service-porcelain-patio-grey.webp" alt="Porcelain Paving">
+                            <img src="images/service-porcelain-patio-grey.webp" alt="Porcelain Paving" onerror="this.style.display='none'; this.parentNode.style.backgroundColor='#333';">
                         </div>
                         <div class="card-content">
                             <h3>Porcelain Paving</h3>
@@ -837,7 +833,7 @@
                     </div>
                     <div class="service-detail-card">
                         <div class="card-img-container">
-                            <img src="images/service-indian-sandstone-texture.webp" alt="Indian Sandstone">
+                            <img src="images/service-indian-sandstone-texture.webp" alt="Indian Sandstone" onerror="this.style.display='none'; this.parentNode.style.backgroundColor='#333';">
                         </div>
                         <div class="card-content">
                             <h3>Indian Sandstone</h3>
@@ -851,7 +847,7 @@
                     </div>
                     <div class="service-detail-card">
                         <div class="card-img-container">
-                            <img src="images/service-patio-cleaning-jetwash.webp" alt="Patio Cleaning">
+                            <img src="images/service-patio-cleaning-jetwash.webp" alt="Patio Cleaning" onerror="this.style.display='none'; this.parentNode.style.backgroundColor='#333';">
                         </div>
                         <div class="card-content">
                             <h3>Restoration & Cleaning</h3>
@@ -875,7 +871,7 @@
                 <div class="service-items-grid">
                     <div class="service-detail-card">
                         <div class="card-img-container">
-                            <img src="images/service-hard-landscaping-sleepers.webp" alt="Hard Landscaping">
+                            <img src="images/service-hard-landscaping-sleepers.webp" alt="Hard Landscaping" onerror="this.style.display='none'; this.parentNode.style.backgroundColor='#333';">
                         </div>
                         <div class="card-content">
                             <h3>Hard Landscaping</h3>
@@ -889,7 +885,7 @@
                     </div>
                     <div class="service-detail-card">
                         <div class="card-img-container">
-                            <img src="images/service-turfing-closeboard-fence.webp" alt="Fencing">
+                            <img src="images/service-turfing-closeboard-fence.webp" alt="Fencing" onerror="this.style.display='none'; this.parentNode.style.backgroundColor='#333';">
                         </div>
                         <div class="card-content">
                             <h3>Turfing & Fencing</h3>
@@ -903,7 +899,7 @@
                     </div>
                     <div class="service-detail-card">
                         <div class="card-img-container">
-                            <img src="images/service-groundworks-foundations.webp" alt="Groundworks">
+                            <img src="images/service-groundworks-foundations.webp" alt="Groundworks" onerror="this.style.display='none'; this.parentNode.style.backgroundColor='#333';">
                         </div>
                         <div class="card-content">
                             <h3>Groundworks & Drainage</h3>
@@ -1107,6 +1103,21 @@
             // Show current tab and add active class to button
             document.getElementById(tabName).classList.add('active');
             evt.currentTarget.classList.add('active');
+
+            // --- Mobile Usability Improvement ---
+            // On mobile, clicking a tab automatically scrolls the content into view.
+            if (window.innerWidth <= 768) {
+                const container = document.querySelector('.tabs-container');
+                // Calculate position: just above the tabs, minus header height (approx 80px)
+                const headerOffset = 100;
+                const elementPosition = container.getBoundingClientRect().top;
+                const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+
+                window.scrollTo({
+                    top: offsetPosition,
+                    behavior: "smooth"
+                });
+            }
         }
 
         // Scroll Top Button
