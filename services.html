@@ -203,7 +203,6 @@
         .page-header {
             height: 60vh;
             min-height: 450px;
-            /* Added fixed attachment for parallax feel */
             background: linear-gradient(to bottom, rgba(0,0,0,0.7), rgba(18,18,18,1)), 
                         url('images/paving-contractors-brighton-hove.webp'); 
             background-size: cover;
@@ -259,7 +258,7 @@
 
         /* --- TABS NAVIGATION SYSTEM --- */
         .tabs-container {
-            margin-top: -60px; /* Pull up into the hero slightly */
+            margin-top: -60px;
             position: relative;
             z-index: 10;
         }
@@ -308,6 +307,7 @@
         .services-detail {
             background-color: var(--bg-dark);
             min-height: 500px;
+            padding-bottom: 60px;
         }
 
         .tab-content {
@@ -424,79 +424,115 @@
             font-size: 0.7rem;
         }
 
-        /* --- CONTACT SECTION --- */
-        .contact {
-            background: #0f0f0f;
-            padding-top: 80px;
-        }
-
-        .contact-wrapper {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
+        /* --- PROCESS SECTION (New 4-Step Process) --- */
+        .process-section {
+            background-color: #0f0f0f;
+            padding: 100px 0;
             border-top: 1px solid #222;
         }
 
-        .contact-details {
-            padding: 60px;
-            background: #121212;
+        .process-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 30px;
+            margin-top: 60px;
+            position: relative;
+        }
+
+        /* Line connecting steps */
+        .process-grid::before {
+            content: '';
+            position: absolute;
+            top: 40px;
+            left: 50px;
+            right: 50px;
+            height: 2px;
+            background: #333;
+            z-index: 1;
+        }
+
+        .process-step {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            background: #0f0f0f; /* Masks the line behind the text content if needed */
+        }
+
+        .step-icon-box {
+            width: 80px;
+            height: 80px;
+            background: var(--bg-card);
+            border: 1px solid #333;
+            border-radius: 50%;
             display: flex;
-            flex-direction: column;
             justify-content: center;
-        }
-
-        .contact-info-item {
-            display: flex;
             align-items: center;
-            margin-bottom: 20px;
-            color: #ccc;
-            font-size: 1.1rem;
-            text-decoration: none;
-            transition: color 0.3s ease;
-        }
-        
-        .contact-info-item:hover {
+            margin: 0 auto 25px;
+            font-size: 2rem;
             color: var(--gold-solid);
+            transition: 0.3s ease;
+            position: relative;
         }
 
-        .contact-info-item i {
-            color: var(--gold-solid);
-            width: 30px;
-            font-size: 1.2rem;
-        }
-
-        .contact-form-area {
-            padding: 60px;
-            background: #161616;
-            border-left: 1px solid #222;
-        }
-
-        .form-group {
-            margin-bottom: 20px;
-        }
-
-        input, select, textarea {
-            width: 100%;
-            background: transparent;
-            border: none;
-            border-bottom: 1px solid #444;
-            padding: 12px 0;
-            color: #fff;
-            font-family: var(--font-body);
-            font-size: 1rem;
-            transition: 0.3s;
-        }
-
-        input:focus, select:focus, textarea:focus {
-            outline: none;
+        .process-step:hover .step-icon-box {
             border-color: var(--gold-solid);
-            background: rgba(255,255,255,0.02);
+            box-shadow: 0 0 20px rgba(191, 149, 63, 0.2);
+            transform: scale(1.1);
+            background: #1a1a1a;
         }
 
-        label {
-            font-size: 0.8rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            color: #666;
+        /* Number badge */
+        .step-number {
+            position: absolute;
+            top: -5px;
+            right: -5px;
+            width: 30px;
+            height: 30px;
+            background: var(--gold-gradient);
+            color: #000;
+            border-radius: 50%;
+            font-weight: 700;
+            font-size: 0.9rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: var(--font-body);
+        }
+
+        .process-step h3 {
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+            color: #fff;
+        }
+
+        .process-step p {
+            color: #999;
+            font-size: 0.95rem;
+            padding: 0 10px;
+        }
+
+        /* --- NEW CTA SECTION (Replaces Contact Form) --- */
+        .cta-banner {
+            background: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.8)), url('images/gallery-resin-large-1.webp');
+            background-size: cover;
+            background-position: center;
+            padding: 100px 0;
+            text-align: center;
+            border-top: 1px solid #333;
+            background-attachment: fixed;
+        }
+
+        .cta-content h2 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            color: #fff;
+        }
+
+        .cta-content p {
+            font-size: 1.2rem;
+            color: #ddd;
+            max-width: 700px;
+            margin: 0 auto 40px;
         }
 
         /* --- FOOTER --- */
@@ -647,12 +683,11 @@
 
         @media (max-width: 1024px) {
             .service-items-grid { grid-template-columns: 1fr 1fr; }
-            .contact-wrapper { grid-template-columns: 1fr; }
-            .contact-details, .contact-form-area { padding: 40px 20px; }
+            .process-grid { grid-template-columns: 1fr 1fr; gap: 40px; }
+            .process-grid::before { display: none; } /* Remove connecting line on smaller screens */
             .page-header h1 { font-size: 3rem; }
-            
-            /* Disable parallax on tablets/mobiles for better performance */
             .page-header { background-attachment: scroll; }
+            .cta-banner { background-attachment: scroll; }
         }
 
         @media (max-width: 768px) {
@@ -667,36 +702,41 @@
             .nav-links.nav-active { transform: translateX(0%); }
 
             .service-items-grid { grid-template-columns: 1fr; }
+            .process-grid { grid-template-columns: 1fr; } /* Stack process steps on mobile */
             .page-header { height: auto; padding: 120px 0 60px; }
             .page-header h1 { font-size: 2.2rem; }
             
-            /* -- MOBILE TABS IMPROVEMENT: STACKED & ACCESSIBLE -- */
+            /* -- MOBILE TABS IMPROVEMENT: HORIZONTAL SCROLL -- */
             .tabs-container { 
                 margin-top: 0; 
-                width: 100%;
-                margin-left: 0;
-                padding: 0;
-                overflow-x: visible; /* Removed scroll, now stacks */
+                width: 100vw;
+                margin-left: -25px; /* Counteract container padding */
+                padding: 0 25px;
+                overflow-x: auto;
+                -webkit-overflow-scrolling: touch;
             }
             
             .tabs-header { 
                 flex-direction: row; 
-                flex-wrap: wrap; /* Wraps items to next line */
-                justify-content: center;
-                gap: 10px;
+                flex-wrap: nowrap;
+                justify-content: flex-start;
+                gap: 15px;
                 padding-bottom: 10px;
             }
             
             .tab-btn { 
-                width: 100%; /* Full width for easy tapping */
-                margin-bottom: 5px;
+                width: auto; 
+                white-space: nowrap;
+                margin-bottom: 0;
                 flex-shrink: 0;
                 min-width: auto;
                 padding: 15px 25px;
-                font-size: 1rem;
-                display: flex;
-                align-items: center;
-                justify-content: center;
+                font-size: 0.9rem;
+            }
+            
+            /* Hide scrollbar for cleaner look */
+            .tabs-container::-webkit-scrollbar {
+                display: none;
             }
 
             /* --- FLOATING BUTTONS MOBILE ADJUSTMENT (From Index) --- */
@@ -917,72 +957,65 @@
         </div>
     </section>
 
-    <!-- Contact / CTA Section -->
-    <section id="contact" class="contact">
+    <!-- NEW SECTION: Our Process -->
+    <section class="process-section">
         <div class="container">
-            <div class="contact-wrapper">
-                
-                <div class="contact-details">
-                    <h2 class="text-gold" style="font-size: 2.5rem; margin-bottom: 15px;">Book a Consultation</h2>
-                    <p style="color: #888; margin-bottom: 30px; font-weight: 300;">
-                        Discuss your project with our specialists. We offer free site surveys and detailed quotations for all services.
-                    </p>
-
-                    <a href="tel:07060789789" class="contact-info-item">
-                        <i class="fas fa-phone-alt"></i>
-                        <span>07060 789789</span>
-                    </a>
-                    
-                    <div class="contact-info-item">
-                        <i class="fas fa-envelope"></i>
-                        <span>info@luxestoneconstruction.co.uk</span>
+            <div class="category-intro">
+                <h2 class="text-gold">Our Process</h2>
+                <p>Transparent, professional, and reliable. Here is what you can expect when you choose Luxestone.</p>
+            </div>
+            
+            <div class="process-grid">
+                <!-- Step 1 -->
+                <div class="process-step">
+                    <div class="step-icon-box">
+                        <i class="fas fa-comments"></i>
+                        <span class="step-number">1</span>
                     </div>
-                    <div class="contact-info-item">
-                        <i class="fas fa-map-marker-alt"></i>
-                        <span>East Sussex & Kent, UK</span>
-                    </div>
-
-                    <div class="social-links" style="margin: 20px 0 30px 0; display: flex; gap: 20px;">
-                        <a href="https://www.instagram.com/luxestoneconstruction" target="_blank" style="color: #fff; font-size: 1.5rem;"><i class="fab fa-instagram"></i></a>
-                        <a href="https://www.facebook.com/luxestoneconstruction" target="_blank" style="color: #fff; font-size: 1.5rem;"><i class="fab fa-facebook-f"></i></a>
-                    </div>
-                </div>
-                
-                <div class="contact-form-area">
-                    <h3 style="color: #fff; margin-bottom: 30px; font-size: 1.5rem;">Request a Quote</h3>
-                    <form action="#" method="POST">
-                        <div class="form-group">
-                            <label>Name</label>
-                            <input type="text" required placeholder="Your full name">
-                        </div>
-                        <div class="form-group">
-                            <label>Email</label>
-                            <input type="email" required placeholder="Your email address">
-                        </div>
-                        <div class="form-group">
-                            <label>Phone</label>
-                            <input type="tel" placeholder="Your contact number">
-                        </div>
-                        <div class="form-group">
-                            <label>Service Required</label>
-                            <select>
-                                <option value="" disabled selected>Select a service</option>
-                                <option>Resin Driveway</option>
-                                <option>Block Paving</option>
-                                <option>Patio / Paving</option>
-                                <option>Landscaping</option>
-                                <option>Fencing</option>
-                                <option>Groundworks</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label>Project Details</label>
-                            <textarea rows="3" placeholder="Tell us about your project..."></textarea>
-                        </div>
-                        <button type="submit" class="btn-gold" style="width: 100%; margin-top: 20px;">Send Request</button>
-                    </form>
+                    <h3>Consultation</h3>
+                    <p>We visit your property for a free site survey to discuss your vision, assess the ground, and offer expert advice.</p>
                 </div>
 
+                <!-- Step 2 -->
+                <div class="process-step">
+                    <div class="step-icon-box">
+                        <i class="fas fa-pencil-ruler"></i>
+                        <span class="step-number">2</span>
+                    </div>
+                    <h3>Design & Quote</h3>
+                    <p>You receive a detailed written quotation and design plan. We ensure all costs are transparent with no hidden extras.</p>
+                </div>
+
+                <!-- Step 3 -->
+                <div class="process-step">
+                    <div class="step-icon-box">
+                        <i class="fas fa-tools"></i>
+                        <span class="step-number">3</span>
+                    </div>
+                    <h3>Construction</h3>
+                    <p>Our skilled team carries out the work efficiently, adhering to British Standards and keeping the site tidy throughout.</p>
+                </div>
+
+                <!-- Step 4 -->
+                <div class="process-step">
+                    <div class="step-icon-box">
+                        <i class="fas fa-check-circle"></i>
+                        <span class="step-number">4</span>
+                    </div>
+                    <h3>Completion</h3>
+                    <p>We perform a final walkthrough to ensure complete satisfaction before handing over your transformed space.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- REPLACED: Call to Action Banner (Instead of Contact Form) -->
+    <section class="cta-banner">
+        <div class="container">
+            <div class="cta-content">
+                <h2>Ready to Transform Your Space?</h2>
+                <p>Contact us today for a free, no-obligation quote and let's bring your vision to life.</p>
+                <a href="contact.html" class="btn-gold">Get a Free Quote</a>
             </div>
         </div>
     </section>
