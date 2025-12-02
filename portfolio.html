@@ -296,12 +296,18 @@
             padding: 30px;
         }
 
-        .gallery-item:hover img {
-            transform: scale(1.05);
-        }
-
-        .gallery-item:hover .gallery-overlay {
-            opacity: 1;
+        /* Desktop Hover State */
+        @media (min-width: 1025px) {
+            .gallery-item:hover img {
+                transform: scale(1.05);
+            }
+            .gallery-item:hover .gallery-overlay {
+                opacity: 1;
+            }
+            .gallery-item:hover .overlay-cat,
+            .gallery-item:hover .overlay-title {
+                transform: translateY(0);
+            }
         }
 
         .overlay-cat {
@@ -320,11 +326,6 @@
             font-size: 1.5rem;
             transform: translateY(20px);
             transition: transform 0.4s ease 0.1s;
-        }
-
-        .gallery-item:hover .overlay-cat,
-        .gallery-item:hover .overlay-title {
-            transform: translateY(0);
         }
 
         /* --- INSTAGRAM CTA --- */
@@ -579,10 +580,23 @@
             transform: translateY(0);
         }
 
+        /* --- MEDIA QUERIES --- */
+
         @media (max-width: 1024px) {
             .page-header h1 { font-size: 3rem; }
             .page-header { background-attachment: scroll; }
             .standards-grid { grid-template-columns: 1fr; }
+            
+            /* -- MOBILE GALLERY FIX -- */
+            /* Force overlay to be visible on tablets and mobile devices */
+            .gallery-overlay {
+                opacity: 1;
+                /* Subtler gradient on mobile to keep top of image clear */
+                background: linear-gradient(to top, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.3) 50%, transparent 100%);
+            }
+            .overlay-cat, .overlay-title {
+                transform: translateY(0); /* Ensure text is in position */
+            }
         }
 
         @media (max-width: 768px) {
