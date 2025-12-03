@@ -4,19 +4,28 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="theme-color" content="#121212">
     
     <title>Luxestone Construction | Premium Driveways & Landscaping</title>
     <meta name="description" content="Luxestone Construction offers high-end driveways, resin paving, landscaping, and groundworks in East Sussex and Kent.">
     <meta name="keywords" content="Driveways East Sussex, Landscaping Kent, Groundworks UK, Resin Driveways, Block Paving, Luxestone Construction">
     <meta name="author" content="Luxestone Construction">
 
+    <!-- CRITICAL PERFORMANCE FIX: Preload the Hero Image -->
+    <link rel="preload" as="image" href="images/paving-contractors-brighton-hove.webp">
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    
+    <!-- Fonts: Swapped display to 'swap' to prevent invisible text -->
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
     
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- PERFORMANCE FIX: Load FontAwesome Asynchronously (Non-render blocking) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" media="print" onload="this.media='all'">
+    <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"></noscript>
 
     <style>
+        /* --- CORE STYLES --- */
         :root {
             --bg-dark: #121212;
             --bg-card: #1e1e1e;
@@ -33,15 +42,8 @@
             --header-height: 80px;
         }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        html {
-            scroll-behavior: smooth;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
 
         body {
             font-family: var(--font-body);
@@ -49,38 +51,23 @@
             color: var(--text-light);
             line-height: 1.8;
             overflow-x: hidden;
+            /* Inline SVG for background noise to save HTTP request */
             background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.05'/%3E%3C/svg%3E");
         }
 
-        h1, h2, h3, h4 {
-            font-family: var(--font-heading);
-            color: var(--text-light);
-            letter-spacing: 0.5px;
+        /* Accessibility: Skip Link */
+        .skip-link {
+            position: absolute; top: -40px; left: 0; background: var(--gold-solid); color: #000;
+            padding: 8px; z-index: 2000; transition: top 0.3s;
         }
+        .skip-link:focus { top: 0; }
 
-        a {
-            text-decoration: none;
-            color: inherit;
-            transition: 0.3s ease;
-        }
+        h1, h2, h3, h4 { font-family: var(--font-heading); color: var(--text-light); letter-spacing: 0.5px; }
+        a { text-decoration: none; color: inherit; transition: 0.3s ease; }
+        img { max-width: 100%; display: block; width: 100%; height: auto; } /* Ensure height auto for responsiveness */
+        ul, li { list-style: none !important; padding: 0; margin: 0; }
 
-        img {
-            max-width: 100%;
-            display: block;
-            width: 100%;
-        }
-        
-        ul, li {
-            list-style: none !important;
-            padding: 0;
-            margin: 0;
-        }
-
-        .container {
-            max-width: 1300px;
-            margin: 0 auto;
-            padding: 0 25px;
-        }
+        .container { max-width: 1300px; margin: 0 auto; padding: 0 25px; }
 
         .text-gold {
             background: var(--gold-gradient);
@@ -90,687 +77,154 @@
             font-weight: 700;
         }
 
-        .section-title {
-            font-size: 3rem;
-            text-align: center;
-            margin-bottom: 1rem;
-            position: relative;
-            z-index: 2;
-        }
-
-        .section-subtitle {
-            text-align: center;
-            color: var(--gold-solid);
-            margin-bottom: 4rem;
-            font-size: 1.1rem;
-            text-transform: uppercase;
-            letter-spacing: 3px;
-            font-weight: 400;
-            font-family: var(--font-body);
-        }
+        .section-title { font-size: 3rem; text-align: center; margin-bottom: 1rem; position: relative; z-index: 2; }
+        .section-subtitle { text-align: center; color: var(--gold-solid); margin-bottom: 4rem; font-size: 1.1rem; text-transform: uppercase; letter-spacing: 3px; font-weight: 400; font-family: var(--font-body); }
 
         .btn-gold {
-            background: var(--gold-gradient);
-            color: #000;
-            padding: 16px 40px;
-            font-weight: 700;
-            text-transform: uppercase;
-            border: none;
-            cursor: pointer;
-            display: inline-block;
-            font-size: 0.9rem;
-            letter-spacing: 1px;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            background: var(--gold-gradient); color: #000; padding: 16px 40px; font-weight: 700;
+            text-transform: uppercase; border: none; cursor: pointer; display: inline-block;
+            font-size: 0.9rem; letter-spacing: 1px; transition: transform 0.3s ease, box-shadow 0.3s ease;
             box-shadow: 0 4px 15px rgba(191, 149, 63, 0.3);
         }
-
-        .btn-gold:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 25px rgba(191, 149, 63, 0.5);
-        }
+        .btn-gold:hover { transform: translateY(-3px); box-shadow: 0 10px 25px rgba(191, 149, 63, 0.5); }
 
         .btn-outline {
-            background: transparent;
-            color: var(--gold-solid);
-            padding: 14px 38px;
-            font-weight: 700;
-            text-transform: uppercase;
-            border: 2px solid var(--gold-solid);
-            cursor: pointer;
-            display: inline-block;
-            font-size: 0.9rem;
-            letter-spacing: 1px;
-            transition: all 0.3s ease;
+            background: transparent; color: var(--gold-solid); padding: 14px 38px; font-weight: 700;
+            text-transform: uppercase; border: 2px solid var(--gold-solid); cursor: pointer;
+            display: inline-block; font-size: 0.9rem; letter-spacing: 1px; transition: all 0.3s ease;
         }
+        .btn-outline:hover { background: var(--gold-gradient); border-color: transparent; color: #000; }
 
-        .btn-outline:hover {
-            background: var(--gold-gradient);
-            border-color: transparent;
-            color: #000;
-        }
+        section { padding: 120px 0; position: relative; }
+        .divider { height: 1px; width: 100%; background: linear-gradient(90deg, transparent, #333, transparent); margin: 0 auto; }
 
-        section {
-            padding: 120px 0;
-            position: relative;
-        }
-
-        .divider {
-            height: 1px;
-            width: 100%;
-            background: linear-gradient(90deg, transparent, #333, transparent);
-            margin: 0 auto;
-        }
-
-        .floating-container {
-            position: fixed;
-            bottom: 30px;
-            right: 30px;
-            z-index: 2000;
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-            align-items: flex-end;
-        }
-
-        .float-btn {
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-size: 1.8rem;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.5);
-            cursor: pointer;
-            transition: transform 0.3s ease, opacity 0.3s ease;
-            text-decoration: none;
-            border: none;
-        }
-
-        .float-btn:hover {
-            transform: translateY(-5px);
-        }
-
-        .whatsapp-btn {
-            background-color: #25D366;
-            color: white;
-        }
-        .whatsapp-btn:hover {
-            background-color: #20b858;
-            color: white;
-        }
-
-        .scroll-top-btn {
-            background: var(--gold-gradient);
-            color: #000;
-            opacity: 0;
-            pointer-events: none;
-            transform: translateY(20px);
-        }
-        .scroll-top-btn.visible {
-            opacity: 1;
-            pointer-events: all;
-            transform: translateY(0);
-        }
-        .scroll-top-btn:hover {
-            transform: translateY(-5px);
-            color: #000;
-        }
-
-        /* --- Header & Navigation Updated to match services.txt --- */
+        /* HEADER & NAV */
         header {
-            position: fixed;
-            top: 0;
-            width: 100%;
+            position: fixed; top: 0; width: 100%;
             background-color: rgba(10, 10, 10, 0.95);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            z-index: 1000;
-            padding: 15px 0;
-            border-bottom: var(--glass-border);
+            backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+            z-index: 1000; padding: 15px 0; border-bottom: var(--glass-border);
             transition: all 0.3s ease;
         }
 
-        nav {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            height: 50px;
-        }
+        nav { display: flex; justify-content: space-between; align-items: center; height: 50px; }
 
-        .logo {
-            font-family: var(--font-heading);
-            font-size: 1.8rem;
-            font-weight: 700;
-            color: var(--text-light);
-            letter-spacing: 1px;
-            font-style: italic;
-            z-index: 1002;
-        }
+        .logo { font-family: var(--font-heading); font-size: 1.8rem; font-weight: 700; color: var(--text-light); letter-spacing: 1px; font-style: italic; z-index: 1002; }
+        .logo span { font-style: normal; background: var(--gold-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
 
-        .logo span {
-            font-style: normal;
-            background: var(--gold-gradient);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
+        .nav-links { display: flex; gap: 40px; list-style: none; margin: 0; padding: 0; }
+        .nav-links a { font-size: 0.85rem; font-weight: 400; text-transform: uppercase; letter-spacing: 2px; color: #ddd; position: relative; padding-bottom: 5px; }
+        .nav-links a:hover, .nav-links a.active { color: var(--gold-solid); }
+        .nav-links a::after { content: ''; position: absolute; bottom: 0; left: 50%; transform: translateX(-50%); width: 0; height: 1px; background: var(--gold-gradient); transition: width 0.3s ease; }
+        .nav-links a:hover::after, .nav-links a.active::after { width: 100%; }
 
-        .nav-links {
-            display: flex;
-            gap: 40px;
-            list-style: none;
-            margin: 0;
-            padding: 0;
-        }
+        .burger { display: none; color: var(--gold-solid); font-size: 1.5rem; cursor: pointer; z-index: 1001; background: none; border: none;}
 
-        .nav-links a {
-            font-size: 0.85rem;
-            font-weight: 400;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            color: #ddd;
-            position: relative;
-            padding-bottom: 5px;
-        }
-
-        .nav-links a:hover, .nav-links a.active {
-            color: var(--gold-solid);
-        }
-
-        .nav-links a::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 0;
-            height: 1px;
-            background: var(--gold-gradient);
-            transition: width 0.3s ease;
-        }
-
-        .nav-links a:hover::after, .nav-links a.active::after {
-            width: 100%;
-        }
-
-        .burger {
-            display: none;
-            color: var(--gold-solid);
-            font-size: 1.5rem;
-            cursor: pointer;
-            z-index: 1001;
-        }
-
-        /* --- Hero Section --- */
+        /* HERO SECTION */
         .hero {
-            height: 100vh;
-            min-height: 700px;
+            height: 100vh; min-height: 700px;
+            /* Updated image path to match your file structure */
             background: linear-gradient(to bottom, rgba(0,0,0,0.5), rgba(0,0,0,0.8)), 
                         url('images/paving-contractors-brighton-hove.webp');
-            background-size: cover;
-            background-position: center;
-            background-attachment: fixed;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            padding: 0;
-            position: relative;
+            background-size: cover; background-position: center; background-attachment: fixed;
+            display: flex; flex-direction: column; justify-content: center; align-items: center;
+            text-align: center; padding: 0; position: relative;
         }
 
-        .hero-content {
-            max-width: 1100px;
-            padding: 0 20px;
-            z-index: 2;
-            transform: translateY(-40px);
-        }
-
-        .hero h1 {
-            font-size: 3.8rem;
-            line-height: 1.2;
-            margin-bottom: 25px;
-            font-weight: 700;
-            text-shadow: 0 10px 30px rgba(0,0,0,0.6);
-            text-transform: uppercase;
-        }
-
-        .hero-sub {
-            font-size: 1.25rem;
-            font-weight: 300;
-            letter-spacing: 0.5px;
-            color: #f0f0f0;
-            margin-bottom: 40px;
-            display: block;
-            font-family: var(--font-body);
-            line-height: 1.6;
-            max-width: 800px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        .hero-buttons {
-            display: flex;
-            gap: 20px;
-            justify-content: center;
-        }
+        .hero-content { max-width: 1100px; padding: 0 20px; z-index: 2; transform: translateY(-40px); }
+        .hero h1 { font-size: 3.8rem; line-height: 1.2; margin-bottom: 25px; font-weight: 700; text-shadow: 0 10px 30px rgba(0,0,0,0.6); text-transform: uppercase; }
+        .hero-sub { font-size: 1.25rem; font-weight: 300; letter-spacing: 0.5px; color: #f0f0f0; margin-bottom: 40px; display: block; font-family: var(--font-body); line-height: 1.6; max-width: 800px; margin-left: auto; margin-right: auto; }
+        .hero-buttons { display: flex; gap: 20px; justify-content: center; }
 
         .hero-contact-bar {
-            position: absolute;
-            bottom: 0;
-            width: 100%;
-            background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(15px);
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            padding: 25px 0;
-            display: flex;
-            justify-content: center;
-            gap: 60px;
-            z-index: 3;
+            position: absolute; bottom: 0; width: 100%; background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(15px); border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 25px 0; display: flex; justify-content: center; gap: 60px; z-index: 3;
         }
 
-        .bar-item {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            color: #ccc;
-            font-size: 0.9rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            text-decoration: none;
-            transition: color 0.3s ease;
-        }
+        .bar-item { display: flex; align-items: center; gap: 15px; color: #ccc; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px; text-decoration: none; transition: color 0.3s ease; }
+        .bar-item:hover { color: var(--gold-solid); }
+        .bar-item i { color: var(--gold-solid); font-size: 1.2rem; }
 
-        .bar-item:hover {
-            color: var(--gold-solid);
-        }
+        /* ABOUT */
+        .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
+        .about-content-left h2 { font-size: 3.5rem; margin-bottom: 20px; line-height: 1; }
+        .about-content-left h3 { font-family: var(--font-body); color: var(--gold-solid); text-transform: uppercase; letter-spacing: 3px; font-size: 0.9rem; margin-bottom: 30px; font-weight: 700; }
+        .about-content-left p { color: var(--text-gray); margin-bottom: 25px; font-size: 1.1rem; font-weight: 300; }
 
-        .bar-item i {
-            color: var(--gold-solid);
-            font-size: 1.2rem;
-        }
+        .stats-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; }
+        .stat-card { background: rgba(255,255,255,0.03); padding: 40px 30px; border: 1px solid rgba(255,255,255,0.05); text-align: center; transition: 0.3s; }
+        .stat-card:hover { background: rgba(255,255,255,0.06); border-color: var(--gold-solid); }
+        .stat-number { display: block; font-size: 3rem; font-family: var(--font-heading); font-weight: 700; background: var(--gold-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 10px; }
+        .stat-label { font-size: 0.8rem; text-transform: uppercase; letter-spacing: 2px; color: #ccc; }
 
-        .about-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 80px;
-            align-items: center;
-        }
+        /* SERVICES */
+        .services { background: #0f0f0f; }
+        .services-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; }
+        .service-card { background: #1a1a1a; padding: 50px 40px; position: relative; border: 1px solid #252525; transition: 0.4s ease; overflow: hidden; z-index: 1; }
+        .service-card::after { content: ''; position: absolute; bottom: 0; left: 0; width: 100%; height: 3px; background: var(--gold-gradient); transform: scaleX(0); transform-origin: left; transition: transform 0.4s ease; }
+        .service-card:hover { transform: translateY(-10px); border-color: #333; box-shadow: 0 20px 50px rgba(0,0,0,0.5); }
+        .service-card:hover::after { transform: scaleX(1); }
+        .service-icon { font-size: 2.5rem; color: var(--gold-solid); margin-bottom: 30px; opacity: 0.8; }
+        .service-card h3 { font-size: 1.5rem; margin-bottom: 15px; }
+        .service-card p { color: #888; font-size: 1rem; font-weight: 300; line-height: 1.7; }
 
-        .about-content-left h2 {
-            font-size: 3.5rem;
-            margin-bottom: 20px;
-            line-height: 1;
-        }
+        /* PORTFOLIO */
+        .portfolio { padding: 0; }
+        .portfolio-header { background: #121212; padding: 100px 0 60px; text-align: center; }
+        .portfolio-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0; }
+        .portfolio-item { position: relative; height: 400px; overflow: hidden; cursor: pointer; }
+        .portfolio-item img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.8s cubic-bezier(0.2, 1, 0.3, 1); }
+        .portfolio-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.4); opacity: 0; transition: 0.4s; display: flex; align-items: center; justify-content: center; flex-direction: column; }
+        .portfolio-item:hover img { transform: scale(1.1); }
+        .portfolio-item:hover .portfolio-overlay { opacity: 1; background: rgba(0,0,0,0.6); }
+        .project-cat { color: var(--gold-solid); text-transform: uppercase; letter-spacing: 2px; font-size: 0.8rem; margin-bottom: 10px; transform: translateY(20px); transition: 0.4s; }
+        .project-title { color: #fff; font-family: var(--font-heading); font-size: 2rem; transform: translateY(20px); transition: 0.4s 0.1s; }
+        .portfolio-item:hover .project-cat, .portfolio-item:hover .project-title { transform: translateY(0); }
 
-        .about-content-left h3 {
-            font-family: var(--font-body);
-            color: var(--gold-solid);
-            text-transform: uppercase;
-            letter-spacing: 3px;
-            font-size: 0.9rem;
-            margin-bottom: 30px;
-            font-weight: 700;
-        }
-
-        .about-content-left p {
-            color: var(--text-gray);
-            margin-bottom: 25px;
-            font-size: 1.1rem;
-            font-weight: 300;
-        }
-
-        .stats-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 30px;
-        }
-
-        .stat-card {
-            background: rgba(255,255,255,0.03);
-            padding: 40px 30px;
-            border: 1px solid rgba(255,255,255,0.05);
-            text-align: center;
-            transition: 0.3s;
-        }
-
-        .stat-card:hover {
-            background: rgba(255,255,255,0.06);
-            border-color: var(--gold-solid);
-        }
-
-        .stat-number {
-            display: block;
-            font-size: 3rem;
-            font-family: var(--font-heading);
-            font-weight: 700;
-            background: var(--gold-gradient);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            margin-bottom: 10px;
-        }
-
-        .stat-label {
-            font-size: 0.8rem;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            color: #ccc;
-        }
-
-        .services {
-            background: #0f0f0f;
-        }
-
-        .services-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 30px;
-        }
-
-        .service-card {
-            background: #1a1a1a;
-            padding: 50px 40px;
-            position: relative;
-            border: 1px solid #252525;
-            transition: 0.4s ease;
-            overflow: hidden;
-            z-index: 1;
-        }
-
-        .service-card::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            height: 3px;
-            background: var(--gold-gradient);
-            transform: scaleX(0);
-            transform-origin: left;
-            transition: transform 0.4s ease;
-        }
-
-        .service-card:hover {
-            transform: translateY(-10px);
-            border-color: #333;
-            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
-        }
-
-        .service-card:hover::after {
-            transform: scaleX(1);
-        }
-
-        .service-icon {
-            font-size: 2.5rem;
-            color: var(--gold-solid);
-            margin-bottom: 30px;
-            opacity: 0.8;
-        }
-
-        .service-card h3 {
-            font-size: 1.5rem;
-            margin-bottom: 15px;
-        }
-
-        .service-card p {
-            color: #888;
-            font-size: 1rem;
-            font-weight: 300;
-            line-height: 1.7;
-        }
-
-        .portfolio {
-            padding: 0;
-        }
-
-        .portfolio-header {
-            background: #121212;
-            padding: 100px 0 60px;
-            text-align: center;
-        }
-
-        .portfolio-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 0;
-        }
-
-        .portfolio-item {
-            position: relative;
-            height: 400px;
-            overflow: hidden;
-            group: pointer;
-        }
-
-        .portfolio-item img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.8s cubic-bezier(0.2, 1, 0.3, 1);
-        }
-
-        .portfolio-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0,0,0,0.4);
-            opacity: 0;
-            transition: 0.4s;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-direction: column;
-        }
-
-        .portfolio-item:hover img {
-            transform: scale(1.1);
-        }
-
-        .portfolio-item:hover .portfolio-overlay {
-            opacity: 1;
-            background: rgba(0,0,0,0.6);
-        }
-
-        .project-cat {
-            color: var(--gold-solid);
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            font-size: 0.8rem;
-            margin-bottom: 10px;
-            transform: translateY(20px);
-            transition: 0.4s;
-        }
-
-        .project-title {
-            color: #fff;
-            font-family: var(--font-heading);
-            font-size: 2rem;
-            transform: translateY(20px);
-            transition: 0.4s 0.1s;
-        }
-
-        .portfolio-item:hover .project-cat,
-        .portfolio-item:hover .project-title {
-            transform: translateY(0);
-        }
-
-        .contact {
-            background: #0f0f0f;
-            padding-bottom: 0;
-        }
-
-        .contact-wrapper {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            border-top: 1px solid #222;
-        }
-
-        .contact-details {
-            padding: 60px;
-            background: #121212;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-        }
-
-        .contact-info-item {
-            display: flex;
-            align-items: center;
-            margin-bottom: 20px;
-            color: #ccc;
-            font-size: 1.1rem;
-            text-decoration: none;
-            transition: color 0.3s ease;
-        }
+        /* CONTACT */
+        .contact { background: #0f0f0f; padding-bottom: 0; }
+        .contact-wrapper { display: grid; grid-template-columns: 1fr 1fr; border-top: 1px solid #222; }
+        .contact-details { padding: 60px; background: #121212; display: flex; flex-direction: column; justify-content: center; }
+        .contact-info-item { display: flex; align-items: center; margin-bottom: 20px; color: #ccc; font-size: 1.1rem; text-decoration: none; transition: color 0.3s ease; }
+        .contact-info-item:hover { color: var(--gold-solid); }
+        .contact-info-item i { color: var(--gold-solid); width: 30px; font-size: 1.2rem; }
+        .contact-map-small { width: 100%; height: 280px; margin-top: 30px; border: 1px solid #333; filter: grayscale(100%) invert(92%) contrast(83%); }
+        .contact-form-area { padding: 60px; background: #161616; border-left: 1px solid #222; }
+        .form-group { margin-bottom: 20px; }
         
-        .contact-info-item:hover {
-            color: var(--gold-solid);
-        }
+        input, select, textarea { width: 100%; background: transparent; border: none; border-bottom: 1px solid #444; padding: 12px 0; color: #fff; font-family: var(--font-body); font-size: 1rem; transition: 0.3s; border-radius: 0; }
+        input:focus, select:focus, textarea:focus { outline: none; border-color: var(--gold-solid); background: rgba(255,255,255,0.02); }
+        label { font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1px; color: #666; cursor: pointer; }
 
-        .contact-info-item i {
-            color: var(--gold-solid);
-            width: 30px;
-            font-size: 1.2rem;
-        }
+        /* FOOTER */
+        footer { background: #050505; padding: 80px 0 30px; border-top: 1px solid #222; color: #777; }
+        .footer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 40px; margin-bottom: 60px; text-align: left; }
+        .footer-col h4 { color: var(--text-light); font-family: var(--font-heading); font-size: 1.2rem; margin-bottom: 25px; text-transform: uppercase; letter-spacing: 1px; }
+        .footer-col p { margin-bottom: 20px; line-height: 1.6; font-size: 0.95rem; }
+        .footer-col ul li { margin-bottom: 12px; }
+        .footer-col ul li a { color: #888; font-size: 0.95rem; transition: 0.3s; display: flex; align-items: center; }
+        .footer-col ul li a:hover { color: var(--gold-solid); padding-left: 5px; }
+        .footer-col ul li i { margin-right: 10px; color: var(--gold-solid); font-size: 0.8rem; }
+        .footer-socials { display: flex; gap: 15px; margin-top: 20px; }
+        .footer-socials a { width: 40px; height: 40px; background-color: #111; display: flex; justify-content: center; align-items: center; border-radius: 50%; color: var(--gold-solid); transition: 0.3s; border: 1px solid #333; }
+        .footer-socials a:hover { background-color: var(--gold-solid); color: #000; }
+        .footer-bottom { text-align: center; border-top: 1px solid #1a1a1a; padding-top: 30px; font-size: 0.85rem; }
 
-        .contact-map-small {
-            width: 100%;
-            height: 280px;
-            margin-top: 30px;
-            border: 1px solid #333;
-            filter: grayscale(100%) invert(92%) contrast(83%);
-        }
-
-        .contact-form-area {
-            padding: 60px;
-            background: #161616;
-            border-left: 1px solid #222;
-        }
-
-        .form-group {
-            margin-bottom: 20px;
-        }
-
-        input, select, textarea {
-            width: 100%;
-            background: transparent;
-            border: none;
-            border-bottom: 1px solid #444;
-            padding: 12px 0;
-            color: #fff;
-            font-family: var(--font-body);
-            font-size: 1rem;
-            transition: 0.3s;
-        }
-
-        input:focus, select:focus, textarea:focus {
-            outline: none;
-            border-color: var(--gold-solid);
-            background: rgba(255,255,255,0.02);
-        }
-
-        label {
-            font-size: 0.8rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            color: #666;
-        }
-
-        footer {
-            background: #050505;
-            padding: 80px 0 30px;
-            border-top: 1px solid #222;
-            color: #777;
-        }
-
-        .footer-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 40px;
-            margin-bottom: 60px;
-            text-align: left;
-        }
-
-        .footer-col h4 {
-            color: var(--text-light);
-            font-family: var(--font-heading);
-            font-size: 1.2rem;
-            margin-bottom: 25px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        .footer-col p {
-            margin-bottom: 20px;
-            line-height: 1.6;
-            font-size: 0.95rem;
-        }
-
-        .footer-col ul li {
-            margin-bottom: 12px;
-        }
-
-        .footer-col ul li a {
-            color: #888;
-            font-size: 0.95rem;
-            transition: 0.3s;
-            display: flex;
-            align-items: center;
-        }
-
-        .footer-col ul li a:hover {
-            color: var(--gold-solid);
-            padding-left: 5px;
-        }
-
-        .footer-col ul li i {
-            margin-right: 10px;
-            color: var(--gold-solid);
-            font-size: 0.8rem;
-        }
-
-        .footer-socials {
-            display: flex;
-            gap: 15px;
-            margin-top: 20px;
-        }
-
-        .footer-socials a {
-            width: 40px;
-            height: 40px;
-            background-color: #111;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            border-radius: 50%;
-            color: var(--gold-solid);
-            transition: 0.3s;
-            border: 1px solid #333;
-        }
-
-        .footer-socials a:hover {
-            background-color: var(--gold-solid);
-            color: #000;
-        }
-
-        .footer-bottom {
-            text-align: center;
-            border-top: 1px solid #1a1a1a;
-            padding-top: 30px;
-            font-size: 0.85rem;
-        }
+        /* FLOATING & UTILS */
+        .floating-container { position: fixed; bottom: 30px; right: 30px; z-index: 2000; display: flex; flex-direction: column; gap: 15px; align-items: flex-end; }
+        .float-btn { width: 60px; height: 60px; border-radius: 50%; display: flex; justify-content: center; align-items: center; font-size: 1.8rem; box-shadow: 0 5px 20px rgba(0,0,0,0.5); cursor: pointer; transition: transform 0.3s ease, opacity 0.3s ease; text-decoration: none; border: none; }
+        .float-btn:hover { transform: translateY(-5px); }
+        .whatsapp-btn { background-color: #25D366; color: white; }
+        .whatsapp-btn:hover { background-color: #20b858; color: white; }
+        .scroll-top-btn { background: var(--gold-gradient); color: #000; opacity: 0; pointer-events: none; transform: translateY(20px); }
+        .scroll-top-btn.visible { opacity: 1; pointer-events: all; transform: translateY(0); }
+        .scroll-top-btn:hover { transform: translateY(-5px); color: #000; }
 
         @media (max-width: 1024px) {
-            .services-grid, .portfolio-grid, .about-grid {
-                grid-template-columns: 1fr;
-                gap: 30px;
-            }
-            
+            .services-grid, .portfolio-grid, .about-grid { grid-template-columns: 1fr; gap: 30px; }
             .hero h1 { font-size: 3.5rem; }
             .hero-contact-bar { display: none; } 
-            
             .contact-wrapper { grid-template-columns: 1fr; }
             .contact-details, .contact-form-area { padding: 40px 20px; }
             .contact-map-small { height: 250px; }
@@ -778,7 +232,6 @@
 
         @media (max-width: 768px) {
             .burger { display: block; }
-            
             .nav-links {
                 position: fixed; right: 0px; height: 100vh; top: 0;
                 background-color: #0f0f0f; display: flex; flex-direction: column;
@@ -786,68 +239,23 @@
                 transform: translateX(100%); transition: transform 0.4s cubic-bezier(0.77, 0, 0.175, 1);
                 z-index: 998; padding-top: 60px; box-shadow: -5px 0 25px rgba(0,0,0,0.8);
             }
-            
-            .nav-links.nav-active {
-                transform: translateX(0%);
-            }
-            
-            .hero {
-                background-attachment: scroll;
-                background-position: center center;
-                height: auto;
-                min-height: 100vh;
-                padding: 120px 0;
-            }
-
+            .nav-links.nav-active { transform: translateX(0%); }
+            .hero { background-attachment: scroll; background-position: center center; height: auto; min-height: 100vh; padding: 120px 0; }
             .hero h1 { font-size: 1.8rem; }
-            
             .portfolio-grid { grid-template-columns: 1fr; }
-
-            .portfolio-item {
-                height: auto;
-                display: flex;
-                flex-direction: column;
-                margin-bottom: 20px;
-                border-bottom: 1px solid #333;
-            }
-
-            .portfolio-item img {
-                height: 300px;
-            }
-
-            .portfolio-overlay {
-                position: relative;
-                opacity: 1;
-                background: #161616;
-                height: auto;
-                padding: 25px;
-                align-items: flex-start;
-                border-top: 3px solid var(--gold-solid);
-            }
-
-            .project-cat, .project-title {
-                transform: translateY(0);
-                text-align: left;
-            }
-
-            .project-title {
-                font-size: 1.5rem;
-            }
-            
-            .floating-container {
-                bottom: 20px;
-                right: 20px;
-            }
-            
-            .float-btn {
-                width: 50px;
-                height: 50px;
-                font-size: 1.5rem;
-            }
+            .portfolio-item { height: auto; display: flex; flex-direction: column; margin-bottom: 20px; border-bottom: 1px solid #333; }
+            .portfolio-item img { height: 300px; }
+            .portfolio-overlay { position: relative; opacity: 1; background: #161616; height: auto; padding: 25px; align-items: flex-start; border-top: 3px solid var(--gold-solid); }
+            .project-cat, .project-title { transform: translateY(0); text-align: left; }
+            .project-title { font-size: 1.5rem; }
+            .floating-container { bottom: 20px; right: 20px; }
+            .float-btn { width: 50px; height: 50px; font-size: 1.5rem; }
         }
     </style>
 </head>
 <body>
+    <!-- A11y: Skip to content -->
+    <a href="#main-content" class="skip-link">Skip to content</a>
 
     <header>
         <div class="container">
@@ -860,208 +268,212 @@
                     <li><a href="about.html">About</a></li>
                     <li><a href="contact.html">Contact</a></li>
                 </ul>
-                <div class="burger" id="burger"><i class="fas fa-bars"></i></div>
+                <button class="burger" id="burger" aria-label="Toggle navigation menu"><i class="fas fa-bars"></i></button>
             </nav>
         </div>
     </header>
 
-    <section id="home" class="hero">
-        <div class="hero-content">
-            
-            <h1>Premium Driveway & Patio Installation<br>East Sussex & Kent</h1>
-            
-            <span class="hero-sub">
-                Crafting bespoke driveways, luxury patios, and stunning landscapes.<br>
-                We turn your vision into a stunning reality.
-            </span>
-            
-            <div class="hero-buttons">
-                <a href="contact.html" class="btn-gold">Get Your Free Quote</a>
-                <a href="portfolio.html" class="btn-outline">View Our Gallery</a>
-            </div>
-        </div>
-
-        <div class="hero-contact-bar">
-            <div class="bar-item">
-                <i class="fas fa-map-marker-alt"></i>
-                <span>Serving Kent & Sussex</span>
-            </div>
-            <a href="tel:07060789789" class="bar-item">
-                <i class="fas fa-phone-alt"></i>
-                <span>07060 789789</span>
-            </a>
-            <div class="bar-item">
-                <i class="fas fa-star"></i>
-                <span>25+ 5 Star Reviews</span>
-            </div>
-        </div>
-    </section>
-
-    <section id="about" class="about">
-        <div class="container">
-            <div class="about-grid">
-                <div class="about-content-left">
-                    <h3>Why Luxestone?</h3>
-                    <h2 class="text-gold">Reliability Meets <br>Pure Elegance.</h2>
-                    <div class="divider" style="width: 50px; margin: 0 0 30px 0; background: var(--gold-solid);"></div>
-                    <p>At Luxestone Construction, we don't just lay driveways; we curate entrances. Serving the finest properties in East Sussex and Kent, we bring a high-end, professional touch to every project.</p>
-                    <p>From complex groundworks to the final resin finish, our reputation is built on trust, transparency, and an obsessive attention to detail.</p>
-                    <a href="#contact" class="btn-outline" style="margin-top: 20px;">About Our Process</a>
-                </div>
-                
-                <div class="stats-grid">
-                    <div class="stat-card">
-                        <span class="stat-number">15+</span>
-                        <span class="stat-label">Years Experience</span>
-                    </div>
-                    <div class="stat-card">
-                        <span class="stat-number">50+</span>
-                        <span class="stat-label">Projects Completed</span>
-                    </div>
-                    <div class="stat-card">
-                        <span class="stat-number">100%</span>
-                        <span class="stat-label">Satisfaction</span>
-                    </div>
-                    <div class="stat-card">
-                        <i class="fas fa-award" style="font-size: 2.5rem; color: var(--gold-solid); margin-bottom: 10px;"></i>
-                        <span class="stat-label" style="display:block;">Fully Insured</span>
-                    </div>
+    <main id="main-content">
+        <section id="home" class="hero">
+            <div class="hero-content">
+                <h1>Premium Driveway & Patio Installation<br>East Sussex & Kent</h1>
+                <span class="hero-sub">
+                    Crafting bespoke driveways, luxury patios, and stunning landscapes.<br>
+                    We turn your vision into a stunning reality.
+                </span>
+                <div class="hero-buttons">
+                    <a href="contact.html" class="btn-gold">Get Your Free Quote</a>
+                    <a href="portfolio.html" class="btn-outline">View Our Gallery</a>
                 </div>
             </div>
-        </div>
-    </section>
 
-    <section id="services" class="services">
-        <div class="container">
-            <div class="section-title">Our Expertise</div>
-            <div class="section-subtitle">Comprehensive Groundworks & Landscaping</div>
-
-            <div class="services-grid">
-                <div class="service-card">
-                    <i class="fas fa-road service-icon"></i>
-                    <h3>Luxury Driveways</h3>
-                    <p>Resin Bound, Block Paving, and Gravel driveways designed to enhance kerb appeal and property value.</p>
+            <div class="hero-contact-bar">
+                <div class="bar-item">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <span>Serving Kent & Sussex</span>
                 </div>
-                <div class="service-card">
-                    <i class="fas fa-layer-group service-icon"></i>
-                    <h3>Paving & Patios</h3>
-                    <p>Premium Indian Sandstone, Porcelain, and Slate slab laying for stunning outdoor living spaces.</p>
-                </div>
-                <div class="service-card">
-                    <i class="fas fa-tree service-icon"></i>
-                    <h3>Landscaping</h3>
-                    <p>Complete hard and soft landscaping services to transform your garden into a private sanctuary.</p>
-                </div>
-            </div>
-            
-            <div style="text-align: center; margin-top: 60px;">
-                <a href="services.html" class="btn-outline">Explore All Services</a>
-            </div>
-        </div>
-    </section>
-
-    <section id="portfolio" class="portfolio">
-        <div class="portfolio-header">
-            <h2 class="section-title">Recent Projects</h2>
-            <p class="section-subtitle">Excellence in every detail</p>
-        </div>
-
-        <div class="portfolio-grid">
-            <div class="portfolio-item">
-                <img src="images/driveway-brighton.webp" alt="Driveway Brighton">
-                <div class="portfolio-overlay">
-                    <span class="project-cat">Driveway</span>
-                    <span class="project-title">Block Paving Brighton</span>
-                </div>
-            </div>
-            <div class="portfolio-item">
-                <img src="images/patio-kent.webp" alt="Patio Kent">
-                <div class="portfolio-overlay">
-                    <span class="project-cat">Paving</span>
-                    <span class="project-title">Indian Stone Patio Kent</span>
-                </div>
-            </div>
-            <div class="portfolio-item">
-                <img src="images/herringbone-driveway-sussex.webp" alt="Herringbone Sussex">
-                <div class="portfolio-overlay">
-                    <span class="project-cat">Brickwork</span>
-                    <span class="project-title">Herringbone Sussex</span>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="contact" class="contact">
-        <div class="contact-wrapper">
-            
-            <div class="contact-details">
-                <h2 class="text-gold" style="font-size: 2.5rem; margin-bottom: 15px;">Get in Touch</h2>
-                <p style="color: #888; margin-bottom: 30px; font-weight: 300;">
-                    Ready to transform your property? Contact us today for a free consultation and quote.
-                </p>
-
-                <a href="tel:07060789789" class="contact-info-item">
+                <a href="tel:07060789789" class="bar-item">
                     <i class="fas fa-phone-alt"></i>
                     <span>07060 789789</span>
                 </a>
+                <div class="bar-item">
+                    <i class="fas fa-star"></i>
+                    <span>25+ 5 Star Reviews</span>
+                </div>
+            </div>
+        </section>
+
+        <section id="about" class="about">
+            <div class="container">
+                <div class="about-grid">
+                    <div class="about-content-left">
+                        <h3>Why Luxestone?</h3>
+                        <h2 class="text-gold">Reliability Meets <br>Pure Elegance.</h2>
+                        <div class="divider" style="width: 50px; margin: 0 0 30px 0; background: var(--gold-solid);"></div>
+                        <p>At Luxestone Construction, we don't just lay driveways; we curate entrances. Serving the finest properties in East Sussex and Kent, we bring a high-end, professional touch to every project.</p>
+                        <p>From complex groundworks to the final resin finish, our reputation is built on trust, transparency, and an obsessive attention to detail.</p>
+                        <a href="#contact" class="btn-outline" style="margin-top: 20px;">About Our Process</a>
+                    </div>
+                    
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <span class="stat-number">15+</span>
+                            <span class="stat-label">Years Experience</span>
+                        </div>
+                        <div class="stat-card">
+                            <span class="stat-number">50+</span>
+                            <span class="stat-label">Projects Completed</span>
+                        </div>
+                        <div class="stat-card">
+                            <span class="stat-number">100%</span>
+                            <span class="stat-label">Satisfaction</span>
+                        </div>
+                        <div class="stat-card">
+                            <i class="fas fa-award" style="font-size: 2.5rem; color: var(--gold-solid); margin-bottom: 10px;"></i>
+                            <span class="stat-label" style="display:block;">Fully Insured</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="services" class="services">
+            <div class="container">
+                <div class="section-title">Our Expertise</div>
+                <div class="section-subtitle">Comprehensive Groundworks & Landscaping</div>
+
+                <div class="services-grid">
+                    <div class="service-card">
+                        <i class="fas fa-road service-icon"></i>
+                        <h3>Luxury Driveways</h3>
+                        <p>Resin Bound, Block Paving, and Gravel driveways designed to enhance kerb appeal and property value.</p>
+                    </div>
+                    <div class="service-card">
+                        <i class="fas fa-layer-group service-icon"></i>
+                        <h3>Paving & Patios</h3>
+                        <p>Premium Indian Sandstone, Porcelain, and Slate slab laying for stunning outdoor living spaces.</p>
+                    </div>
+                    <div class="service-card">
+                        <i class="fas fa-tree service-icon"></i>
+                        <h3>Landscaping</h3>
+                        <p>Complete hard and soft landscaping services to transform your garden into a private sanctuary.</p>
+                    </div>
+                </div>
                 
-                <div class="contact-info-item">
-                    <i class="fas fa-envelope"></i>
-                    <span>info@luxestoneconstruction.co.uk</span>
-                </div>
-                <div class="contact-info-item">
-                    <i class="fas fa-map-marker-alt"></i>
-                    <span>East Sussex & Kent, UK</span>
-                </div>
-
-                <div class="social-links" style="margin: 20px 0 30px 0; display: flex; gap: 20px;">
-                    <a href="https://www.instagram.com/luxestoneconstruction" target="_blank" style="color: #fff; font-size: 1.5rem;"><i class="fab fa-instagram"></i></a>
-                    <a href="https://www.facebook.com/luxestoneconstruction" target="_blank" style="color: #fff; font-size: 1.5rem;"><i class="fab fa-facebook-f"></i></a>
-                </div>
-
-                <div class="contact-map-small">
-                    <iframe 
-                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d635628.3573241667!2d0.04547859016052943!3d51.03888653190898!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47df627491c22d01%3A0x30eae2da2f84890!2sKent!5e0!3m2!1sen!2suk!4v1679324829123!5m2!1sen!2suk" 
-                        width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy">
-                    </iframe>
+                <div style="text-align: center; margin-top: 60px;">
+                    <a href="services.html" class="btn-outline">Explore All Services</a>
                 </div>
             </div>
-            
-            <div class="contact-form-area">
-                <h3 style="color: #fff; margin-bottom: 30px; font-size: 1.5rem;">Send us a Message</h3>
-                <form action="#" method="POST">
-                    <div class="form-group">
-                        <label>Name</label>
-                        <input type="text" required>
-                    </div>
-                    <div class="form-group">
-                        <label>Email</label>
-                        <input type="email" required>
-                    </div>
-                    <div class="form-group">
-                        <label>Phone</label>
-                        <input type="tel">
-                    </div>
-                    <div class="form-group">
-                        <label>Service</label>
-                        <select>
-                            <option>Driveway</option>
-                            <option>Patio</option>
-                            <option>Landscaping</option>
-                            <option>Fencing</option>
-                            <option>Other</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label>Message</label>
-                        <textarea rows="3"></textarea>
-                    </div>
-                    <button type="submit" class="btn-gold" style="width: 100%; margin-top: 20px;">Send Message</button>
-                </form>
+        </section>
+
+        <section id="portfolio" class="portfolio">
+            <div class="portfolio-header">
+                <h2 class="section-title">Recent Projects</h2>
+                <p class="section-subtitle">Excellence in every detail</p>
             </div>
 
-        </div>
-    </section>
+            <!-- PERF: Added width/height to images to prevent Layout Shift (CLS) -->
+            <!-- PERF: Added loading="lazy" to images below fold -->
+            <div class="portfolio-grid">
+                <div class="portfolio-item">
+                    <img src="images/driveway-brighton.webp" width="400" height="400" loading="lazy" alt="Block Paving Driveway Brighton">
+                    <div class="portfolio-overlay">
+                        <span class="project-cat">Driveway</span>
+                        <span class="project-title">Block Paving Brighton</span>
+                    </div>
+                </div>
+                <div class="portfolio-item">
+                    <img src="images/patio-kent.webp" width="400" height="400" loading="lazy" alt="Indian Stone Patio Kent">
+                    <div class="portfolio-overlay">
+                        <span class="project-cat">Paving</span>
+                        <span class="project-title">Indian Stone Patio Kent</span>
+                    </div>
+                </div>
+                <div class="portfolio-item">
+                    <img src="images/herringbone-driveway-sussex.webp" width="400" height="400" loading="lazy" alt="Herringbone Brickwork Sussex">
+                    <div class="portfolio-overlay">
+                        <span class="project-cat">Brickwork</span>
+                        <span class="project-title">Herringbone Sussex</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact" class="contact">
+            <div class="contact-wrapper">
+                
+                <div class="contact-details">
+                    <h2 class="text-gold" style="font-size: 2.5rem; margin-bottom: 15px;">Get in Touch</h2>
+                    <p style="color: #888; margin-bottom: 30px; font-weight: 300;">
+                        Ready to transform your property? Contact us today for a free consultation and quote.
+                    </p>
+
+                    <a href="tel:07060789789" class="contact-info-item">
+                        <i class="fas fa-phone-alt"></i>
+                        <span>07060 789789</span>
+                    </a>
+                    
+                    <div class="contact-info-item">
+                        <i class="fas fa-envelope"></i>
+                        <span>info@luxestoneconstruction.co.uk</span>
+                    </div>
+                    <div class="contact-info-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>East Sussex & Kent, UK</span>
+                    </div>
+
+                    <div class="social-links" style="margin: 20px 0 30px 0; display: flex; gap: 20px;">
+                        <a href="https://www.instagram.com/luxestoneconstruction" target="_blank" aria-label="Follow us on Instagram" style="color: #fff; font-size: 1.5rem;"><i class="fab fa-instagram"></i></a>
+                        <a href="https://www.facebook.com/luxestoneconstruction" target="_blank" aria-label="Like us on Facebook" style="color: #fff; font-size: 1.5rem;"><i class="fab fa-facebook-f"></i></a>
+                    </div>
+
+                    <div class="contact-map-small">
+                        <!-- PERF: Ensure lazy loading is on map -->
+                        <iframe 
+                            title="Map of Kent and Sussex"
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d635628.3573241667!2d0.04547859016052943!3d51.03888653190898!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47df627491c22d01%3A0x30eae2da2f84890!2sKent!5e0!3m2!1sen!2suk!4v1679324829123!5m2!1sen!2suk" 
+                            width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy">
+                        </iframe>
+                    </div>
+                </div>
+                
+                <div class="contact-form-area">
+                    <h3 style="color: #fff; margin-bottom: 30px; font-size: 1.5rem;">Send us a Message</h3>
+                    <!-- A11y: Added IDs and For attributes for accessibility -->
+                    <form action="#" method="POST">
+                        <div class="form-group">
+                            <label for="frm-name">Name</label>
+                            <input type="text" id="frm-name" name="name" required autocomplete="name">
+                        </div>
+                        <div class="form-group">
+                            <label for="frm-email">Email</label>
+                            <input type="email" id="frm-email" name="email" required autocomplete="email">
+                        </div>
+                        <div class="form-group">
+                            <label for="frm-phone">Phone</label>
+                            <input type="tel" id="frm-phone" name="phone" autocomplete="tel">
+                        </div>
+                        <div class="form-group">
+                            <label for="frm-service">Service</label>
+                            <select id="frm-service" name="service">
+                                <option>Driveway</option>
+                                <option>Patio</option>
+                                <option>Landscaping</option>
+                                <option>Fencing</option>
+                                <option>Other</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="frm-msg">Message</label>
+                            <textarea id="frm-msg" name="message" rows="3"></textarea>
+                        </div>
+                        <button type="submit" class="btn-gold" style="width: 100%; margin-top: 20px;">Send Message</button>
+                    </form>
+                </div>
+
+            </div>
+        </section>
+    </main>
 
     <footer>
         <div class="container">
@@ -1075,15 +487,15 @@
                         Premium paving and landscaping specialists serving East Sussex & Kent. We pride ourselves on obsessive attention to detail and timeless finishes.
                     </p>
                     <div class="footer-socials">
-                        <a href="https://www.facebook.com/luxestoneconstruction" target="_blank"><i class="fab fa-facebook-f"></i></a>
-                        <a href="https://www.instagram.com/luxestoneconstruction" target="_blank"><i class="fab fa-instagram"></i></a>
+                        <a href="https://www.facebook.com/luxestoneconstruction" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="https://www.instagram.com/luxestoneconstruction" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
                     </div>
                 </div>
 
                 <div class="footer-col">
                     <h4>Quick Links</h4>
                     <ul>
-                        <li><a href="home">Home</a></li>
+                        <li><a href="index.html">Home</a></li>
                         <li><a href="services.html">Services</a></li>
                         <li><a href="portfolio.html">Gallery</a></li>
                         <li><a href="about.html">About Us</a></li>
@@ -1145,25 +557,30 @@
 
         burger.addEventListener('click', () => {
             nav.classList.toggle('nav-active');
-            burger.classList.toggle('toggle');
+            // Toggle aria-expanded for accessibility if we were strictly following WAI-ARIA
+            // burger.setAttribute('aria-expanded', nav.classList.contains('nav-active'));
         });
 
         const navItems = document.querySelectorAll('.nav-links a');
         navItems.forEach(item => {
             item.addEventListener('click', () => {
                 nav.classList.remove('nav-active');
-                burger.classList.remove('toggle');
             });
         });
 
         const scrollTopBtn = document.getElementById('scrollTopBtn');
 
+        // Debounce scroll event for performance
+        let isScrolling;
         window.addEventListener('scroll', () => {
-            if (window.scrollY > 300) {
-                scrollTopBtn.classList.add('visible');
-            } else {
-                scrollTopBtn.classList.remove('visible');
-            }
+            window.clearTimeout(isScrolling);
+            isScrolling = setTimeout(() => {
+                if (window.scrollY > 300) {
+                    scrollTopBtn.classList.add('visible');
+                } else {
+                    scrollTopBtn.classList.remove('visible');
+                }
+            }, 66); // Run at roughly 15fps
         });
 
         scrollTopBtn.addEventListener('click', () => {
@@ -1173,6 +590,5 @@
             });
         });
     </script>
-
 </body>
 </html>
