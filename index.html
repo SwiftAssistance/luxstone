@@ -23,9 +23,6 @@
         <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
     </noscript>
 
-    <!-- REMOVED FONTAWESOME CSS LINK TO ELIMINATE RENDER BLOCKING -->
-    <!-- Icons are now inline SVGs for maximum performance -->
-
     <style>
         /* --- CORE STYLES --- */
         :root {
@@ -108,13 +105,15 @@
         section { 
             padding: 120px 0; 
             position: relative; 
-            /* PERF: Skip rendering off-screen content */
+            /* PERF: 'contain: content' isolates layout calculation, hugely improving scroll performance */
+            contain: content;
+            /* PERF: 'content-visibility' skips rendering off-screen content */
             content-visibility: auto; 
             contain-intrinsic-size: 1px 800px; 
         }
         
         /* Ensure Hero is always visible */
-        section.hero { content-visibility: visible; }
+        section.hero { content-visibility: visible; contain: none; }
 
         .divider { height: 1px; width: 100%; background: linear-gradient(90deg, transparent, #333, transparent); margin: 0 auto; }
 
@@ -296,6 +295,8 @@
 <body>
     <!-- A11y: Skip to content -->
     <a href="#main-content" class="skip-link">Skip to content</a>
+    <!-- PERF: Sentinel for IntersectionObserver to avoid scroll listeners -->
+    <div id="top-sentinel" style="position:absolute; top:0; height:1px; width:1px; pointer-events:none; opacity:0;"></div>
 
     <header>
         <div class="container">
@@ -319,12 +320,15 @@
     <main id="main-content">
         <section id="home" class="hero">
             <!-- PERFORMANCE LCP FIX: Real IMG tag with fetchpriority + sizes attribute -->
+            <!-- NOTE: For best mobile score, create a smaller image (e.g. 600px width) named 'paving-contractors-brighton-hove-mobile.webp' -->
             <img src="images/paving-contractors-brighton-hove.webp" 
+                 srcset="images/paving-contractors-brighton-hove-mobile.webp 600w, images/paving-contractors-brighton-hove.webp 1920w"
+                 sizes="(max-width: 768px) 100vw, 100vw"
                  class="hero-bg-img" 
                  alt="Luxestone Driveways and Patios" 
                  fetchpriority="high"
-                 width="1920" height="1080"
-                 sizes="100vw">
+                 decoding="async"
+                 width="1920" height="1080">
             
             <!-- Dark Overlay div -->
             <div class="hero-overlay"></div>
@@ -437,21 +441,21 @@
             <!-- PERF: Added loading="lazy" to images below fold -->
             <div class="portfolio-grid">
                 <div class="portfolio-item">
-                    <img src="images/driveway-brighton.webp" width="400" height="400" loading="lazy" alt="Block Paving Driveway Brighton">
+                    <img src="images/driveway-brighton.webp" width="400" height="400" loading="lazy" decoding="async" alt="Block Paving Driveway Brighton">
                     <div class="portfolio-overlay">
                         <span class="project-cat">Driveway</span>
                         <span class="project-title">Block Paving Brighton</span>
                     </div>
                 </div>
                 <div class="portfolio-item">
-                    <img src="images/patio-kent.webp" width="400" height="400" loading="lazy" alt="Indian Stone Patio Kent">
+                    <img src="images/patio-kent.webp" width="400" height="400" loading="lazy" decoding="async" alt="Indian Stone Patio Kent">
                     <div class="portfolio-overlay">
                         <span class="project-cat">Paving</span>
                         <span class="project-title">Indian Stone Patio Kent</span>
                     </div>
                 </div>
                 <div class="portfolio-item">
-                    <img src="images/herringbone-driveway-sussex.webp" width="400" height="400" loading="lazy" alt="Herringbone Brickwork Sussex">
+                    <img src="images/herringbone-driveway-sussex.webp" width="400" height="400" loading="lazy" decoding="async" alt="Herringbone Brickwork Sussex">
                     <div class="portfolio-overlay">
                         <span class="project-cat">Brickwork</span>
                         <span class="project-title">Herringbone Sussex</span>
@@ -652,19 +656,34 @@
         });
 
         const scrollTopBtn = document.getElementById('scrollTopBtn');
+        const topSentinel = document.getElementById('top-sentinel');
 
-        // Debounce scroll event for performance
-        let isScrolling;
-        window.addEventListener('scroll', () => {
-            window.clearTimeout(isScrolling);
-            isScrolling = setTimeout(() => {
-                if (window.scrollY > 300) {
+        // PERF: IntersectionObserver is much more efficient than scroll event listener
+        // It doesn't run on every pixel scroll, only when visibility changes
+        if ('IntersectionObserver' in window) {
+            const observer = new IntersectionObserver((entries) => {
+                // If sentinel is NOT intersecting (scrolled out of view), show button
+                if (!entries[0].isIntersecting) {
                     scrollTopBtn.classList.add('visible');
                 } else {
                     scrollTopBtn.classList.remove('visible');
                 }
-            }, 66); // Run at roughly 15fps
-        });
+            });
+            observer.observe(topSentinel);
+        } else {
+            // Fallback for very old browsers
+            let isScrolling;
+            window.addEventListener('scroll', () => {
+                window.clearTimeout(isScrolling);
+                isScrolling = setTimeout(() => {
+                    if (window.scrollY > 300) {
+                        scrollTopBtn.classList.add('visible');
+                    } else {
+                        scrollTopBtn.classList.remove('visible');
+                    }
+                }, 66);
+            });
+        }
 
         scrollTopBtn.addEventListener('click', () => {
             window.scrollTo({
