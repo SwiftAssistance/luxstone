@@ -11,8 +11,12 @@
     <meta name="keywords" content="Driveways East Sussex, Landscaping Kent, Groundworks UK, Resin Driveways, Block Paving, Luxestone Construction">
     <meta name="author" content="Luxestone Construction">
 
-    <!-- CRITICAL LCP FIX: Preload the hero image -->
-    <link rel="preload" as="image" href="images/paving-contractors-brighton-hove.webp">
+    <!-- CRITICAL PERFORMANCE FIX: Smart Preload -->
+    <!-- This tells the browser to only preload the small image on mobile, and the big one on desktop -->
+    <link rel="preload" as="image" 
+          href="images/paving-contractors-brighton-hove.webp" 
+          imagesrcset="images/paving-contractors-brighton-hove-mobile.webp 600w, images/paving-contractors-brighton-hove.webp 1920w"
+          imagesizes="(max-width: 768px) 100vw, 100vw">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -33,7 +37,7 @@
             --gold-solid: #d4af37;
             --text-light: #f5f5f5;
             --text-gray: #aaaaaa;
-            --glass-bg: rgba(20, 20, 20, 0.85);
+            --glass-bg: rgba(20, 20, 20, 0.95); /* Opaque fallback for mobile */
             --glass-border: 1px solid rgba(255, 255, 255, 0.08);
             --font-heading: 'Playfair Display', serif;
             --font-body: 'Lato', sans-serif;
@@ -120,10 +124,17 @@
         /* HEADER & NAV */
         header {
             position: fixed; top: 0; width: 100%;
-            background-color: rgba(10, 10, 10, 0.95);
-            backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+            background-color: var(--bg-dark); /* PERF: Solid color default for mobile */
             z-index: 1000; padding: 15px 0; border-bottom: var(--glass-border);
             transition: all 0.3s ease;
+        }
+
+        /* PERF: Only use backdrop-filter on devices that can handle it well */
+        @media (min-width: 769px) {
+            header {
+                background-color: rgba(10, 10, 10, 0.85);
+                backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+            }
         }
 
         nav { display: flex; justify-content: space-between; align-items: center; height: 50px; }
@@ -175,9 +186,18 @@
         .hero-buttons { display: flex; gap: 20px; justify-content: center; }
 
         .hero-contact-bar {
-            position: absolute; bottom: 0; width: 100%; background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(15px); border-top: 1px solid rgba(255, 255, 255, 0.1);
+            position: absolute; bottom: 0; width: 100%; 
+            background: #1a1a1a; /* Solid color for mobile performance */
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
             padding: 25px 0; display: flex; justify-content: center; gap: 60px; z-index: 3;
+        }
+
+        /* PERF: Restore blur only on desktop */
+        @media (min-width: 769px) {
+            .hero-contact-bar {
+                background: rgba(255, 255, 255, 0.05);
+                backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px);
+            }
         }
 
         .bar-item { display: flex; align-items: center; gap: 15px; color: #ccc; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px; text-decoration: none; transition: color 0.3s ease; }
@@ -320,14 +340,14 @@
     <main id="main-content">
         <section id="home" class="hero">
             <!-- PERFORMANCE LCP FIX: Real IMG tag with fetchpriority + sizes attribute -->
-            <!-- NOTE: For best mobile score, create a smaller image (e.g. 600px width) named 'paving-contractors-brighton-hove-mobile.webp' -->
+            <!-- NOTE: You MUST create a smaller image named 'paving-contractors-brighton-hove-mobile.webp' (approx 600px width) for this to work perfectly -->
             <img src="images/paving-contractors-brighton-hove.webp" 
                  srcset="images/paving-contractors-brighton-hove-mobile.webp 600w, images/paving-contractors-brighton-hove.webp 1920w"
                  sizes="(max-width: 768px) 100vw, 100vw"
                  class="hero-bg-img" 
                  alt="Luxestone Driveways and Patios" 
                  fetchpriority="high"
-                 decoding="async"
+                 decoding="sync"
                  width="1920" height="1080">
             
             <!-- Dark Overlay div -->
