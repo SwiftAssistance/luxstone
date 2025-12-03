@@ -4,15 +4,21 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="theme-color" content="#121212">
     
     <title>Contact Us | Luxestone Construction</title>
     <meta name="description" content="Contact Luxestone Construction for a free consultation. Premium driveways, patios, and landscaping in East Sussex and Kent.">
     
+    <!-- Hero Image Preload for LCP -->
+    <link rel="preload" as="image" href="images/paving-contractors-brighton-hove.webp">
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
     
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Non-blocking Icon CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" media="print" onload="this.media='all'">
+    <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"></noscript>
 
     <style>
         /* --- CORE STYLES --- */
@@ -30,11 +36,7 @@
             --font-body: 'Lato', sans-serif;
         }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
 
         body {
             font-family: var(--font-body);
@@ -45,416 +47,104 @@
             background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.05'/%3E%3C/svg%3E");
         }
 
-        h1, h2, h3, h4 {
-            font-family: var(--font-heading);
-            color: var(--text-light);
-        }
+        /* Accessibility: Skip Link */
+        .skip-link { position: absolute; top: -40px; left: 0; background: var(--gold-solid); color: #000; padding: 8px; z-index: 2000; transition: top 0.3s; }
+        .skip-link:focus { top: 0; }
 
+        h1, h2, h3, h4 { font-family: var(--font-heading); color: var(--text-light); }
         a { text-decoration: none; color: inherit; transition: 0.3s ease; }
         ul { list-style: none; padding: 0; margin: 0; }
-        img { max-width: 100%; display: block; width: 100%; }
-        
+        img { max-width: 100%; display: block; width: 100%; height: auto; }
         html { scroll-behavior: smooth; }
 
-        .container {
-            max-width: 1300px;
-            margin: 0 auto;
-            padding: 0 25px;
-        }
+        .container { max-width: 1300px; margin: 0 auto; padding: 0 25px; }
 
-        .text-gold {
-            background: var(--gold-gradient);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            font-weight: 700;
-        }
+        .text-gold { background: var(--gold-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; font-weight: 700; }
 
         .btn-gold {
-            background: var(--gold-gradient);
-            color: #000;
-            padding: 16px 40px;
-            font-weight: 700;
-            text-transform: uppercase;
-            border: none;
-            cursor: pointer;
-            display: inline-block;
-            font-size: 0.9rem;
-            letter-spacing: 1px;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            background: var(--gold-gradient); color: #000; padding: 16px 40px; font-weight: 700;
+            text-transform: uppercase; border: none; cursor: pointer; display: inline-block;
+            font-size: 0.9rem; letter-spacing: 1px; transition: transform 0.3s ease, box-shadow 0.3s ease;
             box-shadow: 0 4px 15px rgba(191, 149, 63, 0.3);
         }
+        .btn-gold:hover { transform: translateY(-3px); box-shadow: 0 10px 25px rgba(191, 149, 63, 0.5); }
 
-        .btn-gold:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 25px rgba(191, 149, 63, 0.5);
-        }
-
-        /* --- HEADER --- */
-        header {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            background-color: rgba(10, 10, 10, 0.95);
-            backdrop-filter: blur(12px);
-            z-index: 1000;
-            padding: 15px 0;
-            border-bottom: var(--glass-border);
-        }
-
-        nav {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            height: 50px;
-        }
-
-        .logo {
-            font-family: var(--font-heading);
-            font-size: 1.8rem;
-            font-weight: 700;
-            color: var(--text-light);
-            letter-spacing: 1px;
-            font-style: italic;
-        }
-
-        .logo span {
-            font-style: normal;
-            background: var(--gold-gradient);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 40px;
-        }
-
-        .nav-links a {
-            font-size: 0.85rem;
-            font-weight: 400;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            color: #ddd;
-            position: relative;
-            padding-bottom: 5px;
-        }
-
-        .nav-links a:hover, .nav-links a.active {
-            color: var(--gold-solid);
-        }
-
-        .nav-links a::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 0;
-            height: 1px;
-            background: var(--gold-gradient);
-            transition: width 0.3s ease;
-        }
-
+        /* HEADER */
+        header { position: fixed; top: 0; width: 100%; background-color: rgba(10, 10, 10, 0.95); backdrop-filter: blur(12px); z-index: 1000; padding: 15px 0; border-bottom: var(--glass-border); }
+        nav { display: flex; justify-content: space-between; align-items: center; height: 50px; }
+        .logo { font-family: var(--font-heading); font-size: 1.8rem; font-weight: 700; color: var(--text-light); letter-spacing: 1px; font-style: italic; }
+        .logo span { font-style: normal; background: var(--gold-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .nav-links { display: flex; gap: 40px; }
+        .nav-links a { font-size: 0.85rem; font-weight: 400; text-transform: uppercase; letter-spacing: 2px; color: #ddd; position: relative; padding-bottom: 5px; }
+        .nav-links a:hover, .nav-links a.active { color: var(--gold-solid); }
+        .nav-links a::after { content: ''; position: absolute; bottom: 0; left: 50%; transform: translateX(-50%); width: 0; height: 1px; background: var(--gold-gradient); transition: width 0.3s ease; }
         .nav-links a:hover::after, .nav-links a.active::after { width: 100%; }
+        .burger { display: none; color: var(--gold-solid); font-size: 1.5rem; cursor: pointer; background:none; border:none; }
 
-        .burger {
-            display: none;
-            color: var(--gold-solid);
-            font-size: 1.5rem;
-            cursor: pointer;
-        }
-
-        /* --- PAGE HERO --- */
+        /* PAGE HERO */
         .page-header {
-            height: 50vh;
-            min-height: 400px;
-            background: linear-gradient(to bottom, rgba(0,0,0,0.7), rgba(18,18,18,1)), 
-                        url('images/paving-contractors-brighton-hove.webp'); 
-            background-size: cover;
-            background-position: center;
-            background-attachment: fixed;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            padding-top: 80px;
-            position: relative;
+            height: 50vh; min-height: 400px;
+            background: linear-gradient(to bottom, rgba(0,0,0,0.7), rgba(18,18,18,1)), url('images/paving-contractors-brighton-hove.webp'); 
+            background-size: cover; background-position: center; background-attachment: fixed;
+            display: flex; flex-direction: column; justify-content: center; align-items: center;
+            text-align: center; padding-top: 80px; position: relative;
         }
+        .header-content { max-width: 800px; padding: 0 20px; animation: fadeIn 1s ease-out; }
+        .page-header h1 { font-size: 4rem; margin-bottom: 20px; line-height: 1.1; }
+        .page-header p { font-size: 1.2rem; color: #ccc; margin-bottom: 30px; font-weight: 300; line-height: 1.6; }
+        .breadcrumb { color: var(--text-gray); font-size: 0.9rem; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 20px; display: block; }
+        .breadcrumb span { color: var(--gold-solid); margin: 0 10px; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
 
-        .header-content {
-            max-width: 800px;
-            padding: 0 20px;
-            animation: fadeIn 1s ease-out;
-        }
-
-        .page-header h1 {
-            font-size: 4rem;
-            margin-bottom: 20px;
-            line-height: 1.1;
-        }
-
-        .page-header p {
-            font-size: 1.2rem;
-            color: #ccc;
-            margin-bottom: 30px;
-            font-weight: 300;
-            line-height: 1.6;
-        }
-
-        .breadcrumb {
-            color: var(--text-gray);
-            font-size: 0.9rem;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            margin-bottom: 20px;
-            display: block;
-        }
-
-        .breadcrumb span {
-            color: var(--gold-solid);
-            margin: 0 10px;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        /* --- CONTACT CONTENT --- */
-        .contact-main-section {
-            padding: 100px 0;
-        }
-
-        .contact-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 60px;
-        }
+        /* CONTACT MAIN */
+        .contact-main-section { padding: 100px 0; }
+        .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; }
 
         /* Info Column */
-        .contact-info-col h4 {
-            color: var(--gold-solid);
-            text-transform: uppercase;
-            letter-spacing: 3px;
-            margin-bottom: 15px;
-            font-size: 0.9rem;
-        }
-
-        .contact-info-col h2 {
-            font-size: 3rem;
-            line-height: 1.1;
-            margin-bottom: 30px;
-        }
-
-        .contact-info-col p {
-            color: #bbb;
-            margin-bottom: 40px;
-        }
-
-        .info-card {
-            display: flex;
-            align-items: center;
-            background: rgba(255, 255, 255, 0.03);
-            padding: 25px;
-            margin-bottom: 20px;
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            transition: 0.3s ease;
-        }
-
-        .info-card:hover {
-            border-color: var(--gold-solid);
-            transform: translateX(10px);
-        }
-
-        .info-icon {
-            width: 50px;
-            height: 50px;
-            background: rgba(212, 175, 55, 0.1);
-            border-radius: 50%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            margin-right: 20px;
-            color: var(--gold-solid);
-            font-size: 1.2rem;
-        }
-
-        .info-text h5 {
-            color: #fff;
-            font-family: var(--font-heading);
-            font-size: 1.2rem;
-            margin-bottom: 5px;
-        }
-
-        .info-text span {
-            color: #888;
-            font-size: 0.95rem;
-        }
+        .contact-info-col h4 { color: var(--gold-solid); text-transform: uppercase; letter-spacing: 3px; margin-bottom: 15px; font-size: 0.9rem; }
+        .contact-info-col h2 { font-size: 3rem; line-height: 1.1; margin-bottom: 30px; }
+        .contact-info-col p { color: #bbb; margin-bottom: 40px; }
+        .info-card { display: flex; align-items: center; background: rgba(255, 255, 255, 0.03); padding: 25px; margin-bottom: 20px; border: 1px solid rgba(255, 255, 255, 0.05); transition: 0.3s ease; }
+        .info-card:hover { border-color: var(--gold-solid); transform: translateX(10px); }
+        .info-icon { width: 50px; height: 50px; background: rgba(212, 175, 55, 0.1); border-radius: 50%; display: flex; justify-content: center; align-items: center; margin-right: 20px; color: var(--gold-solid); font-size: 1.2rem; }
+        .info-text h5 { color: #fff; font-family: var(--font-heading); font-size: 1.2rem; margin-bottom: 5px; }
+        .info-text span { color: #888; font-size: 0.95rem; }
 
         /* Form Column */
-        .contact-form-col {
-            background: #1a1a1a;
-            padding: 50px;
-            border: 1px solid #333;
-            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
-        }
-
-        .form-group {
-            margin-bottom: 25px;
-        }
-
-        .form-row {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 20px;
-        }
-
-        input, select, textarea {
-            width: 100%;
-            background: #111;
-            border: 1px solid #333;
-            padding: 15px;
-            color: #fff;
-            font-family: var(--font-body);
-            font-size: 1rem;
-            transition: 0.3s;
-            border-radius: 0;
-        }
-
-        input:focus, select:focus, textarea:focus {
-            outline: none;
-            border-color: var(--gold-solid);
-            background: #0f0f0f;
-        }
-
-        label {
-            font-size: 0.8rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            color: #666;
-            margin-bottom: 8px;
-            display: block;
-        }
-
-        /* Map Section */
-        .map-section {
-            width: 100%;
-            height: 500px;
-            margin-top: 50px;
-            border-top: 1px solid #333;
-            border-bottom: 1px solid #333;
-            filter: grayscale(100%) invert(92%) contrast(83%);
-            transition: filter 0.5s ease;
-        }
-
-        .map-section:hover {
-            filter: grayscale(0%) invert(0%);
-        }
-
-        iframe {
-            width: 100%;
-            height: 100%;
-            border: 0;
-        }
-
-        /* --- FOOTER --- */
-        footer {
-            background: #050505;
-            padding: 80px 0 30px;
-            border-top: 1px solid #222;
-            color: #777;
-        }
-
-        .footer-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 40px;
-            margin-bottom: 60px;
-        }
-
-        .footer-col h4 {
-            color: var(--text-light);
-            font-family: var(--font-heading);
-            font-size: 1.2rem;
-            margin-bottom: 25px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        .footer-col ul li { margin-bottom: 12px; }
+        .contact-form-col { background: #1a1a1a; padding: 50px; border: 1px solid #333; box-shadow: 0 20px 50px rgba(0,0,0,0.5); }
+        .form-group { margin-bottom: 25px; }
+        .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
         
-        .footer-col ul li a {
-            color: #888; font-size: 0.95rem; transition: 0.3s;
-        }
+        input, select, textarea { width: 100%; background: #111; border: 1px solid #333; padding: 15px; color: #fff; font-family: var(--font-body); font-size: 1rem; transition: 0.3s; border-radius: 0; }
+        input:focus, select:focus, textarea:focus { outline: none; border-color: var(--gold-solid); background: #0f0f0f; }
+        label { font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1px; color: #666; margin-bottom: 8px; display: block; cursor: pointer; }
+
+        /* Map */
+        .map-section { width: 100%; height: 500px; margin-top: 50px; border-top: 1px solid #333; border-bottom: 1px solid #333; filter: grayscale(100%) invert(92%) contrast(83%); transition: filter 0.5s ease; }
+        .map-section:hover { filter: grayscale(0%) invert(0%); }
+        iframe { width: 100%; height: 100%; border: 0; }
+
+        /* FOOTER & FLOATING (Same as Index) */
+        footer { background: #050505; padding: 80px 0 30px; border-top: 1px solid #222; color: #777; }
+        .footer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 40px; margin-bottom: 60px; }
+        .footer-col h4 { color: var(--text-light); font-family: var(--font-heading); font-size: 1.2rem; margin-bottom: 25px; text-transform: uppercase; letter-spacing: 1px; }
+        .footer-col ul li { margin-bottom: 12px; }
+        .footer-col ul li a { color: #888; font-size: 0.95rem; transition: 0.3s; display: flex; align-items: center; }
         .footer-col ul li a:hover { color: var(--gold-solid); padding-left: 5px; }
-
+        .footer-col ul li i { margin-right: 10px; color: var(--gold-solid); font-size: 0.8rem; } /* Added this to match index.html for icons */
+        
         .footer-socials { display: flex; gap: 15px; margin-top: 20px; }
-        .footer-socials a {
-            width: 40px; height: 40px; background: #111; border: 1px solid #333;
-            display: flex; justify-content: center; align-items: center;
-            border-radius: 50%; color: var(--gold-solid); transition: 0.3s;
-        }
+        .footer-socials a { width: 40px; height: 40px; background: #111; border: 1px solid #333; display: flex; justify-content: center; align-items: center; border-radius: 50%; color: var(--gold-solid); transition: 0.3s; }
         .footer-socials a:hover { background: var(--gold-solid); color: #000; }
+        .footer-bottom { text-align: center; border-top: 1px solid #1a1a1a; padding-top: 30px; font-size: 0.85rem; }
 
-        .footer-bottom {
-            text-align: center; border-top: 1px solid #1a1a1a; padding-top: 30px; font-size: 0.85rem;
-        }
-
-        /* --- FLOATING BUTTONS --- */
-        .floating-container {
-            position: fixed;
-            bottom: 30px;
-            right: 30px;
-            z-index: 2000;
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-            align-items: flex-end;
-        }
-
-        .float-btn {
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-size: 1.8rem;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.5);
-            cursor: pointer;
-            transition: transform 0.3s ease, opacity 0.3s ease;
-            text-decoration: none;
-            border: none;
-        }
-
-        .float-btn:hover {
-            transform: translateY(-5px);
-        }
-
-        .whatsapp-btn {
-            background-color: #25D366;
-            color: white;
-        }
-
-        .whatsapp-btn:hover {
-            background-color: #20b858;
-            color: white;
-        }
-
-        .scroll-top-btn {
-            background: var(--gold-gradient);
-            color: #000;
-            opacity: 0;
-            pointer-events: none;
-            transform: translateY(20px);
-        }
-        .scroll-top-btn.visible {
-            opacity: 1;
-            pointer-events: all;
-            transform: translateY(0);
-        }
+        .floating-container { position: fixed; bottom: 30px; right: 30px; z-index: 2000; display: flex; flex-direction: column; gap: 15px; align-items: flex-end; }
+        .float-btn { width: 60px; height: 60px; border-radius: 50%; display: flex; justify-content: center; align-items: center; font-size: 1.8rem; box-shadow: 0 5px 20px rgba(0,0,0,0.5); cursor: pointer; transition: transform 0.3s ease, opacity 0.3s ease; text-decoration: none; border: none; }
+        .float-btn:hover { transform: translateY(-5px); }
+        .whatsapp-btn { background-color: #25D366; color: white; }
+        .whatsapp-btn:hover { background-color: #20b858; color: white; }
+        .scroll-top-btn { background: var(--gold-gradient); color: #000; opacity: 0; pointer-events: none; transform: translateY(20px); }
+        .scroll-top-btn.visible { opacity: 1; pointer-events: all; transform: translateY(0); }
 
         @media (max-width: 1024px) {
             .contact-grid { grid-template-columns: 1fr; gap: 40px; }
@@ -471,26 +161,17 @@
             }
             .nav-links.nav-active { transform: translateX(0%); }
             .burger { display: block; z-index: 999; }
-            
             .page-header { height: auto; padding: 120px 0 60px; }
             .page-header h1 { font-size: 2.2rem; }
             .form-row { grid-template-columns: 1fr; gap: 0; }
             .contact-form-col { padding: 30px 20px; }
-
-            .floating-container {
-                bottom: 20px;
-                right: 20px;
-            }
-            
-            .float-btn {
-                width: 50px;
-                height: 50px;
-                font-size: 1.5rem;
-            }
+            .floating-container { bottom: 20px; right: 20px; }
+            .float-btn { width: 50px; height: 50px; font-size: 1.5rem; }
         }
     </style>
 </head>
 <body>
+    <a href="#main-contact" class="skip-link">Skip to main content</a>
 
     <header>
         <div class="container">
@@ -503,7 +184,7 @@
                     <li><a href="about.html">About</a></li>
                     <li><a href="contact.html" class="active">Contact</a></li>
                 </ul>
-                <div class="burger" id="burger"><i class="fas fa-bars"></i></div>
+                <button class="burger" id="burger" aria-label="Toggle menu"><i class="fas fa-bars"></i></button>
             </nav>
         </div>
     </header>
@@ -520,7 +201,7 @@
     </div>
 
     <!-- MAIN CONTACT SECTION -->
-    <section class="contact-main-section">
+    <section class="contact-main-section" id="main-contact">
         <div class="container">
             <div class="contact-grid">
                 
@@ -557,8 +238,8 @@
                     <div style="margin-top: 30px;">
                         <h5 style="color:#fff; margin-bottom:15px;">Follow Us</h5>
                         <div class="footer-socials">
-                            <a href="https://www.facebook.com/luxestoneconstruction" target="_blank"><i class="fab fa-facebook-f"></i></a>
-                            <a href="https://www.instagram.com/luxestoneconstruction" target="_blank"><i class="fab fa-instagram"></i></a>
+                            <a href="https://www.facebook.com/luxestoneconstruction" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                            <a href="https://www.instagram.com/luxestoneconstruction" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
                         </div>
                     </div>
                 </div>
@@ -567,32 +248,30 @@
                 <div class="contact-form-col">
                     <h3 style="color:#fff; margin-bottom:20px;">Send a Message</h3>
                     
-                    <!-- WEB3FORMS START -->
-                    <!-- Replace 'YOUR_ACCESS_KEY_HERE' with your actual Web3Forms Access Key -->
+                    <!-- A11y Fixes: Added Labels connected to inputs via ID -->
                     <form action="https://api.web3forms.com/submit" method="POST">
                         <input type="hidden" name="access_key" value="YOUR_ACCESS_KEY_HERE">
-                        <!-- Optional: Custom Subject -->
                         <input type="hidden" name="subject" value="New Inquiry from Luxestone Website">
                         
                         <div class="form-row">
                             <div class="form-group">
-                                <label>Name</label>
-                                <input type="text" name="name" required placeholder="John Doe">
+                                <label for="c-name">Name</label>
+                                <input type="text" id="c-name" name="name" required placeholder="John Doe" autocomplete="name">
                             </div>
                             <div class="form-group">
-                                <label>Phone</label>
-                                <input type="tel" name="phone" placeholder="07123 456789">
+                                <label for="c-phone">Phone</label>
+                                <input type="tel" id="c-phone" name="phone" placeholder="07123 456789" autocomplete="tel">
                             </div>
                         </div>
 
                         <div class="form-group">
-                            <label>Email</label>
-                            <input type="email" name="email" required placeholder="john@example.com">
+                            <label for="c-email">Email</label>
+                            <input type="email" id="c-email" name="email" required placeholder="john@example.com" autocomplete="email">
                         </div>
 
                         <div class="form-group">
-                            <label>Service Required</label>
-                            <select name="service">
+                            <label for="c-service">Service Required</label>
+                            <select id="c-service" name="service">
                                 <option value="Resin Driveway">Resin Bound Driveway</option>
                                 <option value="Block Paving">Block Paving</option>
                                 <option value="Patio">Patio / Paving</option>
@@ -602,13 +281,12 @@
                         </div>
 
                         <div class="form-group">
-                            <label>Message</label>
-                            <textarea name="message" rows="5" required placeholder="Tell us about your project..."></textarea>
+                            <label for="c-message">Message</label>
+                            <textarea id="c-message" name="message" rows="5" required placeholder="Tell us about your project..."></textarea>
                         </div>
 
                         <button type="submit" class="btn-gold" style="width:100%;">Send Message</button>
                     </form>
-                    <!-- WEB3FORMS END -->
 
                 </div>
             </div>
@@ -617,8 +295,9 @@
 
     <!-- GOOGLE MAPS SECTION -->
     <div class="map-section">
-        <!-- Embed Map centered roughly between East Sussex and Kent -->
+        <!-- Perf: added title, loading=lazy -->
         <iframe 
+            title="Google Map Location"
             src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d320268.0315904949!2d0.18737330225114755!3d51.00624009384724!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47df627491c22d01%3A0x30eae2da2f84890!2sKent!5e0!3m2!1sen!2suk!4v1679324829123!5m2!1sen!2suk" 
             allowfullscreen="" 
             loading="lazy" 
@@ -630,24 +309,31 @@
     <footer>
         <div class="container">
             <div class="footer-grid">
+                
                 <div class="footer-col">
-                    <div class="logo" style="margin-bottom: 20px;">LUXE<span>STONE</span></div>
-                    <p>Premium paving and landscaping specialists serving East Sussex & Kent.</p>
+                    <div class="logo" style="margin-bottom: 20px; font-size: 1.5rem;">
+                        LUXE<span>STONE</span>
+                    </div>
+                    <p>
+                        Premium paving and landscaping specialists serving East Sussex & Kent. We pride ourselves on obsessive attention to detail and timeless finishes.
+                    </p>
                     <div class="footer-socials">
-                        <a href="#"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="https://www.facebook.com/luxestoneconstruction" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="https://www.instagram.com/luxestoneconstruction" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
                     </div>
                 </div>
+
                 <div class="footer-col">
                     <h4>Quick Links</h4>
                     <ul>
                         <li><a href="index.html">Home</a></li>
                         <li><a href="services.html">Services</a></li>
-                        <li><a href="gallery.html">Gallery</a></li>
-                        <li><a href="about.html">About</a></li>
-                        <li><a href="contact.html">Contact</a></li>
+                        <li><a href="portfolio.html">Gallery</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="contact.html">Contact Us</a></li>
                     </ul>
                 </div>
+
                 <div class="footer-col">
                     <h4>Our Services</h4>
                     <ul>
@@ -659,14 +345,28 @@
                         <li><a href="services.html">Groundworks</a></li>
                     </ul>
                 </div>
+
                 <div class="footer-col">
-                    <h4>Contact</h4>
+                    <h4>Contact Us</h4>
                     <ul>
-                        <li><a href="tel:07060789789">07060 789789</a></li>
-                        <li><a href="mailto:info@luxestoneconstruction.co.uk">info@luxestoneconstruction.co.uk</a></li>
+                        <li>
+                            <a href="tel:07060789789">
+                                <i class="fas fa-phone-alt"></i> 07060 789789
+                            </a>
+                        </li>
+                        <li>
+                            <a href="mailto:info@luxestoneconstruction.co.uk">
+                                <i class="fas fa-envelope"></i> info@luxestoneconstruction.co.uk
+                            </a>
+                        </li>
+                        <li style="align-items: flex-start;">
+                            <i class="fas fa-map-marker-alt" style="margin-top: 5px;"></i>
+                            <span>East Sussex & Kent, UK</span>
+                        </li>
                     </ul>
                 </div>
             </div>
+            
             <div class="footer-bottom">
                 <p>&copy; 2025 Luxestone Construction. All Rights Reserved.</p>
             </div>
@@ -693,13 +393,17 @@
 
         // --- SCROLL TO TOP & FLOATING BUTTONS LOGIC ---
         const scrollTopBtn = document.getElementById('scrollTopBtn');
-
+        
+        let isScrolling;
         window.addEventListener('scroll', () => {
-            if (window.scrollY > 300) {
-                scrollTopBtn.classList.add('visible');
-            } else {
-                scrollTopBtn.classList.remove('visible');
-            }
+            window.clearTimeout(isScrolling);
+            isScrolling = setTimeout(() => {
+                if (window.scrollY > 300) {
+                    scrollTopBtn.classList.add('visible');
+                } else {
+                    scrollTopBtn.classList.remove('visible');
+                }
+            }, 66);
         });
 
         scrollTopBtn.addEventListener('click', () => {
